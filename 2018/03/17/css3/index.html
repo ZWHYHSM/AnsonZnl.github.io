@@ -20,9 +20,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="HTML,css3">
+    <meta name="keywords" content="css3,HTML">
     <meta name="description" content="最近一直在做H5的微场景，用到很多css3的特效，在这里把常用的总结一下吧，  border-radius创建圆角边框 box-shadow 添加阴影 background-size 属性规定背景图片的尺寸。 123transform: rotateX(120deg);-webkit-transform: rotateX(120deg);	/* Safari 和 Chrome */-moz-tra">
-<meta name="keywords" content="HTML,css3">
+<meta name="keywords" content="css3,HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css3动画">
 <meta property="og:url" content="http://www.zhangningle.top/2018/03/17/css3/index.html">
@@ -306,6 +306,30 @@
 
 
 
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
 
 
 
