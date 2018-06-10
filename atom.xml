@@ -46,19 +46,19 @@
   </entry>
   
   <entry>
-    <title>绑定自己的博客域名</title>
-    <link href="http://www.zhangningle.top/2018/06/10/%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D/"/>
-    <id>http://www.zhangningle.top/2018/06/10/绑定自己的域名/</id>
+    <title>添加账户SSH （免密码上传）</title>
+    <link href="http://www.zhangningle.top/2018/06/10/%E8%AE%BE%E7%BD%AE%E8%B4%A6%E6%88%B7SSH/"/>
+    <id>http://www.zhangningle.top/2018/06/10/设置账户SSH/</id>
     <published>2018-06-10T04:19:12.966Z</published>
-    <updated>2018-01-06T09:08:19.917Z</updated>
+    <updated>2018-01-06T02:23:11.481Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="绑定自己的博客域名"><a href="#绑定自己的博客域名" class="headerlink" title="绑定自己的博客域名"></a>绑定自己的博客域名</h2><p><code>www.zhangningle.top</code><br>阿里云万网购买的2云一年哈哈。。。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>以前没有添加SSH时，每次上传博文都要输入一次账户和密码，异常麻烦，这次我吧博客部署了三个git托管的主流平台（Guthub/Coding/码云）那可是要输三次账户名和密码的，为了方便节省时间就在网上找了找关于ssh教程，<br>奈何都不是很全面，遇见不少坑，今天自己爬完坑自己记录一下，下次万一用到还可以翻出来看看，</p><ul><li><a href="https://www.2cto.com/kf/201603/496122.html" target="_blank" rel="noopener">参考</a></li><li>配置SHH<br>配置shh key是让本地git项目与远程的github建立联系</li></ul><ul><li>检查是否已经有SSH Key，打开Git Bash，输入<br><code>&lt;code class=&quot;hljs bash&quot;&gt;cd ~/.ssh&lt;/code&gt;</code><br>如果没有.ssh这个目录，则生成一个新的SSH，输入<br><code>&lt;code class=&quot;hljs lasso&quot;&gt;ssh-keygen -t rsa -C &quot;your e-mail&quot;&lt;/code&gt;</code><br>注意1: 此处的邮箱地址，你可以输入自己的邮箱地址；注意2: 此处的「-C」的是大写的「C」</li><li>接下来几步都直接按回车键,然后系统会要你输入密码<br><code>&lt;code class=&quot;hljs ruby&quot;&gt;Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;</code><br><code>Enter same passphrase again:&lt;再次输入加密串&gt;&lt;/code&gt;</code><br>这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。<br>注意：输入密码的时候没有*字样的，你直接输入就可以了。</li><li>最后看到这样的界面，就成功设置ssh key了<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812521.jpg" alt="kl" title="">                </div>                <div class="image-caption">kl</div>            </figure><h3 id="添加-SSH-Key-到-GitHub和Coding"><a href="#添加-SSH-Key-到-GitHub和Coding" class="headerlink" title="添加 SSH Key 到 GitHub和Coding"></a>添加 SSH Key 到 GitHub和Coding</h3>打开Git Bash，然后输入<br><code>cd ~/.ssh</code><br>进入到.shh文件夹中再输入ls，查看是否有id_rsa.pub文件<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812522.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>输入cat命令，打开id_rsa.pub文件<br><code>cat id_rsa.pub</code><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812523.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure></li><li>再鼠标全选中右击复制</li><li>再配置到GitHub和Coding的SSH中<br>进入Github官网，点击+旁边的头像，再按settings进入设置<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812524.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>在点击New SSH key创建<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812525.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>title输入邮箱，key里面粘贴刚才右击复制的内容,再点Add SSH key<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812526.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;绑定自己的博客域名&quot;&gt;&lt;a href=&quot;#绑定自己的博客域名&quot; class=&quot;headerlink&quot; title=&quot;绑定自己的博客域名&quot;&gt;&lt;/a&gt;绑定自己的博客域名&lt;/h2&gt;&lt;p&gt;&lt;code&gt;www.zhangningle.top&lt;/code&gt;&lt;br&gt;阿里云万网购
+        &lt;h2 id=&quot;SSH&quot;&gt;&lt;a href=&quot;#SSH&quot; class=&quot;headerlink&quot; title=&quot;SSH&quot;&gt;&lt;/a&gt;SSH&lt;/h2&gt;&lt;p&gt;以前没有添加SSH时，每次上传博文都要输入一次账户和密码，异常麻烦，这次我吧博客部署了三个git托管的主流平台（Guthub/Cod
       
     
     </summary>
@@ -75,19 +75,19 @@
   </entry>
   
   <entry>
-    <title>添加账户SSH （免密码上传）</title>
-    <link href="http://www.zhangningle.top/2018/06/10/%E8%AE%BE%E7%BD%AE%E8%B4%A6%E6%88%B7SSH/"/>
-    <id>http://www.zhangningle.top/2018/06/10/设置账户SSH/</id>
+    <title>绑定自己的博客域名</title>
+    <link href="http://www.zhangningle.top/2018/06/10/%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D/"/>
+    <id>http://www.zhangningle.top/2018/06/10/绑定自己的域名/</id>
     <published>2018-06-10T04:19:12.966Z</published>
-    <updated>2018-01-06T02:23:11.481Z</updated>
+    <updated>2018-01-06T09:08:19.917Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>以前没有添加SSH时，每次上传博文都要输入一次账户和密码，异常麻烦，这次我吧博客部署了三个git托管的主流平台（Guthub/Coding/码云）那可是要输三次账户名和密码的，为了方便节省时间就在网上找了找关于ssh教程，<br>奈何都不是很全面，遇见不少坑，今天自己爬完坑自己记录一下，下次万一用到还可以翻出来看看，</p><ul><li><a href="https://www.2cto.com/kf/201603/496122.html" target="_blank" rel="noopener">参考</a></li><li>配置SHH<br>配置shh key是让本地git项目与远程的github建立联系</li></ul><ul><li>检查是否已经有SSH Key，打开Git Bash，输入<br><code>&lt;code class=&quot;hljs bash&quot;&gt;cd ~/.ssh&lt;/code&gt;</code><br>如果没有.ssh这个目录，则生成一个新的SSH，输入<br><code>&lt;code class=&quot;hljs lasso&quot;&gt;ssh-keygen -t rsa -C &quot;your e-mail&quot;&lt;/code&gt;</code><br>注意1: 此处的邮箱地址，你可以输入自己的邮箱地址；注意2: 此处的「-C」的是大写的「C」</li><li>接下来几步都直接按回车键,然后系统会要你输入密码<br><code>&lt;code class=&quot;hljs ruby&quot;&gt;Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;</code><br><code>Enter same passphrase again:&lt;再次输入加密串&gt;&lt;/code&gt;</code><br>这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。<br>注意：输入密码的时候没有*字样的，你直接输入就可以了。</li><li>最后看到这样的界面，就成功设置ssh key了<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812521.jpg" alt="kl" title="">                </div>                <div class="image-caption">kl</div>            </figure><h3 id="添加-SSH-Key-到-GitHub和Coding"><a href="#添加-SSH-Key-到-GitHub和Coding" class="headerlink" title="添加 SSH Key 到 GitHub和Coding"></a>添加 SSH Key 到 GitHub和Coding</h3>打开Git Bash，然后输入<br><code>cd ~/.ssh</code><br>进入到.shh文件夹中再输入ls，查看是否有id_rsa.pub文件<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812522.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>输入cat命令，打开id_rsa.pub文件<br><code>cat id_rsa.pub</code><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812523.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure></li><li>再鼠标全选中右击复制</li><li>再配置到GitHub和Coding的SSH中<br>进入Github官网，点击+旁边的头像，再按settings进入设置<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812524.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>在点击New SSH key创建<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812525.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>title输入邮箱，key里面粘贴刚才右击复制的内容,再点Add SSH key<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://www.2cto.com/uploadfile/Collfiles/20160329/20160329134812526.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="绑定自己的博客域名"><a href="#绑定自己的博客域名" class="headerlink" title="绑定自己的博客域名"></a>绑定自己的博客域名</h2><p><code>www.zhangningle.top</code><br>阿里云万网购买的2云一年哈哈。。。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;SSH&quot;&gt;&lt;a href=&quot;#SSH&quot; class=&quot;headerlink&quot; title=&quot;SSH&quot;&gt;&lt;/a&gt;SSH&lt;/h2&gt;&lt;p&gt;以前没有添加SSH时，每次上传博文都要输入一次账户和密码，异常麻烦，这次我吧博客部署了三个git托管的主流平台（Guthub/Cod
+        &lt;h2 id=&quot;绑定自己的博客域名&quot;&gt;&lt;a href=&quot;#绑定自己的博客域名&quot; class=&quot;headerlink&quot; title=&quot;绑定自己的博客域名&quot;&gt;&lt;/a&gt;绑定自己的博客域名&lt;/h2&gt;&lt;p&gt;&lt;code&gt;www.zhangningle.top&lt;/code&gt;&lt;br&gt;阿里云万网购
       
     
     </summary>
@@ -437,7 +437,7 @@
     <link href="http://www.zhangningle.top/2018/06/10/zhangningle.com%E5%8D%9A%E5%AE%A2%E9%80%9A%E8%BF%87%E5%A4%87%E6%A1%88/"/>
     <id>http://www.zhangningle.top/2018/06/10/zhangningle.com博客通过备案/</id>
     <published>2018-06-10T04:19:12.916Z</published>
-    <updated>2018-06-10T05:01:00.407Z</updated>
+    <updated>2018-06-10T05:57:03.211Z</updated>
     
     <content type="html"><![CDATA[<h3 id="zhangningle-com博客通过备案"><a href="#zhangningle-com博客通过备案" class="headerlink" title="zhangningle.com博客通过备案"></a>zhangningle.com博客通过备案</h3><p>在昨天接到短信通知 我的阿里云服务器终于备案通过了，<br>所以第一个WordPress博客也可以正式使用我得域名：<a href="http://www.zhangningle.com/" target="_blank" rel="noopener">www.zhangningle.com</a>可以正式访问了！！<br>后续博客可能会陆续迁移到这个上面去，正在寻找WordPress主题中….</p>]]></content>
     
