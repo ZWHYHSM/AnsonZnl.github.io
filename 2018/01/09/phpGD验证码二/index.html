@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>phpGD验证码二 | 张宁乐的博客 | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php">
+    <meta name="description" content="php做的验证码二把验证码添加到登录页面中，因为学了ajax，所以我直接用ajax做的登录验证码的刷新1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&amp;lt;!doctype htm">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="phpGD验证码二">
+<meta property="og:url" content="http://www.zhangningle.top/2018/01/09/phpGD验证码二/index.html">
+<meta property="og:site_name" content="张宁乐的博客">
+<meta property="og:description" content="php做的验证码二把验证码添加到登录页面中，因为学了ajax，所以我直接用ajax做的登录验证码的刷新1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&amp;lt;!doctype htm">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/phpGD3.png">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/phpGD4.png">
+<meta property="og:updated_time" content="2018-06-10T08:40:30.478Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="phpGD验证码二">
+<meta name="twitter:description" content="php做的验证码二把验证码添加到登录页面中，因为学了ajax，所以我直接用ajax做的登录验证码的刷新1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&amp;lt;!doctype htm">
+<meta name="twitter:image" content="http://p0bnwspy9.bkt.clouddn.com/phpGD3.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="张宁乐的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/znl.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:1160030724@qq.com" title="1160030724@qq.com" class="mail">1160030724@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/works"  >
+                <i class="icon icon-lg icon-file-code-o"></i>
+                作品
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">phpGD验证码二</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">phpGD验证码二</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-09T07:18:07.000Z" itemprop="datePublished" class="page-time">
+  2018-01-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php做的验证码二"><span class="post-toc-number">1.</span> <span class="post-toc-text">php做的验证码二</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#把验证码添加到登录页面中，"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">把验证码添加到登录页面中，</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#封装验证码"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">封装验证码</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-phpGD验证码二"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">phpGD验证码二</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-09 15:18:07" datetime="2018-01-09T07:18:07.000Z"  itemprop="datePublished">
+2018-01-09
+<!--2018-06-10 16:40:30-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="php做的验证码二"><a href="#php做的验证码二" class="headerlink" title="php做的验证码二"></a>php做的验证码二</h3><h4 id="把验证码添加到登录页面中，"><a href="#把验证码添加到登录页面中，" class="headerlink" title="把验证码添加到登录页面中，"></a>把验证码添加到登录页面中，</h4><p>因为学了ajax，所以我直接用ajax做的登录验证码的刷新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot;</span><br><span class="line">          content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;登录验证&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;action.php&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    用户名：&lt;input name=&quot;username&quot; id=&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">    密&amp;nbsp;码：&lt;input name=&quot;password&quot; id=&quot;password&quot;&gt;&lt;br&gt;</span><br><span class="line">    &lt;img id=&quot;ImgSrc&quot; src=&quot;VerificationCode.php&quot; alt=&quot;&quot;&gt;</span><br><span class="line">    &lt;a href=&quot;javascript:void(0);&quot; onclick=&quot;getCode()&quot;&gt;看不清&lt;/a&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    验证码：&lt;input name=&quot;code&quot; id=&quot;code&quot; onkeyup=&quot;checkCode()&quot;&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;div id=&quot;codeSpan&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;button type=&quot;button&quot; onclick=&quot;checkForm()&quot;&gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    //验证用户密码</span><br><span class="line">    function checkForm() &#123;</span><br><span class="line">        //判断用户名密码是否为空 判断是否符合验证</span><br><span class="line">        var username=document.querySelector(&quot;#username&quot;);</span><br><span class="line">        var password=document.querySelector(&quot;#password&quot;);</span><br><span class="line">        var form=document.querySelector(&quot;form&quot;);</span><br><span class="line">        if(username.value!==&quot;&quot;&amp;&amp;password.value!==&quot;&quot;)&#123;</span><br><span class="line">            form.submit();</span><br><span class="line">            return true;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            alert(&quot;用户名为空&quot;);</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //切换验证码</span><br><span class="line">    function getCode() &#123;</span><br><span class="line">        imgSrc=document.getElementById(&quot;ImgSrc&quot;);</span><br><span class="line">        imgSrc.src=&quot;VerificationCode.php&quot;;</span><br><span class="line">        var codeSpan=document.getElementById(&quot;codeSpan&quot;);</span><br><span class="line">        var code=document.getElementById(&quot;code&quot;);</span><br><span class="line">        code.value=&apos;&apos;;</span><br><span class="line">        codeSpan.innerHTML=&apos;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    //验证验证码</span><br><span class="line">    function checkCode() &#123;</span><br><span class="line">        var code=document.querySelector(&quot;#code&quot;);</span><br><span class="line">        var xmlhttp;</span><br><span class="line">        if (window.XMLHttpRequest)&#123;</span><br><span class="line">            xmlhttp=new XMLHttpRequest();</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        xmlhttp.onreadystatechange=function () &#123;</span><br><span class="line">            if (xmlhttp.readyState==4&amp;&amp;xmlhttp.status==200)&#123;</span><br><span class="line">                var codeSpan=document.querySelector(&quot;#codeSpan&quot;);</span><br><span class="line">                    codeSpan.innerHTML = xmlhttp.responseText;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        xmlhttp.open(&quot;POST&quot;,&quot;action.php&quot;,true);</span><br><span class="line">        // xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;appliction/x-www-form-urlencoded&quot;);</span><br><span class="line">        xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">        xmlhttp.send(&quot;code=&quot;+code.value);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>最后输出的是：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/phpGD3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>输出后如图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/phpGD4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h4 id="封装验证码"><a href="#封装验证码" class="headerlink" title="封装验证码"></a>封装验证码</h4><p>把自己的写的一个验证码封装起来，下次方便重复的利用，也顺便复习一下面向对象的思维<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">header(&quot;Content-Type: text/html;charset=utf-8&quot;);</span><br><span class="line">class VerificarionCode&#123;</span><br><span class="line">    public $width;</span><br><span class="line">    public $height;</span><br><span class="line">    public $image;</span><br><span class="line">    function __construct($widths,$heights)</span><br><span class="line">    &#123;</span><br><span class="line">        //新建画布</span><br><span class="line">        $this-&gt;image=imagecreatetruecolor($widths,$heights);</span><br><span class="line">    &#125;</span><br><span class="line">    function imageColor($widths,$heights,$red,$green,$blue)&#123;</span><br><span class="line">        //新建矩形白色</span><br><span class="line">        $color=imagecolorallocate($this-&gt;image,$red,$green,$blue);</span><br><span class="line">        //填充一下</span><br><span class="line">        imagefilledrectangle($this-&gt;image,0,0,$widths,$heights,$color);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getRandColor($image)&#123;</span><br><span class="line">    //随机颜色</span><br><span class="line">        return imagecolorallocate($image,mt_rand(0,255),mt_rand(0,255),mt_rand(0,255));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function str($widths,$heights,$lengths)&#123;</span><br><span class="line">        //快速创建字符串 $string=&apos;asadf132&apos; array_merge 合并成一个数组 join字符串链接数组中的值  赋给string</span><br><span class="line">        $string=join(&apos;&apos;,array_merge(range(0,9),range(&apos;a&apos;,&apos;z&apos;),range(&apos;A&apos;,&apos;Z&apos;)));</span><br><span class="line">    //echo $string;</span><br><span class="line">    //得到字体宽度</span><br><span class="line">        $textWidth=imagefontwidth(28);</span><br><span class="line">        //得到字体高度</span><br><span class="line">        $textHeight=imagefontheight(28);</span><br><span class="line">        $length=$lengths;</span><br><span class="line">        $strZ=&apos;&apos;;</span><br><span class="line">        for($i=0;$i&lt;$length;$i++)&#123;</span><br><span class="line">            //随机每一位颜色</span><br><span class="line">        //    $randColor=imagecolorallocate($image,mt_rand(0,255),mt_rand(0,255),mt_rand(0,255));</span><br><span class="line">            $randColor=imagecolorallocate($this-&gt;image,mt_rand(0,255),mt_rand(0,255),mt_rand(0,255));</span><br><span class="line">            $size=mt_rand(19,22);</span><br><span class="line">            $angle=mt_rand(-15,15);</span><br><span class="line">        //    $x=20+40*$i;</span><br><span class="line">        //    $y=30;</span><br><span class="line">            $x=($widths/$length)*$i+$textWidth;</span><br><span class="line">            $y=mt_rand($heights/2,$heights-$textHeight);</span><br><span class="line">            $fontFile=&apos;font/FZLTCXHJW.TTF&apos;;</span><br><span class="line">            //打乱string这个字符串 然后随机取第一个字符串[0]</span><br><span class="line">            $text=str_shuffle($string)[0];</span><br><span class="line">            $strZ=$strZ.$text;</span><br><span class="line">            imagettftext($this-&gt;image,$size,$angle,$x,$y,$randColor,$fontFile,$text);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function Etpixel($widths,$heights,$EtpNum)&#123;</span><br><span class="line">        //添加点，像素做干扰元素</span><br><span class="line">        for($i=1;$i&lt;=$EtpNum;$i++)&#123;</span><br><span class="line">            //绘制像素</span><br><span class="line">            $randColor=imagecolorallocate($this-&gt;image,mt_rand(0,255),mt_rand(0,255),mt_rand(0,255));</span><br><span class="line">            imagesetpixel($this-&gt;image,mt_rand(0,$widths),mt_rand(0,$heights),$randColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function line($widths,$heights,$LineNum)&#123;</span><br><span class="line">        //添加线段干扰</span><br><span class="line">        for($i=1;$i&lt;=$LineNum;$i++)&#123;</span><br><span class="line">            //绘制线段</span><br><span class="line">            imageline($this-&gt;image,mt_rand(0,$widths),mt_rand(0,$heights),mt_rand(0,$widths),mt_rand(0,$heights), $randColor=imagecolorallocate($this-&gt;image,mt_rand(0,255),mt_rand(0,255),mt_rand(0,255)));</span><br><span class="line">//                     起始位置          结束位置</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function imagepng()&#123;</span><br><span class="line">        //告诉浏览器以图像形式显示png</span><br><span class="line">        header(&apos;content-type:image/png&apos;);</span><br><span class="line">        //输出图像</span><br><span class="line">        imagepng($this-&gt;image);</span><br><span class="line">        //销毁资源</span><br><span class="line">        imagedestroy($this-&gt;image);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$demo1 =new VerificarionCode(180,60);</span><br><span class="line">//画布</span><br><span class="line">$demo1-&gt;imageColor(180,60,255,255,255);</span><br><span class="line">//图像的数字</span><br><span class="line">$demo1-&gt;str(180,60,4);</span><br><span class="line">//干扰点</span><br><span class="line">$demo1-&gt;Etpixel(180,60,60);</span><br><span class="line">//干扰线段</span><br><span class="line">$demo1-&gt;line(180,60,3);</span><br><span class="line">//png输出</span><br><span class="line">$demo1-&gt;imagepng();</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://www.zhangningle.top">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/znl.png" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/&title=《phpGD验证码二》 — 张宁乐的博客&pic=http://p0bnwspy9.bkt.clouddn.com/znl.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/&title=《phpGD验证码二》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2018/01/09/phpGD验证码二/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《phpGD验证码二》 — 张宁乐的博客&url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/17/移动端-起点中文网/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">移动端-起点中文网</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/09/phpGD验证码一/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">phpGD验证码一</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/&title=《phpGD验证码二》 — 张宁乐的博客&pic=http://p0bnwspy9.bkt.clouddn.com/znl.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/&title=《phpGD验证码二》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2018/01/09/phpGD验证码二/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《phpGD验证码二》 — 张宁乐的博客&url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2018/01/09/phpGD验证码二/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNUlEQVR42u3a224CMQxFUf7/p+G1UploHzuDFM/OEyo0ZE0l15e8Xni9L9bfd9efX+959ZPNS4YMGccy3su1PhY/KFn/Hwr5vAwZMp7DuDrE+jX/LXJE/l0yZMiQQRgkQdxFlSFDhoyUkRa3JH2UIUOGDMJIC0veXOMM8iA21OIyZMg4kNFJ5u5+fct8Q4YMGUcx7mjcp6E8HQZ82UeGDBmjGTzA8eElGRukZS05jwwZMqYy0qsSHEBKzfR6WfKnkSFDxhxGB8abZbUhRPpdMmTImM0ICsVwkJAG3DR9lCFDxtMYtSFBmkTyMWSMlCFDxmhGWkCmgZUE6z5bhgwZsxm1Bn2nldYJuJdnkCFDxmhG2qznoZO35HhwL3YNZciQcSwjaGaFIZg36WrjzOA/hgwZMg5npAGxMxggRXLnopgMGTJmM8jFCHLcdOTJy90gw5UhQ8Y4Br/QwMNlrQzmDyXuzMmQIeNwRm3aubfpn6aDqFMoQ4aMcQxSmqYpYO26Bjl6MNmQIUPGIAYfAwSJWrh/LdH8MuWQIUPGaAZvkKU9eY5PR6QyZMh4GqOTnPHgmLbkghahDBkyhjI6JWu/P8/HokFuK0OGjHGM3xSi5N31nrXxgwwZMiYxSJDlqWE6bOCjAhkyZMjggY831GphulWLy5AhQ0bpqgQ/0PrBoQthMmTIkIEHnKRk7QTZDamhDBkyDmSQIjMtXPnwku8sQ4aMZzJ2Xdgi4ZVf7OiU1jJkyBjE+ABQK/oI8fiADAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

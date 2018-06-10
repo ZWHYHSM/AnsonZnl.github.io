@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>css3动画 | 张宁乐的博客 | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="HTML,css3">
+    <meta name="description" content="最近一直在做H5的微场景，用到很多css3的特效，在这里把常用的总结一下吧，  border-radius创建圆角边框 box-shadow 添加阴影 background-size 属性规定背景图片的尺寸。 123transform: rotateX(120deg);-webkit-transform: rotateX(120deg);	/* Safari 和 Chrome */-moz-tra">
+<meta name="keywords" content="HTML,css3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3动画">
+<meta property="og:url" content="http://www.zhangningle.top/2018/03/17/css3/index.html">
+<meta property="og:site_name" content="张宁乐的博客">
+<meta property="og:description" content="最近一直在做H5的微场景，用到很多css3的特效，在这里把常用的总结一下吧，  border-radius创建圆角边框 box-shadow 添加阴影 background-size 属性规定背景图片的尺寸。 123transform: rotateX(120deg);-webkit-transform: rotateX(120deg);	/* Safari 和 Chrome */-moz-tra">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-10T08:38:10.309Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css3动画">
+<meta name="twitter:description" content="最近一直在做H5的微场景，用到很多css3的特效，在这里把常用的总结一下吧，  border-radius创建圆角边框 box-shadow 添加阴影 background-size 属性规定背景图片的尺寸。 123transform: rotateX(120deg);-webkit-transform: rotateX(120deg);	/* Safari 和 Chrome */-moz-tra">
+    
+        <link rel="alternate" type="application/atom+xml" title="张宁乐的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/znl.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:1160030724@qq.com" title="1160030724@qq.com" class="mail">1160030724@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/works"  >
+                <i class="icon icon-lg icon-file-code-o"></i>
+                作品
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css3动画</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">css3动画</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-17T09:20:14.000Z" itemprop="datePublished" class="page-time">
+  2018-03-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-css3"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css3动画</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-17 17:20:14" datetime="2018-03-17T09:20:14.000Z"  itemprop="datePublished">
+2018-03-17
+<!--2018-06-10 16:38:10-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近一直在做H5的微场景，用到很多css3的特效，在这里把常用的总结一下吧，</p>
+<ul>
+<li><code>border-radius</code>创建圆角边框</li>
+<li><code>box-shadow</code> 添加阴影</li>
+<li><code>background-size</code> 属性规定背景图片的尺寸。</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">transform: rotateX(120deg);</span><br><span class="line">-webkit-transform: rotateX(120deg);	/* Safari 和 Chrome */</span><br><span class="line">-moz-transform: rotateX(120deg);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>3d转换</p>
+<ul>
+<li><code>transition</code> css3过渡<br>CSS3 过渡是元素从一种样式逐渐改变为另一种的效果。<br>要实现这一点，必须规定两项内容：<br>规定把效果添加到哪个 CSS 属性上<br>规定效果的时长 </li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	CSS3 @keyframes 规则</span><br><span class="line">如需在 CSS3 中创建动画，您需要学习 @keyframes 规则。</span><br><span class="line"></span><br><span class="line">@keyframes 规则用于创建动画。在 @keyframes 中规定某项 CSS 样式，就能创建由当前样式逐渐改为新样式的动画效果。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>创建css3动画，可代替一些js效果，</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://www.zhangningle.top">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/znl.png" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2018/03/17/css3/&title=《css3动画》 — 张宁乐的博客&pic=http://p0bnwspy9.bkt.clouddn.com/znl.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2018/03/17/css3/&title=《css3动画》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2018/03/17/css3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css3动画》 — 张宁乐的博客&url=http://www.zhangningle.top/2018/03/17/css3/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2018/03/17/css3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/21/bootrtsp4/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">bootrtsp常用的类</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/11/小程序学习记录一 /" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">火锅鸡网</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2018/03/17/css3/&title=《css3动画》 — 张宁乐的博客&pic=http://p0bnwspy9.bkt.clouddn.com/znl.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2018/03/17/css3/&title=《css3动画》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2018/03/17/css3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css3动画》 — 张宁乐的博客&url=http://www.zhangningle.top/2018/03/17/css3/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2018/03/17/css3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3ay04DMQwFUP7/p4vECqmd0bWdIpqcrCqGhjlZGD/y9RWvx8/6/fl5PT+92uf56dVuixcGBsbHMh6364pR3TP/neTIXuyJgYFxACMJsr0QWQ3ByZFhYGBg3Ae+3tPoVTAwMDCWBtykoJ0kixgYGBi9IrYadifh+421OAYGxgcyeoOBv/n89vkGBgbGv2c8Buu+DVcN6JP3wcDA2JuRpHRJATl/0UlBi4GBcQLj/mvVkjW/itFr8BWabhgYGFswVoXapK1WDbWFwQAGBsbWjHlTvlfW5iE4/2eAgYGxNyO5EjEZauaHlRfJ5VEBBgbGxzLuv9BrpVWTzuqRvfgJBgbGAYw8mcuTyKQcnQxNMTAwzmHMw9+qBHGePmJgYJzAqDa8qq203kA03w0DA2NXxqpX7w0dq1c33h5kMTAwPorRa4FVjym/3hHlsxgYGMcwVg0p87Zab+IazTcwMDC2YFSbWfPLE71XjHbAwMA4mHH/h/OhZh52k7K2HHAxMDA2YuTpXbX4rLbtysEaAwPjGMbatC9PAeeNOQwMjL0ZvcFAb4TQu2DROyYMDIw9GJNSc5L8Tdgv9sfAwNiaUc2yqg24Kqk6IsXAwDiHkQTZaiNsgqxe8sDAwDiH8Y6rFcluve7Z5QgTAwMDI2jo965u5KXs4oCLgYGxHaOQqMUjgeoQIqqzMTAwNmVUt87L2lWjBQwMjJMZ1cFAXljmyeXkgDAwMLZmfAPzuiLgwUSx/wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
