@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ajax笔记一 | 张宁乐的博客 | 种一棵树最好的时间在三年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php,ajax,javaScript">
+    <meta name="description" content="ajax的简单使用接触php和Mysql后就一直想学ajax,今天终于开始尝试了写一个小的ajax实现页面的局部刷新了。 什么是ajax？ AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新">
+<meta name="keywords" content="php,ajax,javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax笔记一">
+<meta property="og:url" content="http://www.zhangningle.top/2018/06/10/ajax/index.html">
+<meta property="og:site_name" content="张宁乐的博客">
+<meta property="og:description" content="ajax的简单使用接触php和Mysql后就一直想学ajax,今天终于开始尝试了写一个小的ajax实现页面的局部刷新了。 什么是ajax？ AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-26T11:11:02.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax笔记一">
+<meta name="twitter:description" content="ajax的简单使用接触php和Mysql后就一直想学ajax,今天终于开始尝试了写一个小的ajax实现页面的局部刷新了。 什么是ajax？ AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新">
+    
+        <link rel="alternate" type="application/atom+xml" title="张宁乐的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ajax笔记一</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ajax笔记一</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-10T04:19:12.853Z" itemprop="datePublished" class="page-time">
+  2018-06-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ajax的简单使用"><span class="post-toc-number">1.</span> <span class="post-toc-text">ajax的简单使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是ajax？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是ajax？</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现思路</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ajax"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ajax笔记一</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-10 12:19:12" datetime="2018-06-10T04:19:12.853Z"  itemprop="datePublished">2018-06-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="ajax的简单使用"><a href="#ajax的简单使用" class="headerlink" title="ajax的简单使用"></a>ajax的简单使用</h2><p><strong>接触php和Mysql后就一直想学ajax,今天终于开始尝试了写一个小的ajax实现页面的局部刷新了。</strong></p>
+<h3 id="什么是ajax？"><a href="#什么是ajax？" class="headerlink" title="什么是ajax？"></a>什么是ajax？</h3><blockquote>
+<p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。<br>AJAX = 异步 JavaScript 和 XML。<br>AJAX 是一种用于创建快速动态网页的技术。<br>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。<br>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面。<br>有很多使用 AJAX 的应用程序案例：新浪微博、Google 地图、开心网等等。<br><strong>ajax 是异步更新，使用太多比较频繁的请求会增加服务器的负担，</strong><br><strong>ajax的无刷新技术，无需用户等待即可更新局部页面，增加用户体验。</strong></p>
+</blockquote>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>因为ajax是与后台数据进行数据传输交互等等，所以需要启动服务器构建php+mysql环境。<br>在服务器可访问到的文件夹下新建一个ajax文件。<br>文件一：<code>index.html</code>用户浏览的页面<br>文件二：<code>action.php</code>保存数据的的页面，（只是一个简单的ajax案例，暂时不连接数据库）<br>首先在页面写一个按钮：<br>index.html中<body>的内容是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=&quot;getData()&quot;&gt;我漂亮吗？&lt;/button&gt;</span><br><span class="line">//一个简单的按钮 点击触发‘getData()’事件</span><br><span class="line">&lt;div  id=&quot;box&quot;&gt;&lt;/div&gt;</span><br><span class="line">//点击在‘box中按钮出来的文字，</span><br></pre></td></tr></table></figure></body></p>
+<p>index.html中要添加js代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123;</span><br><span class="line">        var xmlhttp;</span><br><span class="line">        if (window.XMLHttpRequest)</span><br><span class="line">        &#123;// code for IE7+, Firefox, Chrome, Opera, Safari</span><br><span class="line">            xmlhttp=new XMLHttpRequest();</span><br><span class="line">            //兼容最新浏览器IE7+, Firefox, Chrome, Opera, Safari</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;// code for IE6, IE5</span><br><span class="line">            xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">            //兼容老版本的</span><br><span class="line">        &#125;</span><br><span class="line">        xmlhttp.open(&quot;GET&quot;,&quot;action.php&quot;,true);</span><br><span class="line">        //         传参方式 发送的文件  是否异步true（异步）或 false（同步）</span><br><span class="line">        xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">        xmlhttp.send(&quot;flag=select&amp;name=zhang&quot;);</span><br><span class="line">        //      发送  传递参数</span><br><span class="line">        xmlhttp.onreadystatechange=function () &#123;</span><br><span class="line">            if(xmlhttp.readyState==4&amp;&amp;xmlhttp.status==200)&#123;</span><br><span class="line">                console.log(xmlhttp.responseText);</span><br><span class="line">                document.getElementById(&quot;box&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">                // var data1=JSON.</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在action.php中写点击后要返回的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(isset($_POST[&quot;flag&quot;]))&#123;</span><br><span class="line"> echo &quot;漂亮&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>好啦！这样在后台打开就可以直接出来了，点击按钮‘我漂亮吗？’，下方就会立即出来”漂亮”，<br>是不是特别棒呢！可以增加<strong>用户体验</strong>呢。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-26T11:11:02.830Z" itemprop="dateUpdated">2017-12-26 19:11:02</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/06/10/ajax/" target="_blank" rel="external">http://www.zhangningle.top/2018/06/10/ajax/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://www.zhangningle.top">
+            <img src="/img/avatar.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript/">javaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2018/06/10/ajax/&title=《ajax笔记一》 — 张宁乐的博客&pic=http://www.zhangningle.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2018/06/10/ajax/&title=《ajax笔记一》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2018/06/10/ajax/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ajax笔记一》 — 张宁乐的博客&url=http://www.zhangningle.top/2018/06/10/ajax/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2018/06/10/ajax/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/10/bootrtsp4/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">bootrtsp常用的类</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/10/163-music/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">网易云音乐</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2018/06/10/ajax/&title=《ajax笔记一》 — 张宁乐的博客&pic=http://www.zhangningle.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2018/06/10/ajax/&title=《ajax笔记一》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2018/06/10/ajax/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ajax笔记一》 — 张宁乐的博客&url=http://www.zhangningle.top/2018/06/10/ajax/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2018/06/10/ajax/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3a2WrDMBAF0Pz/T6fQp0KW3qtxApaPnkrqyj4uTGbR7Rav++96/OTvevz81T75bgcvDAyM0zLub9crRrtnfs2rl/LPnhgYGBdgvA+ybQDNr0kYyRcABgYGxpceBQMDA+PQgFskbUvJIgYGBsZaEbvWSkvC91drcQwMjBMy2sHAN3/+4HwDAwPjJIz7YE2GnfkgM3oSDAyMrRl5cz9J8iYPOiloMTAw9mYkhWVSXibNu6NGAk+ux8DA2JrRNt/zkLoWjj8+wsTAwNiC0T56ksCtheD2ywADA2NvRjsMyFPDdkiZv8oDZhoYGBgnYbwPo2u3aQNi+zqe/BUGBsbFGO3t81b+UQPLehKLgYFxcsY8KcxDdr7zWtDHwMC4GmN+IGNeY7a7YWBg7MpIjmQljf61oWN7dCM6FoaBgbEpY619NrrxIExjYGBcjTE/1pCH2rUjZcU/AAMDY1NG3gjLC9p5sVrvgIGBsTWjDY757SdjyMlvMTAwdmVMQm1bBifNvsWCFgMD4zKM96lYm7RNUsy6YYeBgbE1ox0YTHryyedrxS0GBsaujLVSsy1rJ8PRKLnEwMDYmtFmWXnYXSO14woMDIzrMPIgu1boTpLLYsiKgYFxAUYbZHNwO35oR6QYGBgYbYq2dqirLZUPCLgYGBibMtqgmTfscmoxicXAwNiO0W7dNvfnR8cwMDCuzGgHA3lhmbBbXntEAwMD4+SMH0gJvCpzhS6pAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

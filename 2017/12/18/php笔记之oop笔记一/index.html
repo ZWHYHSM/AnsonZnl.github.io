@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>php笔记之oop笔记一 | 张宁乐的博客 | 种一棵树最好的时间在三年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php">
+    <meta name="description" content="php-oop(面向对象编程)oop的特点 php面向对象编程的特点：封装性、继承性、多态性 面向对象编程的优势：代码功能更加清晰，数据处理，用户登陆，内容呈现等各写成一个类，在页面中只需包含这些类、实例化对象，然后再用简洁的语句应用对象就行 类与对象关系：类就像一个人类的群体 我们从类中实例化一个对象 就像是制定一个人。面向对象程序的单位就是对象，但对象又是通过类的实例化出来的，所以我们首先要做">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php笔记之oop笔记一">
+<meta property="og:url" content="http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/index.html">
+<meta property="og:site_name" content="张宁乐的博客">
+<meta property="og:description" content="php-oop(面向对象编程)oop的特点 php面向对象编程的特点：封装性、继承性、多态性 面向对象编程的优势：代码功能更加清晰，数据处理，用户登陆，内容呈现等各写成一个类，在页面中只需包含这些类、实例化对象，然后再用简洁的语句应用对象就行 类与对象关系：类就像一个人类的群体 我们从类中实例化一个对象 就像是制定一个人。面向对象程序的单位就是对象，但对象又是通过类的实例化出来的，所以我们首先要做">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-18T11:37:51.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php笔记之oop笔记一">
+<meta name="twitter:description" content="php-oop(面向对象编程)oop的特点 php面向对象编程的特点：封装性、继承性、多态性 面向对象编程的优势：代码功能更加清晰，数据处理，用户登陆，内容呈现等各写成一个类，在页面中只需包含这些类、实例化对象，然后再用简洁的语句应用对象就行 类与对象关系：类就像一个人类的群体 我们从类中实例化一个对象 就像是制定一个人。面向对象程序的单位就是对象，但对象又是通过类的实例化出来的，所以我们首先要做">
+    
+        <link rel="alternate" type="application/atom+xml" title="张宁乐的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php笔记之oop笔记一</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php笔记之oop笔记一</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-18T11:42:02.000Z" itemprop="datePublished" class="page-time">
+  2017-12-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#php-oop-面向对象编程"><span class="post-toc-number">1.</span> <span class="post-toc-text">php-oop(面向对象编程)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#oop的特点"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">oop的特点</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-php笔记之oop笔记一"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php笔记之oop笔记一</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-18 19:42:02" datetime="2017-12-18T11:42:02.000Z"  itemprop="datePublished">2017-12-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="php-oop-面向对象编程"><a href="#php-oop-面向对象编程" class="headerlink" title="php-oop(面向对象编程)"></a>php-oop(面向对象编程)</h3><h4 id="oop的特点"><a href="#oop的特点" class="headerlink" title="oop的特点"></a>oop的特点</h4><ul>
+<li>php面向对象编程的特点：封装性、继承性、多态性</li>
+<li>面向对象编程的优势：代码功能更加清晰，数据处理，用户登陆，内容呈现等各写成一个类，在页面中只需包含这些类、实例化对象，然后再用简洁的语句应用对象就行</li>
+<li>类与对象关系：类就像一个人类的群体 我们从类中实例化一个对象 就像是制定一个人。<br>面向对象程序的单位就是对象，但对象又是通过类的实例化出来的，所以我们首先要做的就是如何来声明类， 做出来一个类很容易。<br>类是一个抽象的概念,具有相同属性（特征）和方法（行为）的一系列个体的集合.<br>类的格式：<code>class 类名 { }</code><br>类可以理解为一个人的群体，如果我们要把这个人介绍给别人 那么</li>
+</ul>
+<p>首先， 你会介绍这个人姓名、性别、年龄、身高、体重、电话、家庭住址等等。</p>
+<p>然后，你要介绍这个人能做什么， 可以开车， 会说英语， 可以使用电脑等等。</p>
+<p>从定义的角度可以分为：</p>
+<p>1.静态的描述 如：人的姓名、性别、年龄、身高、体重、电话、家庭住址等等 我们将静态的描述称为成员属性</p>
+<p>2.动态描述  如：这个人可以开车， 会说英语， 可以使用电脑等等   我们将动态的描述称为成员方法<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> class 人</span><br><span class="line">&#123;</span><br><span class="line">	成员属性：姓名、性别、年龄、身高、体重、电话、家庭住址</span><br><span class="line">	成员方法：可以开车， 会说英语， 可以使用电脑</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 一个类的基本构成包括属性和方法，比如我们创建一个Animal类：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Animal&#123;</span><br><span class="line">    public $name;</span><br><span class="line">    // 全局</span><br><span class="line">    protected $money;</span><br><span class="line">    //受保护的</span><br><span class="line">    private $count;</span><br><span class="line">    //私有的</span><br><span class="line">    static $num=10;</span><br><span class="line">    //静态属性 直接用类名调用静态属性  静态属性和静态方法属于类 普通方法也能用静态属性</span><br><span class="line">    static function asyNum()&#123;</span><br><span class="line">        //静态方法静 态方法中只能用静态属性</span><br><span class="line">        echo &quot;&lt;br&gt;调用静态方法中的num是&quot;.self::$num;</span><br><span class="line">        //     静态方法中只能用静态属性  self 引用静态属性$num</span><br><span class="line">    &#125;</span><br><span class="line">    function __construct($name1)</span><br><span class="line">        //     在构造函数里传参数</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;name=$name1;</span><br><span class="line">//        初始值</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function sayName()&#123;</span><br><span class="line">        echo &quot;&lt;br&gt;他的名字是&quot;.$this-&gt;name;</span><br><span class="line">//                          当前函数的</span><br><span class="line">    &#125;</span><br><span class="line">//    析构函数 是当对象执行完毕后会销毁对象然后执行析构函数， 析构函数销毁的是new 后的对象 然不是类</span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement __destruct() method.</span><br><span class="line">        echo &quot;&lt;br&gt;对象执行完毕.对象已销毁。只销毁对象不销毁class&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$lis=new Animal(&quot;小白&quot;);</span><br><span class="line">///              传参</span><br><span class="line">$lis-&gt;sayName();</span><br><span class="line">echo &quot;&lt;br&gt;静态属性&quot;.Animal::$num;</span><br><span class="line">echo Animal::asyNum();</span><br><span class="line">class Cat extends  Animal&#123;</span><br><span class="line">//    继承非私有的属性和方法</span><br><span class="line">// 方法重写</span><br><span class="line">function sayName()&#123;</span><br><span class="line">    parent::sayName();</span><br><span class="line">    //调用父类的方法  方法重写</span><br><span class="line">    echo &quot;&lt;br&gt;子类的方法&quot;;</span><br><span class="line">    echo &quot;&lt;br&gt;调用父类的静态&quot;.parent::$num;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">$cat=new Cat(&quot;123&quot;);</span><br><span class="line">$cat-&gt;sayName();</span><br></pre></td></tr></table></figure></p>
+<p>public 表示全局，类内部外部子类都可以访问；<br>private表示私有的，只有本类内部可以使用；<br>protected表示受保护的，只有本类或子类或父类中可以访问；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">   //父类</span><br><span class="line">   class father&#123;</span><br><span class="line">    public function a()&#123;</span><br><span class="line">     echo &quot;function a&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    private function b()&#123;</span><br><span class="line">     echo &quot;function b&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    protected function c()&#123;</span><br><span class="line">     echo &quot;function c&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   //子类</span><br><span class="line">   class child extends father&#123;</span><br><span class="line">     function d()&#123;</span><br><span class="line">       parent::a();//调用父类的a方法</span><br><span class="line">     &#125;</span><br><span class="line">     function e()&#123;</span><br><span class="line">      parent::c(); //调用父类的c方法</span><br><span class="line">     &#125;</span><br><span class="line">    function f()&#123;</span><br><span class="line">       parent::b(); //调用父类的b方法</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   $father=new father();</span><br><span class="line">   $father-&gt;a();</span><br><span class="line">   $father-&gt;b(); //显示错误 外部无法调用私有的方法 Call to protected method father::b()</span><br><span class="line">   $father-&gt;c(); //显示错误 外部无法调用受保护的方法Call to private method father::c()</span><br><span class="line">   $chlid=new child();</span><br><span class="line">   $chlid-&gt;d();</span><br><span class="line">   $chlid-&gt;e();</span><br><span class="line">   $chlid-&gt;f();//显示错误 无法调用父类private的方法 Call to private method father::b()</span><br><span class="line">   ?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>静态属性的 用法：<br>子类调用父类的静态属性 加parent：：<br>在自己内部的静态方法中调用自己的的静态属性 加self：：</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-18T11:37:51.184Z" itemprop="dateUpdated">2017-12-18 19:37:51</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/12/18/php笔记之oop笔记一/" target="_blank" rel="external">http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://www.zhangningle.top">
+            <img src="/img/avatar.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/&title=《php笔记之oop笔记一》 — 张宁乐的博客&pic=http://www.zhangningle.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/&title=《php笔记之oop笔记一》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php笔记之oop笔记一》 — 张宁乐的博客&url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/19/Mysql笔记一/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Mysql笔记一</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/18/Swiper笔记一/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Swiper笔记一</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/&title=《php笔记之oop笔记一》 — 张宁乐的博客&pic=http://www.zhangningle.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/&title=《php笔记之oop笔记一》 — 张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php笔记之oop笔记一》 — 张宁乐的博客&url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/&via=http://www.zhangningle.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/2017/12/18/php笔记之oop笔记一/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW4bMQwF0Nz/0g2QVYFm5E9STFzgaRU4Y0lPiyFN6uMjHn++xtPnf4/z8+dvPT2TzDkaeHh4eK2tP42nqf/97/mZ6jGd50/2jIeHh7fNOweDBJO80J/AtwIPHh4e3rvxqgeRJOi9oIKHh4f3v/B6v/qryCSo4OHh4b0Dr1oOmBQdkk8S6uVaCx4eHl7MqzbA3uHvxf4eHh4e3qCrno/8xT1JxMu7wsPDw1vgJelyEiomL/R5w+zFzvHw8PCu8vKJqtee8otT+RGfW2XfzIyHh4e3wOsVYefg/OrAOdWODggPDw/vKq9aYoha9fHlgGpDKw8MeHh4eHu8c0raa9UnBzTh5XvGw8PD2+BNkuNekMjLE5OSxGN/Dw8PD2/Mq5ZTk8+TwsGt1DyaDQ8PD2+BNy/CVi8iVGe7cEx4eHh4l3jVgsI8pc6pvf3g4eHhbfPy61b5pNUjqBYgknUffzHg4eHhXeIlI0+d8xS5mlI3+3t4eHh4P87rLbBX1Ji30PDw8PBu8fIX6yRdzpPj3kEXbpbh4eHhXeLlP/JvFQgmxYhCrMPDw8Nb4E2+kL/ik43mgGpowcPDw7vLq5YP8sWqAeBWio+Hh4e3wcsZkxJt9SCSdaNn8PDw8BZ4vTJEvq1qSTdvqhXe/Hh4eHgLvGob/lY7v1piyEvD0dUBPDw8vAEvv0pVLblWrwj0LnK9mBkPDw9vjTdPke8mweXI9vQtPDw8vKu8Xlk2CQZ5UKmum4QuPDw8vD3e5FpVr4lVXb6ajuPh4eH9DG8SDCYJcRJCkhVf7BYPDw9vjTe5GpUXYXuBpBpCLvTZ8PDw8BZ4501Ui7yTcsaL1fHw8PB+lZe0sqov+t7Fgrwhh4eHh7fHy5tP1WJBXnjNk/JCCo6Hh4e3wJs0oqqb66XRvasGeHh4eAu8T8b5AydzlAYCAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
