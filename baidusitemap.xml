@@ -22,7 +22,6 @@
 
     
     
-    
   <url>
     <loc>http://www.zhangningle.top/2018/08/11/Webpack%204%20%E5%92%8C%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8%EF%BC%88%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8webpack4%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%EF%BC%8C%E7%9C%8B%E6%87%82%E4%BA%86%E4%BD%A0%E5%B0%B1%E5%85%A5%E9%97%A8%E4%BA%86%EF%BC%89/</loc>
     <lastmod>2018-08-11T15:52:55.082Z</lastmod>
@@ -234,9 +233,9 @@
         
         <tag>HTML</tag>
          
-        <tag>JavaScript</tag>
-         
         <tag>移动端</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
@@ -358,9 +357,9 @@
         <title>小程序学习记录一</title>
         <pubTime>2018-02-22T06:20:14.000Z</pubTime>
         
-        <tag>小程序</tag>
-         
         <tag>移动端</tag>
+         
+        <tag>小程序</tag>
          
         <tag>微信</tag>
          
@@ -642,9 +641,9 @@
         <title>css3动画</title>
         <pubTime>2018-03-17T09:20:14.000Z</pubTime>
         
-        <tag>css3</tag>
-         
         <tag>HTML</tag>
+         
+        <tag>css3</tag>
          
          
            
@@ -661,11 +660,11 @@
         <title>bootrtsp常用的类</title>
         <pubTime>2018-03-21T09:20:14.000Z</pubTime>
         
+        <tag>bootrtsp</tag>
+         
         <tag>HTML</tag>
          
         <tag>移动端</tag>
-         
-        <tag>bootrtsp</tag>
          
          
            
@@ -731,7 +730,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://www.zhangningle.top/2017/12/18/Swiper%E7%AC%94%E8%AE%B0%E4%B8%80/</loc>
