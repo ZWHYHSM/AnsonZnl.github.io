@@ -8,6 +8,23 @@
     
 
 
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
 
     <meta charset="utf-8">
     
@@ -97,13 +114,6 @@
               <a href="/about"  >
                 <i class="icon icon-lg icon-user"></i>
                 关于
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/works"  >
-                <i class="icon icon-lg icon-file-code-o"></i>
-                作品
               </a>
             </li>
         
@@ -321,55 +331,6 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-JavaScript对象原型链"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-07-19 20:45:23" datetime="2018-07-19T12:45:23.000Z"  itemprop="datePublished">
-2018-07-19
-<!--2018-07-19 21:20:13-->
-</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/19/JavaScript对象原型链/">JavaScript对象/原型链</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        对象的原型是什么？Object是引用类型，包括：Object 、Array 、Function 、Data等。JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。
-当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前（this）对象上查找该属性，如果没有找到，就到其原型对象上找(数组是Array.prototype,function是functio...
-    
-
-        <a href="/2018/07/19/JavaScript对象原型链/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-JavaScript中基本数据类型和引用数据类型的区别"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -408,6 +369,55 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
     
 
         <a href="/2018/07/19/JavaScript中基本数据类型和引用数据类型的区别/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-JavaScript对象原型链"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-07-19 20:45:23" datetime="2018-07-19T12:45:23.000Z"  itemprop="datePublished">
+2018-07-19
+<!--2018-07-19 21:20:13-->
+</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/07/19/JavaScript对象原型链/">JavaScript对象/原型链</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        对象的原型是什么？Object是引用类型，包括：Object 、Array 、Function 、Data等。JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。
+当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前（this）对象上查找该属性，如果没有找到，就到其原型对象上找(数组是Array.prototype,function是functio...
+    
+
+        <a href="/2018/07/19/JavaScript对象原型链/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>

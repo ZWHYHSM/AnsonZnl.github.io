@@ -8,6 +8,23 @@
     
 
 
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
 
     <meta charset="utf-8">
     
@@ -106,13 +123,6 @@
               <a href="/about"  >
                 <i class="icon icon-lg icon-user"></i>
                 关于
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/works"  >
-                <i class="icon icon-lg icon-file-code-o"></i>
-                作品
               </a>
             </li>
         

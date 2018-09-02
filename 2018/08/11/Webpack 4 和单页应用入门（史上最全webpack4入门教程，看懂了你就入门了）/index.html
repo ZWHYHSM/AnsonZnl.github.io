@@ -8,6 +8,23 @@
     
 
 
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
 
     <meta charset="utf-8">
     
@@ -105,13 +122,6 @@
               <a href="/about"  >
                 <i class="icon icon-lg icon-user"></i>
                 关于
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/works"  >
-                <i class="icon icon-lg icon-file-code-o"></i>
-                作品
               </a>
             </li>
         
@@ -624,9 +634,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/19/JavaScript对象原型链/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/19/JavaScript中基本数据类型和引用数据类型的区别/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">JavaScript对象/原型链</h4>
+        <h4 class="title">JavaScript中基本数据类型和引用数据类型的区别</h4>
       </a>
     </div>
   
