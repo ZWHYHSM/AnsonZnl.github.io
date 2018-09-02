@@ -41,7 +41,7 @@
     <meta name="description" content="张宁乐,博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="张宁乐的博客">
-<meta property="og:url" content="http://www.zhangningle.top/index.html">
+<meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="张宁乐的博客">
 <meta property="og:description" content="张宁乐,博客">
 <meta property="og:locale" content="zh-CN">
@@ -331,13 +331,13 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-JavaScript中基本数据类型和引用数据类型的区别"
+            <article id="post-JavaScript对象原型链"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2018-07-19 20:45:23" datetime="2018-07-19T12:45:23.000Z"  itemprop="datePublished">
 2018-07-19
-<!--2018-07-19 21:18:33-->
+<!--2018-07-19 21:20:13-->
 </time>
 
         
@@ -350,7 +350,7 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/19/JavaScript中基本数据类型和引用数据类型的区别/">JavaScript中基本数据类型和引用数据类型的区别</a>
+      <a class="post-title-link" href="/2018/07/19/JavaScript对象原型链/">JavaScript对象/原型链</a>
     </h3>
   
 
@@ -360,15 +360,11 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        1、基本数据类型和引用数据类型
-　　ECMAScript包括两个不同类型的值：基本数据类型和引用数据类型。
-　　基本数据类型指的是简单的数据段，引用数据类型指的是有多个值构成的对象。
-　　当我们把变量赋值给一个变量时，解析器首先要确认的就是这个值是基本类型值还是引用类型值。
-2、常见的基本数据类型：
-　　Number、String 、Boolean、Null和Undefined。基本数据类型...
+        对象的原型是什么？Object是引用类型，包括：Object 、Array 、Function 、Data等。JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。
+当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前（this）对象上查找该属性，如果没有找到，就到其原型对象上找(数组是Array.prototype,function是functio...
     
 
-        <a href="/2018/07/19/JavaScript中基本数据类型和引用数据类型的区别/" class="post-more waves-effect waves-button">
+        <a href="/2018/07/19/JavaScript对象原型链/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -433,13 +429,13 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-JavaScript对象原型链"
+            <article id="post-JavaScript中基本数据类型和引用数据类型的区别"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
         <time class="post-time" title="2018-07-19 20:45:23" datetime="2018-07-19T12:45:23.000Z"  itemprop="datePublished">
 2018-07-19
-<!--2018-07-19 21:20:13-->
+<!--2018-07-19 21:18:33-->
 </time>
 
         
@@ -452,7 +448,7 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/19/JavaScript对象原型链/">JavaScript对象/原型链</a>
+      <a class="post-title-link" href="/2018/07/19/JavaScript中基本数据类型和引用数据类型的区别/">JavaScript中基本数据类型和引用数据类型的区别</a>
     </h3>
   
 
@@ -462,11 +458,15 @@ webpack 更新到了 4.0，官网还没有更新文档。因此把教程更新�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        对象的原型是什么？Object是引用类型，包括：Object 、Array 、Function 、Data等。JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。
-当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前（this）对象上查找该属性，如果没有找到，就到其原型对象上找(数组是Array.prototype,function是functio...
+        1、基本数据类型和引用数据类型
+　　ECMAScript包括两个不同类型的值：基本数据类型和引用数据类型。
+　　基本数据类型指的是简单的数据段，引用数据类型指的是有多个值构成的对象。
+　　当我们把变量赋值给一个变量时，解析器首先要确认的就是这个值是基本类型值还是引用类型值。
+2、常见的基本数据类型：
+　　Number、String 、Boolean、Null和Undefined。基本数据类型...
     
 
-        <a href="/2018/07/19/JavaScript对象原型链/" class="post-more waves-effect waves-button">
+        <a href="/2018/07/19/JavaScript中基本数据类型和引用数据类型的区别/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -723,7 +723,7 @@ DOM１由两...
         </p>
     </div>
 </footer>
-<script>
+<!-- <script>
 (function(){
     var bp = document.createElement("script");
     var curProtocol = window.location.protocol.split(":")[0];
@@ -736,7 +736,7 @@ DOM１由两...
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
+</script> -->
 
     </main>
     <div class="mask" id="mask"></div>
@@ -747,7 +747,7 @@ DOM１由两...
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.zhangningle.top/&title=张宁乐的博客&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=张宁乐的博客&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -757,22 +757,22 @@ DOM１由两...
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.zhangningle.top/&title=张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=张宁乐的博客&source=张宁乐,博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.zhangningle.top/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=张宁乐的博客&url=http://www.zhangningle.top/&via=http://www.zhangningle.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=张宁乐的博客&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.zhangningle.top/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -783,7 +783,7 @@ DOM１由两...
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aSW7DMAwF0Nz/0u62QBvnk5RUo3haGYmHpw3BQa9XvK4f6/vv766///Luna8dCxcXd8y9btc96x56j06e+uVZXFzcg9ze65Iwl98ZBTtcXNwHcxPQfeDDxcX9H9xqbTLZEi4u7hO4vSQmb4LkW1pWq+Hi4g64+Qf2XW/p7+Li4ra413j1Bi29r+Pi4p7hVoNOnpTcj1t6rRZcXNy/4k7yiiqr2kzBxcU9w83bHMmdq7b99j24uLhHuL1jUnn6koxGmoMcXFzcg9wJK/k3CXZROxUXF3cbdz5SXRvgPtyPi4t7kNtrXlQ3kzdko/4NLi7uNm4vPOVJTHUYs6D4wcXFHXOrH1vVPO2FSFxc3JPcPKHJh7LzccuHWg0XF3cbN29e5AEuD1XNt+Hi4m7m5sOPamk0CXZR8YOLi7uNmx/DSrgJYkEhhIuLu5l7FVcvMaq2UT7kYri4uJu5veDSa5tWZzsjNC4u7pibpy95YMqPYlSHr7i4uCe5ydGKVVGlVwLh4uI+k5uHocnwNeri4OLiPobba4b2DmQsTnFwcXFb3DxNKSclrQMZ0ZAVFxd3GzcvRSbJSh7mlvV3cXFxO9wvNinTahEjScgAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABW0lEQVR42u3aQQ7DIAxE0dz/0qnUVaUUMjNOF7W/VxVKw8sCMIbjkON8x6r9M/T/PhCwYDVindu4PqO0XNv1vmDBmszaD2y9S/33jQEWLFjC6/QFGBYsWL9muV3CggVrz1KSZmWy0JPvx3J5WLBasCrLbSVRfri+BQvW37JOM9xlOwtYsKax9CLRfhRXtrhGBgELVlPWSpptSvVk+qYvWLBgRUWiynWEL++BBQuW0KUy1BXWsgUWrGEsN2nOQNJRij67wILVlKUUZCvLuVJsks5gYcFqyqqUbt0jE2PqgQVrMMu9fJAdcCqTCCxY01jZQUi2uS2d/MCC1ZpVuXCQlWul1BwWrGGsLOXdd6kv5PVEHBasTqxsUtDTZXcqgQVrMisr/WTbVOkZWLBgyYPcPcMxMgVYsGA9tL1Uik3Lz4AFayQrS5rd1NmYE2DBGsbKrgtkxFI1CxasnqwXXY7FbVPN83MAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
