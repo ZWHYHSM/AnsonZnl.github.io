@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="张宁乐的博客">
 <meta property="og:description" content="基础知识： vue的生命周期： beforeCreate/created、beforeMount/mounted、beforeUpdate/updated、beforeDestory/destoryed vue常用指令： v-for、v-bind（缩写形式:prop）、v-on(缩写形式@click=’sss&amp;#39;)、v-if/v-else/v-else-if、v-model、v-once、v">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-17T07:06:23.208Z">
+<meta property="og:updated_time" content="2018-09-17T07:13:41.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue 知识点总结">
 <meta name="twitter:description" content="基础知识： vue的生命周期： beforeCreate/created、beforeMount/mounted、beforeUpdate/updated、beforeDestory/destoryed vue常用指令： v-for、v-bind（缩写形式:prop）、v-on(缩写形式@click=’sss&amp;#39;)、v-if/v-else/v-else-if、v-model、v-once、v">
@@ -178,7 +178,7 @@
         <div class="post-meta">
             <time class="post-time" title="2018-09-17 14:04:54" datetime="2018-09-17T06:04:54.000Z"  itemprop="datePublished">
 2018-09-17
-<!--2018-09-17 15:06:23-->
+<!--2018-09-17 15:13:41-->
 </time>
 
             
@@ -383,11 +383,9 @@
 <li>在CommonJS中，应该始终显式的调用<code>Vue.use</code>方法</li>
 <li>社区插件列表<a href="https://github.com/vuejs/awesome-vue#components--libraries" target="_blank" rel="noopener">awesome-vue</a></li>
 </ul>
-<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
-<li><figure class="highlight plain"><figcaption><span>msg | filter &#125;&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*   ```&lt;div v-bind=“msg | filter&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>全局过滤器使用Vue.filter()创建</p>
-</li>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; msg | filter &#125;&#125;</span><br><span class="line">&lt;div v-bind=“msg | filter&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>全局过滤器使用Vue.filter()创建</li>
 <li>局部过滤器使用对象属性filters创建</li>
 <li>过滤器函数总是接收表达式的值作为第一个参数，过滤器可以有多个，值依次向后传递</li>
 <li>过滤器可以接收额外的参数</li>
