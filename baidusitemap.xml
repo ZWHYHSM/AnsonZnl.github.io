@@ -4,7 +4,60 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/10/17/%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85nodeNode%E6%A8%A1%E5%9D%97%E5%8C%96/</loc>
+    <lastmod>2018-10-17T09:50:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>学习node.js后端知识总结</title>
+        <pubTime>2018-10-17T02:04:55.000Z</pubTime>
+        
+        <tag>node.js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/10/18/CommonJS%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2018-10-17T09:50:21.069Z</lastmod>
+    <data>
+        <display>
+        <title>CommonJS模块化开发</title>
+        <pubTime>2018-10-18T06:04:55.000Z</pubTime>
+        
+        <tag>node.js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/12/12/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80/</loc>
+    <lastmod>2018-10-17T09:43:25.489Z</lastmod>
+    <data>
+        <display>
+        <title>学习node.js后端知识总结</title>
+        <pubTime>2017-12-12T06:04:55.000Z</pubTime>
+        
+        <tag>node.js</tag>
+         
+        <tag>http</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/12/%E5%AD%A6%E4%B9%A0node.js%E5%90%8E%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2018-10-16T09:48:00.163Z</lastmod>
     <data>
         <display>
@@ -127,9 +180,9 @@
         <title>fixe 布局</title>
         <pubTime>2018-04-01T09:20:14.000Z</pubTime>
         
-        <tag>css</tag>
-         
         <tag>html</tag>
+         
+        <tag>css</tag>
          
          
            
@@ -594,13 +647,13 @@
         <title>gulp安装教程之简单的sass部署</title>
         <pubTime>2018-01-24T04:42:44.000Z</pubTime>
         
-        <tag>sass</tag>
+        <tag>node.js</tag>
          
         <tag>css</tag>
          
-        <tag>gulp</tag>
+        <tag>sass</tag>
          
-        <tag>node.js</tag>
+        <tag>gulp</tag>
          
          
            
@@ -617,9 +670,9 @@
         <title>css3动画</title>
         <pubTime>2018-03-17T09:20:14.000Z</pubTime>
         
-        <tag>css3</tag>
-         
         <tag>HTML</tag>
+         
+        <tag>css3</tag>
          
          
            
@@ -636,9 +689,9 @@
         <title>bootrtsp常用的类</title>
         <pubTime>2018-03-21T09:20:14.000Z</pubTime>
         
-        <tag>HTML</tag>
-         
         <tag>bootrtsp</tag>
+         
+        <tag>HTML</tag>
          
         <tag>移动端</tag>
          
