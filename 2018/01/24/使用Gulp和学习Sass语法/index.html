@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用Gulp和学习Sass语法 | Anson Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Node.js,Sass,CSS,Gulp">
+    <meta name="description" content="前要系统：win7、win10终端工具：cmd（或使用系统终端：win+R -&amp;gt; 输入cmd -&amp;gt; 回车）gulp官网地址：http://www.gulpjs.com.cn/gulp中文文档：http://www.gulpjs.com.cn/docs/gulp插件地址：http://gulpjs.com/pluginsgulpAPI地址：http://www.gulpjs.com.cn">
+<meta name="keywords" content="Node.js,Sass,CSS,Gulp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Gulp和学习Sass语法">
+<meta property="og:url" content="http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/index.html">
+<meta property="og:site_name" content="Anson Blog">
+<meta property="og:description" content="前要系统：win7、win10终端工具：cmd（或使用系统终端：win+R -&amp;gt; 输入cmd -&amp;gt; 回车）gulp官网地址：http://www.gulpjs.com.cn/gulp中文文档：http://www.gulpjs.com.cn/docs/gulp插件地址：http://gulpjs.com/pluginsgulpAPI地址：http://www.gulpjs.com.cn">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass1.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass2.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass4.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass3.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass5.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass6.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass7.jpg">
+<meta property="og:image" content="http://p0bnwspy9.bkt.clouddn.com/sass8.jpg">
+<meta property="og:updated_time" content="2018-10-19T08:44:04.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Gulp和学习Sass语法">
+<meta name="twitter:description" content="前要系统：win7、win10终端工具：cmd（或使用系统终端：win+R -&amp;gt; 输入cmd -&amp;gt; 回车）gulp官网地址：http://www.gulpjs.com.cn/gulp中文文档：http://www.gulpjs.com.cn/docs/gulp插件地址：http://gulpjs.com/pluginsgulpAPI地址：http://www.gulpjs.com.cn">
+<meta name="twitter:image" content="http://p0bnwspy9.bkt.clouddn.com/sass1.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/nav"  >
+                <i class="icon icon-lg icon-send"></i>
+                导航
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Gulp和学习Sass语法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Gulp和学习Sass语法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-24T04:42:44.000Z" itemprop="datePublished" class="page-time">
+  2018-01-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前要"><span class="post-toc-number">1.</span> <span class="post-toc-text">前要</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、安装node"><span class="post-toc-number">2.</span> <span class="post-toc-text">一、安装node</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、全局安装gulp"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、全局安装gulp</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、项目文件根目录新建package-json"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、项目文件根目录新建package.json</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、本地安装gulp插件"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、本地安装gulp插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七、运行gulp中的sass"><span class="post-toc-number">6.</span> <span class="post-toc-text">七、运行gulp中的sass</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#八、参考文件"><span class="post-toc-number">7.</span> <span class="post-toc-text">八、参考文件</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用Gulp和学习Sass语法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Gulp和学习Sass语法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-24 12:42:44" datetime="2018-01-24T04:42:44.000Z"  itemprop="datePublished">
+2018-01-24
+<!--2018-10-19 16:44:04-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前要"><a href="#前要" class="headerlink" title="前要"></a>前要</h2><p>系统：win7、win10<br>终端工具：cmd（或使用系统终端：win+R -&gt; 输入cmd -&gt; 回车）<br>gulp官网地址：<a href="http://www.gulpjs.com.cn/" target="_blank" rel="noopener">http://www.gulpjs.com.cn/</a><br>gulp中文文档：<a href="http://www.gulpjs.com.cn/docs/" target="_blank" rel="noopener">http://www.gulpjs.com.cn/docs/</a><br>gulp插件地址：<a href="http://gulpjs.com/plugins" target="_blank" rel="noopener">http://gulpjs.com/plugins</a><br>gulpAPI地址：<a href="http://www.gulpjs.com.cn/docs/api/" target="_blank" rel="noopener">http://www.gulpjs.com.cn/docs/api/</a></p>
+<h2 id="一、安装node"><a href="#一、安装node" class="headerlink" title="一、安装node"></a>一、安装node</h2><p>window下，下载node安装即可。<br>node下载地址：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br>安装比较简单，基本一直下一步即可，安装路径随意。<br>为了确保Node已经正确安装，我们执行几个简单的命令。<br><code>node -v</code><br>回车（Enter），如果正确安装的话，你会看到所安装的Node的版本号，接下来看看npm。<br><code>npm -v</code><br>这同样能得到npm的版本号。<br>如果这两行命令没有得到返回，可能node就没有安装正确，尝试重启下命令行工具，如果还不行的话，只能进行重装。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass1.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><strong>推荐使用cnpm  由于国外的网速不稳定 cnpm 比较好用</strong><br>注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm。后面的演示均使用cnpm<br><strong>安装cnpm</strong><br>执行<br><code>npm install cnpm -g --registry=https://registry.npm.taobao.org</code><br><strong>2. 检测cnpm是否安装成功</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass2.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>输入<br><code>cnpm -v</code><br>返回版本号即成功</p>
+<h2 id="三、全局安装gulp"><a href="#三、全局安装gulp" class="headerlink" title="三、全局安装gulp"></a>三、全局安装gulp</h2><p><strong>全局安装gulp</strong><br>在cmd命令行中执行<br><code>cnpm install gulp -g</code><br>下载之后查看是否安装正确<br><code>ulp -v</code><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass4.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="四、项目文件根目录新建package-json"><a href="#四、项目文件根目录新建package-json" class="headerlink" title="四、项目文件根目录新建package.json"></a>四、项目文件根目录新建package.json</h2><p>示例：进入 D:/WWW/test 项目文件夹中<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass3.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>执行命令<br><code>cnpm init</code><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass5.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><strong>查看项目文件根目录，是否新建package.json，且内容是否和你终端中输入的一致。 </strong><br>package.json内容如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &quot;name&quot;: &quot;test&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;我是描述&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="五、本地安装gulp插件"><a href="#五、本地安装gulp插件" class="headerlink" title="五、本地安装gulp插件"></a>五、本地安装gulp插件</h2><p><strong>注：全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能</strong><br>进入你的项目文件路径中后，执行<br><figure class="highlight plain"><figcaption><span>install gulp --save-dev ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">![](http://p0bnwspy9.bkt.clouddn.com/sass5a.jpg)</span><br><span class="line">## 六、新建gulpfile.js</span><br><span class="line">gulpfile.js是gulp的配置文件，放于项目目录中。</span><br><span class="line">``` //gulpfile.js 示例文件</span><br><span class="line"></span><br><span class="line">//导入你所需要用的工具包 require(&apos;node_modules里对应模块&apos;)</span><br><span class="line">var gulp = require(&apos;gulp&apos;),</span><br><span class="line">    sass = require(&apos;gulp-sass&apos;);</span><br><span class="line"></span><br><span class="line">// scss 任务</span><br><span class="line">gulp.task(&apos;sass&apos;,function()&#123;</span><br><span class="line">  return gulp.src(&apos;src/css/test.scss&apos;) //获取该任务需要的文件</span><br><span class="line">      .pipe( sass() )                  //该任务调用的模块</span><br><span class="line">      .pipe( gulp.dest(&apos;src/css&apos;) );   //将在 src/css 文件夹中生产test.css</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 默认任务</span><br><span class="line">gulp.task(&apos;default&apos;,[&apos;sass&apos;,&apos;watch1&apos;]);</span><br><span class="line"></span><br><span class="line">//监听文件</span><br><span class="line">gulp.task(&apos;watch1&apos;,function()&#123;</span><br><span class="line">    return gulp.watch(&apos;src/css/test.scss&apos;,[&apos;sass&apos;]);</span><br><span class="line">    //监听 src/css/test.scss 文件，修改时自动执行 sass 任务。</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="七、运行gulp中的sass"><a href="#七、运行gulp中的sass" class="headerlink" title="七、运行gulp中的sass"></a>七、运行gulp中的sass</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass6.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p><strong>执行gulp 调用default中的所有任务</strong><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass7.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>如图：开启监听事件，当 src/css/test.scss 发生修改时，会自动执行sass任务。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://p0bnwspy9.bkt.clouddn.com/sass8.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>sass的编译（gulp-sass）<br>less编译 （gulp-less）<br>重命名（gulp-rename）<br>图片转换为base64-encoded （gulp-img64）<br>自动添加css前缀（gulp-autoprefixer）<br>压缩css（gulp-clean-css）<br>js代码校验（gulp-jshint）<br>合并js文件（gulp-concat）<br>压缩js代码（gulp-uglify）<br>压缩图片（gulp-imagemin）<br>自动刷新页面（gulp-livereload，谷歌浏览器亲测，谷歌浏览器需安装livereload插件）<br>图片缓存，只有图片替换了才压缩（gulp-cache）<br>更改提醒（gulp-notify）<br>阻止 gulp 插件发生错误导致进程退出并输出错误日志(gulp-plumber)</p>
+<h2 id="八、参考文件"><a href="#八、参考文件" class="headerlink" title="八、参考文件"></a>八、参考文件</h2><p>本文参考借鉴多篇文章 在 加上自己的实际测试后，写了这篇文章。<br>如有不妥之处和疑问的地方，请留言赐教，谢谢。<br>关于gulp的介绍，可参考官网：<br>gulp官网地址：<a href="http://www.gulpjs.com.cn/" target="_blank" rel="noopener">http://www.gulpjs.com.cn/</a><br>gulp中文文档：<a href="http://www.gulpjs.com.cn/docs/" target="_blank" rel="noopener">http://www.gulpjs.com.cn/docs/</a><br>gulp插件地址：<a href="http://gulpjs.com/plugins" target="_blank" rel="noopener">http://gulpjs.com/plugins</a><br>gulpAPI地址：<a href="http://www.gulpjs.com.cn/docs/api/" target="_blank" rel="noopener">http://www.gulpjs.com.cn/docs/api/</a><br>本文还参考了文章：<br><a href="http://www.cnblogs.com/2050/p/4198792.html" target="_blank" rel="noopener">http://www.cnblogs.com/2050/p/4198792.html</a><br><a href="http://www.ydcss.com/archives/18" target="_blank" rel="noopener">http://www.ydcss.com/archives/18</a><br><a href="http://blog.csdn.net/qq_23215957/article/details/51050460" target="_blank" rel="noopener">http://blog.csdn.net/qq_23215957/article/details/51050460</a><br>等等…如侵权请联系删除。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gulp/">Gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sass/">Sass</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/&title=《使用Gulp和学习Sass语法》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/&title=《使用Gulp和学习Sass语法》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Gulp和学习Sass语法》 — Anson Blog&url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/19/移动端开发时遇到的一些坑/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">移动端开发时遇到的一些坑</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/09/phpGD验证码二/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">phpGD验证码二</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/&title=《使用Gulp和学习Sass语法》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/&title=《使用Gulp和学习Sass语法》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Gulp和学习Sass语法》 — Anson Blog&url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/01/24/使用Gulp和学习Sass语法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3a0W6DMBBEUf7/p8lrowhzZxcq2b48RS0BH1ea7to+Dnydf67fn4/v//0u+dbxxiVDhoxpGefwIozxsPh0jN97dY8MGTL2YYwHUfvMJ4V8vhmzDBkyZIDoJIPjIS5DhgwZ/cAl5d1NMYepMmTIkMGbWFICpsHNYY/14jJkyJiQwVfd///zK/sbMmTImIpxhle6rJa2srVLhgwZazPSci1dYquViel4ZMiQsTODH+pK2870yahYlCFDxqIMHo79RTQ+ZemBDBkyZOzA4LE4jlp+hIJPE5pKGTJkbMBIG0gel2n5WJsOGTJkrM3gm5S1UOahyY+gyZAhQ0ZniS09nFFrj2+eJkOGjKUZ/KFpNMehiTdNZciQsQ+DW0mM8i3JWsRf/h1kyJCxKCNYfA8PYfANSNL0Bo2rDBkytmSkL+7HdNwMy5AhYwMGWaYnm448rEm8jt/y9VsZMmQszeAFWVrMvbGQV/zvIUOGjCUYvDWtRXNtaa/Y1sqQIWNRBikQa9GZ7qO+3srKkCFjcgZ/ZS1YeUzz9X8ZMmTsxkgLxFor2zko1kp9GTJkTMs4w6szEW8c5pAhQ8YOjE6mkUd3QvmxocuQIWMJBgnZztDTRb1i+ShDhowNGLXgIxuQfOLSlluGDBky0uqy1vR27pEhQ4aM/uEwvqzGJ+jyuzJkyNiAkR7n4nHMD2e07pEhQ8bSjLTuIrz0gBcpLh84oiFDhoz5GB9Kg3RyUuK2+AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

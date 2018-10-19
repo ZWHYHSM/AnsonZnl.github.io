@@ -20,19 +20,19 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="JavaScript,vue,angular">
-    <meta name="description" content="双向数据绑定的原理在学习vue和angular过程中都有一个双向数据绑定的一个东西，vue中是v-model ,angular中是ng-model,那他们是怎么实现的，先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。1234&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;">
-<meta name="keywords" content="JavaScript,vue,angular">
+    <meta name="keywords" content="JavaScript,Vue.js,AngularJS">
+    <meta name="description" content="双向数据绑定的原理在学习Vue和Angular过程中都有一个双向数据绑定的一个东西，Vue中是v-model ,Angular中是ng-model,那他们是怎么实现的，先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。1234&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;">
+<meta name="keywords" content="JavaScript,Vue.js,AngularJS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="双向数据绑定的原理">
 <meta property="og:url" content="http://yoursite.com/2018/06/09/双向数据绑定的原理/index.html">
 <meta property="og:site_name" content="Anson Blog">
-<meta property="og:description" content="双向数据绑定的原理在学习vue和angular过程中都有一个双向数据绑定的一个东西，vue中是v-model ,angular中是ng-model,那他们是怎么实现的，先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。1234&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;">
+<meta property="og:description" content="双向数据绑定的原理在学习Vue和Angular过程中都有一个双向数据绑定的一个东西，Vue中是v-model ,Angular中是ng-model,那他们是怎么实现的，先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。1234&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-02T11:43:14.416Z">
+<meta property="og:updated_time" content="2018-10-19T09:41:36.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="双向数据绑定的原理">
-<meta name="twitter:description" content="双向数据绑定的原理在学习vue和angular过程中都有一个双向数据绑定的一个东西，vue中是v-model ,angular中是ng-model,那他们是怎么实现的，先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。1234&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;">
+<meta name="twitter:description" content="双向数据绑定的原理在学习Vue和Angular过程中都有一个双向数据绑定的一个东西，Vue中是v-model ,Angular中是ng-model,那他们是怎么实现的，先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。1234&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;">
     
         <link rel="alternate" type="application/atom+xml" title="Anson Blog" href="/atom.xml">
     
@@ -178,7 +178,7 @@
         <div class="post-meta">
             <time class="post-time" title="2018-06-09 16:10:33" datetime="2018-06-09T08:10:33.000Z"  itemprop="datePublished">
 2018-06-09
-<!--2018-09-02 19:43:14-->
+<!--2018-10-19 17:41:36-->
 </time>
 
             
@@ -192,7 +192,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="双向数据绑定的原理"><a href="#双向数据绑定的原理" class="headerlink" title="双向数据绑定的原理"></a>双向数据绑定的原理</h3><p>在学习vue和angular过程中都有一个双向数据绑定的一个东西，vue中是v-model ,angular中是ng-model,那他们是怎么实现的，<br>先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">     &lt;input type=&quot;text&quot; id=&quot;model&quot;&gt;</span><br><span class="line">     &lt;span id=&quot;bind&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+            <h3 id="双向数据绑定的原理"><a href="#双向数据绑定的原理" class="headerlink" title="双向数据绑定的原理"></a>双向数据绑定的原理</h3><p>在学习Vue和Angular过程中都有一个双向数据绑定的一个东西，Vue中是v-model ,Angular中是ng-model,那他们是怎么实现的，<br>先说是怎么实现的吧，自己也网上找了一下实现的方法，找到了一个比较简洁的实现方法(可能不是vue或者angular源码的实现方法)，仅自己理解的实现方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">     &lt;input type=&quot;text&quot; id=&quot;model&quot;&gt;</span><br><span class="line">     &lt;span id=&quot;bind&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
 <p>js代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">        model=document.getElementById(&quot;model&quot;);</span><br><span class="line">        bind=document.getElementById(&quot;bind&quot;);</span><br><span class="line">        </span><br><span class="line">        window.onload=function()&#123;</span><br><span class="line">            model.oninput=function()&#123;</span><br><span class="line">                bind.innerHTML=model.value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>定义和用法<br>oninput 事件在用户输入时触发。<br>该事件在 <code>&lt;input&gt;</code>或 <code>&lt;textarea&gt;</code>元素的值发生改变时触发。<br>提示： 该事件类似于 onchange 事件。不同之处在于 oninput 事件在元素值发生变化是立即触发， onchange 在元素失去焦点时触发。另外一点不同是 onchange 事件也可以作用于 <code>&lt;keygen&gt;</code> 和 <code>&lt;select&gt;</code> 元素。</p>
@@ -216,7 +216,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
 
 
             
@@ -283,9 +283,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/05/21/在小程序中调用一言API/" id="post-next" class="post-nav-link">
+      <a href="/2018/05/21/在小程序中调用API/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">在小程序中调用一言API</h4>
+        <h4 class="title">在小程序中调用API</h4>
       </a>
     </div>
   
