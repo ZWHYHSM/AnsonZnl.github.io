@@ -21,13 +21,13 @@
     
     
     <meta name="keywords" content="Node.js">
-    <meta name="description" content="Windows命令常用命令：dir 列出当下目录下面的所有文件cd 进入指定的目录md 创建文件夹rd 删除文件夹cd.. 返回上级目录                                                                                             81539743638_.pic.jpg              Mac命令">
+    <meta name="description" content="了解NodeNodeJS :主要应用于开发服务器，做数据API ,设计路由，和前端的主要区别在于，前端主要负责效果和交互、node.js是追求性能极致的产物，主要的三个特点是：单线程、Non-blocking I/O、Event DrivenNodejs和其他后端语言的不同：  采用单线程， 所以 需要非阻塞I/O，所以 需要事件驱动。极大地提高了CPU的利用率： node没有自己的语法，使用V8">
 <meta name="keywords" content="Node.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NodeJS安装和使用">
-<meta property="og:url" content="http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/NodeJS安装和使用/index.html">
 <meta property="og:site_name" content="Anson Blog">
-<meta property="og:description" content="Windows命令常用命令：dir 列出当下目录下面的所有文件cd 进入指定的目录md 创建文件夹rd 删除文件夹cd.. 返回上级目录                                                                                             81539743638_.pic.jpg              Mac命令">
+<meta property="og:description" content="了解NodeNodeJS :主要应用于开发服务器，做数据API ,设计路由，和前端的主要区别在于，前端主要负责效果和交互、node.js是追求性能极致的产物，主要的三个特点是：单线程、Non-blocking I/O、Event DrivenNodejs和其他后端语言的不同：  采用单线程， 所以 需要非阻塞I/O，所以 需要事件驱动。极大地提高了CPU的利用率： node没有自己的语法，使用V8">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-01dca1d0f6a9557b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-9f4180b756ad90eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -35,10 +35,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-43497297131cb4b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-65fcfa08be5b8942.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-7fc679453ac23729.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-04T12:42:57.203Z">
+<meta property="og:updated_time" content="2018-11-04T12:51:34.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJS安装和使用">
-<meta name="twitter:description" content="Windows命令常用命令：dir 列出当下目录下面的所有文件cd 进入指定的目录md 创建文件夹rd 删除文件夹cd.. 返回上级目录                                                                                             81539743638_.pic.jpg              Mac命令">
+<meta name="twitter:description" content="了解NodeNodeJS :主要应用于开发服务器，做数据API ,设计路由，和前端的主要区别在于，前端主要负责效果和交互、node.js是追求性能极致的产物，主要的三个特点是：单线程、Non-blocking I/O、Event DrivenNodejs和其他后端语言的不同：  采用单线程， 所以 需要非阻塞I/O，所以 需要事件驱动。极大地提高了CPU的利用率： node没有自己的语法，使用V8">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7072486-01dca1d0f6a9557b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
         <link rel="alternate" type="application/atom+xml" title="Anson Blog" href="/atom.xml">
@@ -152,8 +152,8 @@
         <h1 class="title">NodeJS安装和使用</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-09-11T02:04:55.000Z" itemprop="datePublished" class="page-time">
-  2018-09-11
+                <time datetime="2018-10-11T02:04:55.000Z" itemprop="datePublished" class="page-time">
+  2018-10-11
 </time>
 
 
@@ -172,20 +172,20 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">Windows命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mac命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">Mac命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#进程和线程："><span class="post-toc-number">3.</span> <span class="post-toc-text">进程和线程：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装node-js"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装node.js</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#让node-js跑起来"><span class="post-toc-number">5.</span> <span class="post-toc-text">让node.js跑起来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Node-js-的模块发开发"><span class="post-toc-number">6.</span> <span class="post-toc-text">Node.js 的模块发开发</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#了解Node"><span class="post-toc-number">1.</span> <span class="post-toc-text">了解Node</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Windows命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">Windows命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mac命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">Mac命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#进程和线程："><span class="post-toc-number">4.</span> <span class="post-toc-text">进程和线程：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装node-js"><span class="post-toc-number">5.</span> <span class="post-toc-text">安装node.js</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#让node-js跑起来"><span class="post-toc-number">6.</span> <span class="post-toc-text">让node.js跑起来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Node-js-的模块发开发"><span class="post-toc-number">7.</span> <span class="post-toc-text">Node.js 的模块发开发</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-学习NodeJS后端知识总结"
+<article id="post-NodeJS安装和使用"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">NodeJS安装和使用</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-09-11 10:04:55" datetime="2018-09-11T02:04:55.000Z"  itemprop="datePublished">
-2018-09-11
-<!--2018-11-04 20:42:57-->
+            <time class="post-time" title="2018-10-11 10:04:55" datetime="2018-10-11T02:04:55.000Z"  itemprop="datePublished">
+2018-10-11
+<!--2018-11-04 20:51:34-->
 </time>
 
             
@@ -199,7 +199,16 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="Windows命令"><a href="#Windows命令" class="headerlink" title="Windows命令"></a><strong>Windows命令</strong></h2><p>常用命令：<br><code>dir</code> 列出当下目录下面的所有文件<br><code>cd</code> 进入指定的目录<br><code>md</code> 创建文件夹<br><code>rd</code> 删除文件夹<br><code>cd..</code> 返回上级目录<br><figure class="image-bubble">
+            <h2 id="了解Node"><a href="#了解Node" class="headerlink" title="了解Node"></a>了解Node</h2><p>NodeJS :主要应用于开发服务器，做数据API ,设计路由，和前端的主要区别在于，前端主要负责效果和交互、<br>node.js是追求性能极致的产物，主要的三个特点是：<br><strong>单线程、Non-blocking I/O、Event Driven</strong><br>Nodejs和其他后端语言的不同：</p>
+<ol>
+<li>采用单线程， 所以</li>
+<li>需要非阻塞I/O，所以</li>
+<li>需要事件驱动。<br>极大地提高了CPU的利用率：</li>
+<li>node没有自己的语法，使用V8引擎，用的是js，V8引擎解析js，效率非常高。并且V8中很多东西都是异步的，，Node就是站在巨人的肩膀上，把V8中的一些功能一直到服务器上</li>
+<li>没有web容器 就是安装配置完成之后，也么有一个根目录。（使用路由）</li>
+<li>模块：在Node.js中，以模块为单位划分所有的功能，并且提供了一个完成的模块加载机制，我们可以将应用程序划分为各个不同的部分。</li>
+</ol>
+<h2 id="Windows命令"><a href="#Windows命令" class="headerlink" title="Windows命令"></a><strong>Windows命令</strong></h2><p>常用命令：<br><code>dir</code> 列出当下目录下面的所有文件<br><code>cd</code> 进入指定的目录<br><code>md</code> 创建文件夹<br><code>rd</code> 删除文件夹<br><code>cd..</code> 返回上级目录<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://upload-images.jianshu.io/upload_images/7072486-01dca1d0f6a9557b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="81539743638_.pic.jpg" title="">
@@ -283,7 +292,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/&title=《NodeJS安装和使用》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/11/NodeJS安装和使用/&title=《NodeJS安装和使用》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -293,22 +302,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/&title=《NodeJS安装和使用》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/11/NodeJS安装和使用/&title=《NodeJS安装和使用》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/11/NodeJS安装和使用/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NodeJS安装和使用》 — Anson Blog&url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NodeJS安装和使用》 — Anson Blog&url=http://yoursite.com/2018/10/11/NodeJS安装和使用/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/11/NodeJS安装和使用/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -331,18 +340,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/09/17/Vue知识点总结/" id="post-prev" class="post-nav-link">
+      <a href="/2018/10/18/CommonJS模块化开发/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Vue.js 知识点总结</h4>
+        <h4 class="title">Node.js中的CommonJS规范</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/09/01/Array的push与unshift方法性能比较分析/" id="post-next" class="post-nav-link">
+      <a href="/2018/09/17/Vue知识点总结/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Array的push与unshift方法性能比较分析</h4>
+        <h4 class="title">Vue.js 知识点总结</h4>
       </a>
     </div>
   
@@ -454,7 +463,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/&title=《NodeJS安装和使用》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/11/NodeJS安装和使用/&title=《NodeJS安装和使用》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -464,22 +473,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/&title=《NodeJS安装和使用》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/11/NodeJS安装和使用/&title=《NodeJS安装和使用》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/11/NodeJS安装和使用/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NodeJS安装和使用》 — Anson Blog&url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NodeJS安装和使用》 — Anson Blog&url=http://yoursite.com/2018/10/11/NodeJS安装和使用/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/09/11/学习NodeJS后端知识总结/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/11/NodeJS安装和使用/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -490,7 +499,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aS27DMAwFwNz/0i7QvZ1H0i1gerQKkjTSeMHyo88nXsfvSj69fn326dl3bl4YGBiPZRyXK/nO9RHPjjXfFwMD422MJIxeB8TkuNeBNQnKp+9jYGBgtBK+PFz2gjUGBgZG8nNJOVqFYWBgYEyK2F5TLE8x/6kWx8DAeCCjd5T/ef2H8w0MDIyHMI7imhwlD5TlU2FgYKxmJAVntXDtXd2o/m2U4WJgYKxjTMrIvN2ff6fcdMPAwFjNyBO76thg3rbLHxkGBsZWRj5ozN9PBgDVcPwlEGNgYLyGESVeQenbu7TRa9thYGC8gdFruuVN/2pqeMOYAQMDYx2jl8zlieO80I3CNAYGxisZ1QSxMGiMU8zCKAIDA2M1Ix8iVg+aP5TqFbTT0IyBgbGUMR8iVi9PVIvYqCGIgYGxmtFLAavl6KTdNrozgoGBsYJR/aF7h53HYH35v4GBgbGIUS0+J9vc1VaLGnkYGBjrGL0ysjdIqIbj/DIZBgbGVkY55Wq15PLLZPnIEwMD452MvB2WjxN6hW7+4MrtNgwMjAcy5onaJEz3VvQoMTAwFjHuaqIlly16KWO0FwYGxmpGNcxVL0z0gvXNR8fAwFjByIPsZONqYC0PHjAwMF7AqAbZfJDZQ5ZrcQwMDIybhgHXYb16+QMDAwOjN87Mr1D0HhMGBsabGdUitpfYTRLQL/tiYGCsZlQ3m8CaV1Tz2yIYGBjbGD/bv2WruYfDuQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3au3KkMBAFUP//T+OqjZzA3tuCAHEUTZkxo6Ogqx/6+YnX8W/lfzn+rLOnZ79y9vSGhYGB8VrGcbnyLSabXjmOs71hYGB8h3EdZNtQmB/B2XbzvWFgYGBcf+c6sZuFZgwMDIx7A+51GpekgBgYGBg5IyliV8rUGfiRWhwDA+OFjPWi9LnPD843MDAwXsI4ypW3zGYl7nBXGBgYWzPysWKe0q2PBGZlLQYGxt6MJxLBnNQWwAUGAwNjI0YbOtsRQt5oa8cVGBgYX2Pk7fuV4cH61ov5BgYGxkaMvGXWJn8rl8NaKgYGxt6MvIy8K0G89zgwMDD2ZuTjxvX4tn7B6z+TWAwMjE0ZszRxZeQ5u4rRXuzAwMDYlZG3tNpNJxuaNeAwMDC+wMibYkki2Ba3SdSvr1lgYGBsx2inB0n7vm26JS22moSBgbERY5a6Xf9XW3y2g4fTriEGBsbWjHYw0BarbbstKadPZ7AYGBjbMfIQ2Ra97ZCgvSKGgYHxHUY7AFhplrVVdT22xMDA2JqRJHz5q5N3zt52epQYGBhbM/KbYm27f1asLo0zMTAwNmUc5borOM4ueZweOgYGxtaMfLUJXzuSbBt8QwwGBsZrGbPytcXnT4d7wMDA+ABjVrgWlyFG1LoWx8DA+DxjvQHXHk0RfDEwMDBKUnt1Iwm1URGLgYGxNWPWRJt19fKnRSMPAwNja8ZsMJD/ZPvNBzEYGBjvY/wCmi9Bz7MkluwAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
