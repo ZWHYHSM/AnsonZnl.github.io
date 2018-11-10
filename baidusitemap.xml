@@ -4,8 +4,42 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/11/08/nodeJs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%88fs%EF%BC%89%E4%B8%8E%E6%B5%81%EF%BC%88stream%EF%BC%89/</loc>
-    <lastmod>2018-11-08T09:51:44.037Z</lastmod>
+    <loc>http://yoursite.com/2018/05/17/Vue%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2018-11-10T08:26:47.507Z</lastmod>
+    <data>
+        <display>
+        <title>Vue</title>
+        <pubTime>2018-05-17T02:04:55.000Z</pubTime>
+        
+        <tag>Vue.js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/11/15/%E5%88%9D%E8%AF%95MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2018-11-10T08:26:34.207Z</lastmod>
+    <data>
+        <display>
+        <title>初试MongoDB数据库</title>
+        <pubTime>2018-11-15T06:04:55.000Z</pubTime>
+        
+        <tag>Node.js</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/11/08/NodeJs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%88fs%EF%BC%89%E4%B8%8E%E6%B5%81%EF%BC%88stream%EF%BC%89/</loc>
+    <lastmod>2018-11-10T08:25:55.346Z</lastmod>
     <data>
         <display>
         <title>Node.js文件系统（fs）与流（stream）</title>
@@ -63,23 +97,6 @@
         <pubTime>2018-10-11T02:04:55.000Z</pubTime>
         
         <tag>Node.js</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/0201/04/17/Vue%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2018-11-04T12:48:10.508Z</lastmod>
-    <data>
-        <display>
-        <title>Vue</title>
-        <pubTime>0201-04-17T02:04:55.000Z</pubTime>
-        
-        <tag>Vue.js</tag>
          
          
            
