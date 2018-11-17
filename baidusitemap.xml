@@ -4,14 +4,16 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/05/17/Vue%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2018-11-10T08:26:47.507Z</lastmod>
+    <loc>http://yoursite.com/2018/11/15/%E5%88%9D%E8%AF%95MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2018-11-17T13:59:35.388Z</lastmod>
     <data>
         <display>
-        <title>Vue</title>
-        <pubTime>2018-05-17T02:04:55.000Z</pubTime>
+        <title>初试MongoDB数据库</title>
+        <pubTime>2018-11-15T06:04:55.000Z</pubTime>
         
-        <tag>Vue.js</tag>
+        <tag>Node.js</tag>
+         
+        <tag>MongoDB</tag>
          
          
            
@@ -21,14 +23,33 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/11/15/%E5%88%9D%E8%AF%95MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2018-11-10T08:26:34.207Z</lastmod>
+    <loc>http://yoursite.com/2017/11/17/MongoDB%E4%B8%AD%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5/</loc>
+    <lastmod>2018-11-17T13:59:29.892Z</lastmod>
     <data>
         <display>
-        <title>初试MongoDB数据库</title>
-        <pubTime>2018-11-15T06:04:55.000Z</pubTime>
+        <title>MongoDB中常用语句</title>
+        <pubTime>2017-11-17T14:23:20.000Z</pubTime>
         
         <tag>Node.js</tag>
+         
+        <tag>MongoDB</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/05/17/Vue%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2018-11-10T08:26:47.507Z</lastmod>
+    <data>
+        <display>
+        <title>Vue</title>
+        <pubTime>2018-05-17T02:04:55.000Z</pubTime>
+        
+        <tag>Vue.js</tag>
          
          
            

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>MongoDB中常用语句 | Anson Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Node.js,MongoDB">
+    <meta name="description" content="MOngoDB  删除语句delete()删除  删除一个集合db.collection.deleteOne() 删除多个集合db.collection.deletMany();  remove()删除  删除所有的name：李四的数据db.student.remove({name:&amp;quot;李四&amp;quot;}); 只删除一条sex:男的数据 仅删除一条db.student.remove({se">
+<meta name="keywords" content="Node.js,MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB中常用语句">
+<meta property="og:url" content="http://yoursite.com/2017/11/17/MongoDB中常用语句/index.html">
+<meta property="og:site_name" content="Anson Blog">
+<meta property="og:description" content="MOngoDB  删除语句delete()删除  删除一个集合db.collection.deleteOne() 删除多个集合db.collection.deletMany();  remove()删除  删除所有的name：李四的数据db.student.remove({name:&amp;quot;李四&amp;quot;}); 只删除一条sex:男的数据 仅删除一条db.student.remove({se">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-0cf6106c47156b0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-c1ca4b50a635972c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-a917d02348ba2b6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-1b481d1c9381e28f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-17T13:59:29.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB中常用语句">
+<meta name="twitter:description" content="MOngoDB  删除语句delete()删除  删除一个集合db.collection.deleteOne() 删除多个集合db.collection.deletMany();  remove()删除  删除所有的name：李四的数据db.student.remove({name:&amp;quot;李四&amp;quot;}); 只删除一条sex:男的数据 仅删除一条db.student.remove({se">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7072486-0cf6106c47156b0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/nav"  >
+                <i class="icon icon-lg icon-send"></i>
+                导航
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MongoDB中常用语句</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MongoDB中常用语句</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-17T14:23:20.000Z" itemprop="datePublished" class="page-time">
+  2017-11-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MOngoDB-删除语句"><span class="post-toc-number">1.</span> <span class="post-toc-text">MOngoDB  删除语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据库假删除"><span class="post-toc-number">2.</span> <span class="post-toc-text">数据库假删除</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#批量数据的操作和修改"><span class="post-toc-number">3.</span> <span class="post-toc-text">批量数据的操作和修改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MongoDB数据库多集合操作"><span class="post-toc-number">4.</span> <span class="post-toc-text">MongoDB数据库多集合操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#集合中文档关系"><span class="post-toc-number">5.</span> <span class="post-toc-text">集合中文档关系</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一对一"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">一对一</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一对多"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">一对多</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多对多的关系"><span class="post-toc-number">6.</span> <span class="post-toc-text">多对多的关系</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#排序和索引"><span class="post-toc-number">7.</span> <span class="post-toc-text">排序和索引</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-MongoDB中常用语句"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MongoDB中常用语句</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-17 22:23:20" datetime="2017-11-17T14:23:20.000Z"  itemprop="datePublished">
+2017-11-17
+<!--2018-11-17 21:59:29-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="MOngoDB-删除语句"><a href="#MOngoDB-删除语句" class="headerlink" title="MOngoDB  删除语句"></a>MOngoDB  删除语句</h3><p><strong>delete()删除</strong></p>
+<ol>
+<li>删除一个集合<br><code>db.collection.deleteOne()</code></li>
+<li>删除多个集合<br><code>db.collection.deletMany();</code></li>
+</ol>
+<p><strong>remove()删除</strong></p>
+<ol>
+<li>删除所有的name：李四的数据<br><code>db.student.remove({name:&quot;李四&quot;});</code></li>
+<li>只删除一条sex:男的数据 仅删除一条<br><code>db.student.remove({sex:&quot;男&quot;},true);</code></li>
+<li>删除全部<br><code>db.student.remove({});</code></li>
+</ol>
+<h3 id="数据库假删除"><a href="#数据库假删除" class="headerlink" title="数据库假删除"></a>数据库假删除</h3><p>有时候用户删除操作的时候，需求是这样的，仅是隐藏这条数据，并不是真的从数据库中删除。<br>这时候就用到假删除了，<br>比如这个是张三发的两篇微博：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.student.insert([</span><br><span class="line">    &#123;name:&quot;张三&quot;,content:&quot;今天心情好&quot;,isDel:0&#125;,</span><br><span class="line">    &#123;name:&quot;张三&quot;,content:&quot;今天心情一般&quot;,isDel:0&#125;,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-0cf6106c47156b0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="b21d2b7140562e21fcbe9c168e02da9.png" title="">
+                </div>
+                <div class="image-caption">b21d2b7140562e21fcbe9c168e02da9.png</div>
+            </figure>
+<p>用户增加两条数据，但只保留后一条，删除前一条，这时候用到假删除 ，在添加数据时加上一个字段<code>isDel:0</code><br>所以当用户删除数据时候 执行的不是remove方法而是update方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.student.update(&#123;&quot;_id&quot; : ObjectId(&quot;5bd6a46f1eb7a22fa07cb382&quot;)&#125;,&#123;</span><br><span class="line">    $set:&#123;</span><br><span class="line">      isDel:1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-c1ca4b50a635972c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="98cf763807e662cd724e6d65f1638fb.png" title="">
+                </div>
+                <div class="image-caption">98cf763807e662cd724e6d65f1638fb.png</div>
+            </figure>
+<p>当<code>isDel:0</code>是表示用户没有删除 为1是表示用户已经删除</p>
+<p>所以在查询的时候要筛选name和isDel条件即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.student.find(&#123;name:&quot;张三&quot;,isDel:0&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>查询到用户没有删除的数据:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-a917d02348ba2b6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="121b7fc4d6f40af1de843359cdbf585.png" title="">
+                </div>
+                <div class="image-caption">121b7fc4d6f40af1de843359cdbf585.png</div>
+            </figure>
+<p>然后就可以实现假删除了。</p>
+<h3 id="批量数据的操作和修改"><a href="#批量数据的操作和修改" class="headerlink" title="批量数据的操作和修改"></a>批量数据的操作和修改</h3><ol>
+<li><p>向集合中插入10000个文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr= [];</span><br><span class="line">for(var i=0;i&lt;10000;i++)&#123;</span><br><span class="line">   arr.push(&#123;counter:i&#125;);</span><br><span class="line">&#125;</span><br><span class="line">db.demos.insert(arr);</span><br><span class="line">db.demos.find();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询demos中counter为666的文档<br><code>db.demos.find({counter:666});</code></p>
+</li>
+<li>查询demos中counter小于66的文档<br><code>db.demos.find({counter:{$lt:666}});</code></li>
+<li>查询demos中counter大T666的文档<br><code>db.demos.find({counter:{$gt:666}});</code></li>
+<li>查询demos中counter大于66小于666的文档1120查吉demos集合中的前10余数据<br><code>db.demos.find({counter:{$gt:66, $lt:666}});</code></li>
+<li>查石demos集合中的第1字到20条数据<br><code>db.demos.find().limit(10);</code></li>
+<li>查春demos集合中的第2 1条到30条数据  分页功能   skip从多少条开始 limit每次查询多少条 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.demos.find().skip(0).limit(10);//第一页 从0条开始 每查询10条</span><br><span class="line">db.demos.find().skip(10).limit(10);//第二页 从10条开始 每查询10条</span><br><span class="line">db.demos.find().skip(20).limit(10);//第三页 从20条开始 每查询10条</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="MongoDB数据库多集合操作"><a href="#MongoDB数据库多集合操作" class="headerlink" title="MongoDB数据库多集合操作"></a>MongoDB数据库多集合操作</h3><ol>
+<li>创建company数据库将it666和section集合导入到数据库中</li>
+</ol>
+<ul>
+<li>数据库导出：<br>Export Collection Data…</li>
+<li>数据库导入：<br>Import data Form File…</li>
+</ul>
+<ol start="2">
+<li><p>查询HTML5学院的所有老师<br>多集合查找<br>con —————-职能部门编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cno = db.it666.findOne(&#123;cname: &quot;html5学院&quot;&#125;).cno;//获取it666中cname是html学院字段的 cno</span><br><span class="line">db.section.find(&#123;cno: cno&#125;);//查找section 的cno是 1001的字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询Java学院的所有员工<br>同上 多表查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cno = db.it666.findOne(&#123;cname: &quot;Java学院&quot;&#125;).cno;//获取it666中cname是Java学院字段的 cno</span><br><span class="line">db.section.find(&#123;cno: cno&#125;);//查找section 的cno是 1003的字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询工资大于15000的员工<br><code>db.section.find({wages:{$gt:15000}})</code></p>
+</li>
+<li><p>查询工资在10000 15000之间的员工</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.section.find(&#123;wages:&#123;$gt:10000,$lt:15000&#125;&#125;)</span><br><span class="line">/*$gte 大于等于  $lte  小于等于*/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询工资小于10000或大于25000的员工</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.section.find(&#123;$or:[//$or 或者</span><br><span class="line">  &#123;wages: &#123;$lt: 10000&#125;&#125;,</span><br><span class="line">  &#123;wages: &#123;$gt: 20000&#125;&#125;</span><br><span class="line">]&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>为所有薪资低于10000的员工增加资1000元<br>$inc 为选择的value值自增<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.section.updateMany(&#123;wages:&#123;$lt: 10000&#125;&#125;, &#123;$inc:&#123;wages: 1000&#125;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="集合中文档关系"><a href="#集合中文档关系" class="headerlink" title="集合中文档关系"></a>集合中文档关系</h3><ol>
+<li>一对一（noe to noe）:<br>比如：人和身份证   老公和老婆</li>
+<li>一对多（noe to many）:<br>比如：父母和孩子  用户和物品</li>
+<li>多对多（many to many）:<br>比如：老师和学生</li>
+</ol>
+<h4 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h4><p>以内嵌文档的形式体现，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//一对一</span><br><span class="line">db.aAndb.insert([</span><br><span class="line"> &#123;name:&quot;杨过&quot;,wife:&#123;name:&quot;小龙女&quot;,sex:&quot;女&quot;&#125;,sex:&quot;男&quot;&#125;,</span><br><span class="line">  &#123;name:&quot;杨过&quot;,wife:&#123;name:&quot;小龙女&quot;,sex:&quot;女&quot;&#125;,sex:&quot;男&quot;&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">db.aAndb.find();</span><br></pre></td></tr></table></figure></p>
+<h4 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h4><p>通过内嵌文档的形式实现或者通过集合的形式实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//一对多  比如  微博 和 微博评论</span><br><span class="line">//添加微博</span><br><span class="line">db.weibo.insert([</span><br><span class="line">&#123;weibo:&quot;世界这么大，我想去看看&quot;&#125;,</span><br><span class="line">&#123;weibo:&quot;我要做一名web开发者！！！&quot;&#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">db.weibo.find();</span><br></pre></td></tr></table></figure></p>
+<p>添加评论<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">db.comments.insert([</span><br><span class="line">&#123;</span><br><span class="line">weibo_id: ObjectId(&quot;5bdd89e06a5e78f4cfc2b9c8&quot;),</span><br><span class="line">list:[</span><br><span class="line">   &quot;那你有钱吗&quot;,</span><br><span class="line">    &quot;一个人吗？？去呢啊？？&quot;,</span><br><span class="line">    &quot;加油！！&quot;</span><br><span class="line">]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">weibo_id: ObjectId(&quot;5bdd89e06a5e78f4cfc2b9c9&quot;),</span><br><span class="line">list:[</span><br><span class="line">   &quot;那你要学习HTML&quot;,</span><br><span class="line">   &quot;那还要你要学习css&quot;,</span><br><span class="line">    &quot;加油！！&quot;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">db.comments.find();</span><br></pre></td></tr></table></figure></p>
+<p>查询一对多<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var weibo_id= db.weibo.findOne(&#123;&quot;weibo&quot; : &quot;世界这么大，我想去看看&quot;&#125;)._id;</span><br><span class="line">db.comments.find(&#123;weibo_id: weibo_id&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="多对多的关系"><a href="#多对多的关系" class="headerlink" title="多对多的关系"></a>多对多的关系</h3><p>比如：学生和老师<br>可以通过多文档关联，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">//多对多  老师《------》学生</span><br><span class="line"></span><br><span class="line">//插入老师集合</span><br><span class="line">db.teachers.insert([</span><br><span class="line">&#123;</span><br><span class="line">  name:&quot;语文老师&quot;,</span><br><span class="line">  teacher_id: 1,</span><br><span class="line">  student_id:[</span><br><span class="line">     1001,</span><br><span class="line">     1002,</span><br><span class="line">     1003</span><br><span class="line">  ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#123;</span><br><span class="line">  name:&quot;数学老师&quot;,</span><br><span class="line">  teacher_id: 2,</span><br><span class="line">  student_id:[</span><br><span class="line">     1001,</span><br><span class="line">     1002,</span><br><span class="line">     1003</span><br><span class="line">  ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#123;</span><br><span class="line">  name:&quot;英语老师&quot;,</span><br><span class="line">  teacher_id: 3,</span><br><span class="line">  student_id:[</span><br><span class="line">     1001,</span><br><span class="line">     1002,</span><br><span class="line">     1003</span><br><span class="line">  ]</span><br><span class="line"> &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">db.teachers.find();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//插入学生集合</span><br><span class="line">db.students.insert([</span><br><span class="line">&#123;</span><br><span class="line">  name:&quot;小明&quot;,</span><br><span class="line">  student_id: 1001,</span><br><span class="line">  teacher_id:[</span><br><span class="line">     1,</span><br><span class="line">     2,</span><br><span class="line">     3</span><br><span class="line">  ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#123;</span><br><span class="line">  name:&quot;小红&quot;,</span><br><span class="line">  student_id: 1002,</span><br><span class="line">  teacher_id:[</span><br><span class="line">     1,</span><br><span class="line">     2,</span><br><span class="line">     3</span><br><span class="line">  ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#123;</span><br><span class="line">  name:&quot;小刚&quot;,</span><br><span class="line">  student_id: 1003,</span><br><span class="line">  teacher_id:[</span><br><span class="line">     1,</span><br><span class="line">     2,</span><br><span class="line">     3</span><br><span class="line">  ]</span><br><span class="line"> &#125;</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">db.students.find();</span><br><span class="line">db.teachers.find();</span><br></pre></td></tr></table></figure></p>
+<h3 id="排序和索引"><a href="#排序和索引" class="headerlink" title="排序和索引"></a>排序和索引</h3><ol>
+<li><p>排序：<br>查询文档时，默认是按照_id的值进行排序的（升序）<br>sort() 可以用来指定文档的排序规则，sort() 内部需要传递一个对象来指定文档的排序规则 ，其中1表示升序 ，-1表示降序<br>limit skip sort 的顺序可以任意改变 ，运行时会自动调整。<br>不希望它默认按照id排序  希望它按照工资来排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//按照工资升序排列</span><br><span class="line"></span><br><span class="line">db.section.find().sort(&#123;wages:1&#125;);</span><br><span class="line"></span><br><span class="line">//优先按照工资升序排列  如果遇到相同的就在  按照id升序排列</span><br><span class="line">db.section.find().sort(&#123;wages: 1&#125;,&#123;_id: -1&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>索引：<br>展示字段中 部分内容<br>或者是提取这个字段内的部分内容<br>在查询时 ，可以在第二个参数来设置查询的结果投影</p>
+</li>
+</ol>
+<blockquote>
+<p>索引： find({ 查询条件 }, { 检索范围（1显示 0隐藏）})<br>注意： <code>_id</code>如果不设置默认是1（显示） 可手动隐藏</p>
+</blockquote>
+<p><code>db.section.find({}, {name: 1});</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//只显示name和wages字段</span><br><span class="line">`db.section.find(&#123;&#125;, &#123;name: 1, _id: 0, wages: 1&#125;);`</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-1b481d1c9381e28f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="a07a1f2945204ef671ddebc28871c00.png" title="">
+                </div>
+                <div class="image-caption">a07a1f2945204ef671ddebc28871c00.png</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/17/MongoDB中常用语句/&title=《MongoDB中常用语句》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/17/MongoDB中常用语句/&title=《MongoDB中常用语句》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/17/MongoDB中常用语句/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MongoDB中常用语句》 — Anson Blog&url=http://yoursite.com/2017/11/17/MongoDB中常用语句/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/17/MongoDB中常用语句/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/05/hexo常用技能一/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Hexo常用命令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/03/hello-world/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello World</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/17/MongoDB中常用语句/&title=《MongoDB中常用语句》 — Anson Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/17/MongoDB中常用语句/&title=《MongoDB中常用语句》 — Anson Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/17/MongoDB中常用语句/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MongoDB中常用语句》 — Anson Blog&url=http://yoursite.com/2017/11/17/MongoDB中常用语句/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/17/MongoDB中常用语句/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aS3LCMBAFQO5/aXIAwLw3glQhtVeUcSw1i8l8dLvF1/3herx//fzjX12vcvvGhYGB8bOM++WVLHC9cPv+6/svd4KBgXEA43pzyauTJ1/9KMnnN3vGwMDACDaRpHRJmoiBgYGxzmi3eL3RFomBgXEyY9Ygy/tgs+e/UotjYGD8IGP26v/5/JX5BgYGxk8x7uXVLp8Ex3YY8GRXGBgYWzNmBeqsQZanjLOCGQMDY2/GrHHflpqfDdlvqBgYGBsx8uNZK2OA2bfFsBMDA2NrRttQu6bmhzPy+8PWGwYGxkaMlVC7Mm4smmjtaREMDIztGNcvTRKy9ghXe4yjqMIxMDC2ZuRFZp4grmSpbaGLgYGxN2M2LEyCYJt0tmPRJ2dGMDAwNmXMEsTZ2GC2St2Gw8DA2JrRjhWTDeWNufaECAYGxmmMvJU/a7e1g8w2BGNgYOzNyAPlLGXMi9tZCoiBgXEaY72J1jb085ZcMdPAwMDYjpEf/Jod1Wp5bVDGwMA4h/GpYUBCmvUCo7IWAwPjAEYbu2YDgLZkrQMuBgbGAYylkBfnnskPVP8VBgbGpox7ec3K11kRW6SqGBgYWzPyKznI1QbrfPywEtwxMDD2YCRBdj0stgVqnT5iYGAcwPhUoJwd/Mr/A7x8EgMDA2N5mTzhm93HwMDAmG2uHX8mP83LMI2BgXEAIyli17/Nx5PtOBMDA2NvxlLpOFogOey1cuAVAwNjI8YflaANy5Fis78AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
