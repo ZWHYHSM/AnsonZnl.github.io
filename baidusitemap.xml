@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://yoursite.com/2018/11/23/MongoDB%E5%AD%A6%E4%B9%A0%E4%B9%8BMongoose%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-11-23T09:29:19.771Z</lastmod>
+    <lastmod>2018-11-23T09:58:09.411Z</lastmod>
     <data>
         <display>
-        <title>初试MongoDB数据库</title>
+        <title>初试MongoDB学习之Mongoose的使用</title>
         <pubTime>2018-11-23T09:28:55.000Z</pubTime>
         
         <tag>Node.js</tag>
