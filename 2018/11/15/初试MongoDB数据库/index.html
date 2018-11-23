@@ -30,7 +30,8 @@
 <meta property="og:description" content="数据库基本概念数据库（Database）基本概念：  数据库就是按照一定的数据结构来组织，储存和管理数据的仓库 我们写的程序都是在内存中运行的，一旦程序运行结束或者计算机断点，程序运行中的数据就会全部丢失；所以我们就需要将一些程序的数据持久化到键盘之中，以确保数据的安全性。 数据库则是大批量数据持久化的普遍选择，1.文件 2. 数据库    为什么都采用数据库来储存数据:  数据库是有结构的 数据">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-d9cbd052415afbf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-17T13:59:35.388Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-db349e8b6512241e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-23T09:21:52.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初试MongoDB数据库">
 <meta name="twitter:description" content="数据库基本概念数据库（Database）基本概念：  数据库就是按照一定的数据结构来组织，储存和管理数据的仓库 我们写的程序都是在内存中运行的，一旦程序运行结束或者计算机断点，程序运行中的数据就会全部丢失；所以我们就需要将一些程序的数据持久化到键盘之中，以确保数据的安全性。 数据库则是大批量数据持久化的普遍选择，1.文件 2. 数据库    为什么都采用数据库来储存数据:  数据库是有结构的 数据">
@@ -180,7 +181,7 @@
         <div class="post-meta">
             <time class="post-time" title="2018-11-15 14:04:55" datetime="2018-11-15T06:04:55.000Z"  itemprop="datePublished">
 2018-11-15
-<!--2018-11-17 21:59:35-->
+<!--2018-11-23 17:21:52-->
 </time>
 
             
@@ -229,8 +230,19 @@
 </ul>
 </li>
 </ol>
-<p><strong>特征</strong>： 使用键值（Key Value）储存数据</p>
-<p><strong>关系型数据库和非关系型数据库区别：</strong><br>关系型数据库比较结构化，操作不是很灵活，菲关系型数据库操作灵活，但不适合大型数据存储，比较适合微架构，两者是相辅相成的关系</p>
+<p><strong>特征</strong>：<br> 使用键值（Key Value）储存数据；<br>MongoDB的逻辑结构是一种层次结构，主要由：文档(document)、集合(collection)、数据库(database)这三部分组成的。 </p>
+<ul>
+<li>文档(document)：由键/值对构成，像{a:1}；{s:”abc”}等，它是MongoDB核心单元，MongoDB的文档（document），相当于关系数据库中的一行记录。 </li>
+<li>集合（Collection）：多个文档组成一个集合（collection），相当于关系数据库的表。 </li>
+<li>数据库（database）：多个集合（collection），逻辑上组织在一起，就是数据库（database）。<br>一个MongoDB实例支持多个数据库（database）。</li>
+</ul>
+<p><strong>关系型数据库和非关系型数据库区别：</strong><br>关系型数据库比较结构化，操作不是很灵活，菲关系型数据库操作灵活，但不适合大型数据存储，比较适合微架构，两者是相辅相成的关系<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-db349e8b6512241e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8bc32dd95a923344fdc2710d2fcbeab.png" title="">
+                </div>
+                <div class="image-caption">8bc32dd95a923344fdc2710d2fcbeab.png</div>
+            </figure></p>
 <p><strong>非关系型数据库使用方面：</strong></p>
 <ol>
 <li>数据模型比较简单</li>
