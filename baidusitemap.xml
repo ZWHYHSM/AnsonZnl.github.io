@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2018/11/23/MongoDB%E5%AD%A6%E4%B9%A0%E4%B9%8BMongoose%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-11-23T09:58:09.411Z</lastmod>
+    <lastmod>2018-11-24T07:44:49.656Z</lastmod>
     <data>
         <display>
         <title>初试MongoDB学习之Mongoose的使用</title>
@@ -24,7 +24,7 @@
     
   <url>
     <loc>http://yoursite.com/2018/11/15/%E5%88%9D%E8%AF%95MongoDB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2018-11-23T09:21:52.398Z</lastmod>
+    <lastmod>2018-11-24T07:44:44.609Z</lastmod>
     <data>
         <display>
         <title>初试MongoDB数据库</title>
@@ -172,9 +172,9 @@
         <title>火锅鸡网项目总结</title>
         <pubTime>2018-03-11T09:20:14.000Z</pubTime>
         
-        <tag>移动端</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>移动端</tag>
          
         <tag>生活感悟</tag>
          
@@ -413,9 +413,9 @@
         <title>移动端开发时遇到的一些坑</title>
         <pubTime>2018-02-19T00:32:07.000Z</pubTime>
         
-        <tag>移动端</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>移动端</tag>
          
          
            
