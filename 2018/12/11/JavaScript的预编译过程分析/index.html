@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JavaScript的预编译过程分析 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="一、JavaScript概念JavaScript ( JS ) 是一个单线程、解释型的编程语言。 二、JavaScript语言特点2.1 单线程JavaScript语言的一大特点就是单线程，也就是说，同一个时间只能做一件事。 2.2 解释型语言自上而下，解释一行，执行一行；不会通篇编译为一个文件再执行。 三、 JavaScript执行过程3.1 语法分析  顾名思义 就是检查一遍js代码内有没有出">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript的预编译过程分析">
+<meta property="og:url" content="http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="一、JavaScript概念JavaScript ( JS ) 是一个单线程、解释型的编程语言。 二、JavaScript语言特点2.1 单线程JavaScript语言的一大特点就是单线程，也就是说，同一个时间只能做一件事。 2.2 解释型语言自上而下，解释一行，执行一行；不会通篇编译为一个文件再执行。 三、 JavaScript执行过程3.1 语法分析  顾名思义 就是检查一遍js代码内有没有出">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-11T08:43:37.929Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript的预编译过程分析">
+<meta name="twitter:description" content="一、JavaScript概念JavaScript ( JS ) 是一个单线程、解释型的编程语言。 二、JavaScript语言特点2.1 单线程JavaScript语言的一大特点就是单线程，也就是说，同一个时间只能做一件事。 2.2 解释型语言自上而下，解释一行，执行一行；不会通篇编译为一个文件再执行。 三、 JavaScript执行过程3.1 语法分析  顾名思义 就是检查一遍js代码内有没有出">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript的预编译过程分析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript的预编译过程分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-11T08:05:55.000Z" itemprop="datePublished" class="page-time">
+  2018-12-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、JavaScript概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、JavaScript概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、JavaScript语言特点"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、JavaScript语言特点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-单线程"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 单线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-解释型语言"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 解释型语言</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、-JavaScript执行过程"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、 JavaScript执行过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-语法分析"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 语法分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-预编译"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 预编译</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#预编译小节"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">预编译小节</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-解释执行"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3 解释执行</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JavaScript的预编译过程分析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript的预编译过程分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-11 16:05:55" datetime="2018-12-11T08:05:55.000Z"  itemprop="datePublished">
+2018-12-11
+<!--2018-12-11 16:43:37-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="一、JavaScript概念"><a href="#一、JavaScript概念" class="headerlink" title="一、JavaScript概念"></a>一、JavaScript概念</h2><p>JavaScript ( JS ) 是一个单线程、解释型的编程语言。</p>
+<h2 id="二、JavaScript语言特点"><a href="#二、JavaScript语言特点" class="headerlink" title="二、JavaScript语言特点"></a>二、JavaScript语言特点</h2><h3 id="2-1-单线程"><a href="#2-1-单线程" class="headerlink" title="2.1 单线程"></a>2.1 单线程</h3><p>JavaScript语言的一大特点就是单线程，也就是说，同一个时间只能做一件事。</p>
+<h3 id="2-2-解释型语言"><a href="#2-2-解释型语言" class="headerlink" title="2.2 解释型语言"></a>2.2 解释型语言</h3><p>自上而下，解释一行，执行一行；不会通篇编译为一个文件再执行。</p>
+<h2 id="三、-JavaScript执行过程"><a href="#三、-JavaScript执行过程" class="headerlink" title="三、 JavaScript执行过程"></a>三、 JavaScript执行过程</h2><h3 id="3-1-语法分析"><a href="#3-1-语法分析" class="headerlink" title="3.1 语法分析"></a>3.1 语法分析</h3><p>  顾名思义 就是检查一遍js代码内有没有出现语法错误（比如少些个分号，多写个括号等）；语法分析期间不会执行代码</p>
+<h3 id="3-2-预编译"><a href="#3-2-预编译" class="headerlink" title="3.2 预编译"></a>3.2 预编译</h3><p><strong>预编译发生在函数执行的前一刻</strong><br><strong>全局下：</strong><br>全局的变量声明和函数声明则会存放在全局对象内（Global Object 简称GO，它是window的一部分，你可以直接把他理解成window对象）中<br><strong>函数体内：</strong><br>预编译会提前把函数里的变量声明和函数声明依据规则存放在该活动对象内（Activation Object，简称AO），</p>
+<p>预编译简单理解就是在内存中开辟一些空间，存放一些变量与函数 。</p>
+<p>预编译大致可分为4步：</p>
+<ol>
+<li>创建AO(GO)对象</li>
+<li>找形参和变量声明，将形参和变量名作为AO(GO)属性名，值为undefined</li>
+<li>将实参值和形参统一</li>
+<li>在函数体里面找函数声明，值赋予函数体。</li>
+</ol>
+<p>所以如果遇到下面这种情况，当函数声明和变量声明名称相同时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(a); </span><br><span class="line">var a= 1;</span><br><span class="line">function a()&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>编译后的代码其实是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a;</span><br><span class="line">function a()&#123;&#125;;</span><br><span class="line">console.log(a);</span><br><span class="line">a= 1;</span><br></pre></td></tr></table></figure></p>
+<p>所以最后输出的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function a() &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="预编译小节"><a href="#预编译小节" class="headerlink" title="预编译小节"></a>预编译小节</h4><p><strong>预编译两个小规则</strong></p>
+<ol>
+<li>函数声明整体提升—(具体点说，无论函数调用和声明的位置是前是后，系统总会把函数声明移到调用前面） </li>
+<li>变量 声明提升—(具体点说，无论变量调用和声明的位置是前是后，系统总会把声明移到调用前，注意仅仅只是声明，所以值是undefined），只有在解释执行阶段才会进行变量初始化，匿名函数不参与预编译。</li>
+</ol>
+<p><strong>预编译前奏</strong></p>
+<ol>
+<li>imply global 即任何变量，如果未经声明就赋值，则此变量就位全局变量所有(全局域就是window) 。</li>
+<li>一切声明的全局变量，全是window的属性。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  var a=2; </span><br><span class="line">  console.log(window.a);//2</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="3-3-解释执行"><a href="#3-3-解释执行" class="headerlink" title="3.3 解释执行"></a>3.3 解释执行</h3><p>预编译完毕之后，JavaScript 脚本开始执行，执行顺序按照从上到下的顺序执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>JavaScript执行顺序</strong></p>
+<ol>
+<li>语法分析</li>
+<li>预编译<br>2.1. 创建AO(GO)对象<br>2.2. 找形参和变量声明，将形参和变量名作为AO(GO)属性名，值为undefined<br>2.3. 将实参值和形参统一<br>2.4. 在函数体里面找函数声明，值赋予函数体。  </li>
+<li>解释执行</li>
+</ol>
+<p>练习：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function a(a)&#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">    a= 2;</span><br><span class="line">    console.log(b);</span><br><span class="line">    var b= 3;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">a(1);</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure></p>
+<p>你可以先试想一下结果，然后复制代码到控制台去验证你的答案是否正确。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/&title=《JavaScript的预编译过程分析》 — Anson's Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/&title=《JavaScript的预编译过程分析》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript的预编译过程分析》 — Anson's Blog&url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/23/MongoDB学习之Mongoose的使用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">初试MongoDB学习之Mongoose的使用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/&title=《JavaScript的预编译过程分析》 — Anson's Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/&title=《JavaScript的预编译过程分析》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript的预编译过程分析》 — Anson's Blog&url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/11/JavaScript的预编译过程分析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aUY7jIBQEwNz/0llptH/ZxN0P8GSl8lfksQ3FSID68XjE1/Pnev39+ZnX691b755MvrDhwsPDwxt1fW8zr88kA/TaVnLnom94eHh4x3izib4Ft11fWZzw8PDwvoGXv/Xu3c+/cxIeHh7e/8VLNt/t8pBsx/Hw8PC+jZd3Ot9Yrw/Qeh/w8PDwTvBWCmC/9fum+h4eHh5eWVXPg9e8fJUvAyv9/PsdPDw8vAO8pDQ1K/DnEe3n+7MCW1F5w8PDwyt5K6WvJHrIYbPw96IneHh4eId57UY5f2sWK+Tb+rcKPDw8vGO8ttzVLiTtVjhnXPQBDw8P7wAviRXacLYIWJcPBERRBR4eHt5hXtuh/H4by7ZpdFEAw8PDw1vgteX/9S3v3uG7uIOHh4d3gJdHosn2enaIql1a8hIdHh4e3jleu5FtY4LZQpKXwR7rFx4eHl7MKw4wBfg8At7V4gUbDw8P7xhvVpjPp+xZK7MIoz50hYeHh7fMSyb0ZPpuF4P2gEIUguDh4eEd4H2e+vOQYuXJ9uDC8C08PDy8rbxkA51P07MoYWXJKf5veHh4eFt5eRQ7m8TbrrfHER6z8cDDw8Nb4LVx7WwZaFvPv4OHh4d3D689FNWWu1a+2Z6e+sdf8fDw8A7w8ph1fQt+Lv4YJi54eHh4I14eyCYdjQ5CleWr2cDh4eHh3cNrg9ddMWu7Qa+30Xh4eHhbeckxpjaQbd+dHT6oC2x4eHh4m3jP8mqn9SgFKbuetIiHh4d3jrermVnhKh+aPPjAw8PDu4fXxqkr47QSHLcDioeHh3ea12YYKwFrWxLLF63iz3h4eHi38HZtpneFC1EEjIeHh/c1vPX4dbbM5AE0Hh4e3mnewWOjoxiiPUwwPECAh4eHN+LtKuHnJau8nLbOxsPDw9vK+wM/Lfk+zKiaDgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
