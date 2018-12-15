@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用Node.js写一个简单的api接口 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Node.js">
+    <meta name="description" content="引入Http模块默认你已经安装了Node.jsNode当中内置了Http模块；可以使用1var http= require(&amp;quot;http&amp;quot;); 引入http模块； Hello world用Node.js实现一个HTTP服务器程序非常简单。我们实现一个最简单的Web程序，它对于所有请求，都返回Hello world!，新建一个文件夹apiDemo 在里面新建一个server.js写">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Node.js写一个简单的api接口">
+<meta property="og:url" content="http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="引入Http模块默认你已经安装了Node.jsNode当中内置了Http模块；可以使用1var http= require(&amp;quot;http&amp;quot;); 引入http模块； Hello world用Node.js实现一个HTTP服务器程序非常简单。我们实现一个最简单的Web程序，它对于所有请求，都返回Hello world!，新建一个文件夹apiDemo 在里面新建一个server.js写">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/14/167abd49988fb8f2?w=310&h=193&f=jpeg&s=7500">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/14/167abd4998736425?w=402&h=170&f=jpeg&s=4634">
+<meta property="og:updated_time" content="2018-12-15T03:57:28.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Node.js写一个简单的api接口">
+<meta name="twitter:description" content="引入Http模块默认你已经安装了Node.jsNode当中内置了Http模块；可以使用1var http= require(&amp;quot;http&amp;quot;); 引入http模块； Hello world用Node.js实现一个HTTP服务器程序非常简单。我们实现一个最简单的Web程序，它对于所有请求，都返回Hello world!，新建一个文件夹apiDemo 在里面新建一个server.js写">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/12/14/167abd49988fb8f2?w=310&h=193&f=jpeg&s=7500">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Node.js写一个简单的api接口</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Node.js写一个简单的api接口</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-15T03:55:55.000Z" itemprop="datePublished" class="page-time">
+  2018-12-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引入Http模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">引入Http模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hello-world"><span class="post-toc-number">2.</span> <span class="post-toc-text">Hello world</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#路由"><span class="post-toc-number">3.</span> <span class="post-toc-text">路由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现简单的API接口"><span class="post-toc-number">4.</span> <span class="post-toc-text">实现简单的API接口</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用Node.js写一个简单的api接口"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Node.js写一个简单的api接口</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-15 11:55:55" datetime="2018-12-15T03:55:55.000Z"  itemprop="datePublished">
+2018-12-15
+<!--2018-12-15 11:57:28-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="引入Http模块"><a href="#引入Http模块" class="headerlink" title="引入Http模块"></a>引入Http模块</h2><p>默认你已经安装了<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a><br>Node当中内置了Http模块；<br>可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var http= require(&quot;http&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>引入http模块；</p>
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h2><p>用Node.js实现一个HTTP服务器程序非常简单。我们实现一个最简单的Web程序，<br>它对于所有请求，都返回Hello world!，新建一个文件夹<code>apiDemo</code> 在里面新建一个<code>server.js</code>写入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 导入http模块:</span><br><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">// 创建http server，并传入回调函数:</span><br><span class="line">var server = http.createServer(function (request, response) &#123;</span><br><span class="line">    // 回调函数接收request和response对象,</span><br><span class="line">    // 获得HTTP请求的method和url:</span><br><span class="line">    console.log(request.method + &apos;: &apos; + request.url);</span><br><span class="line">    // 将HTTP响应200写入response, 同时设置Content-Type: text/html:</span><br><span class="line">    response.writeHead(200, &#123;&apos;Content-Type&apos;: &apos;text/html&apos;&#125;);</span><br><span class="line">    // 将HTTP响应的HTML内容写入response:</span><br><span class="line">    response.end(&apos;Hello world!&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 让服务器监听8080端口:</span><br><span class="line">server.listen(8080);</span><br><span class="line"></span><br><span class="line">console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>然后在当前目录命令提示符下(cmd等)运行， 输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node server.js</span><br></pre></td></tr></table></figure></p>
+<p>然后打开浏览器输入：<code>http://127.0.0.1:8080/</code> 就可以看到：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/12/14/167abd49988fb8f2?w=310&h=193&f=jpeg&s=7500" alt="91544605447_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">91544605447_.pic.jpg</div>
+            </figure></p>
+<p>同时可以看到命令行中有打印的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET: /</span><br><span class="line">GET: /favicon.ico</span><br></pre></td></tr></table></figure></p>
+<p>主要需要了解的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http.createServer(function(request, response)&#123;&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>它的作用是创建一个http服务，里面传一个回调函数，函数中包含两个参数分别是（request，response）。<br>其中request是请求对象，response是响应对象。<br>可以根据<code>request</code>对象拿到请求头的一些信息，如: <code>request.url</code>–返回请求路径<br>响应成功后：<br><code>response.writeHead()</code>————发送一个响应头给请求<br><code>response.end(&#39;xxx&#39;)</code>————响应成功 返回xxx<br><a href="http://nodejs.cn/api/http.html" target="_blank" rel="noopener">参考 Nodez中文网-HTTP</a></p>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>我们是想当访问<code>http://127.0.0.1:8080/</code>的时候返回当前目录的index.html。<br>也就是说当<code>request.url === &#39;/&#39;</code>是<code>true</code>时就可以确定当前请求的是根目录了，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var url = request.url;</span><br><span class="line">console.log(url);</span><br><span class="line">// &apos;/&apos;</span><br></pre></td></tr></table></figure></p>
+<p>我们能创建一个服务，并且能使用<code>response.end(&#39;Hello world!&#39;);</code>返回“Hello world!”。如果想返回一个文件则需要用到Node.js的一个模块了——<strong>fs 文件系统</strong>。<br>它是Node当中处理文件的模块，首先引入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fs= require(&apos;fs&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>可以使用<code>fs.readFile()</code>来读取文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(&apos;./index.html&apos;, function(err, data)  &#123;</span><br><span class="line">  if (err) throw err;</span><br><span class="line">  console.log(data);</span><br><span class="line">// &lt;Buffer 3c 21 44 4f 4...&gt;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>回调函数 有两个参数 (err, data)，其中 data 是文件的内容，以二进制形式返回。</p>
+<p>然后我们就可以编写代码了，当访问根目录时，返回index.html文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var http= require(&apos;http&apos;);</span><br><span class="line">var fs= require(&apos;fs&apos;);</span><br><span class="line">var server= http.createServer(function(request, response)&#123;</span><br><span class="line">    var url = request.url;</span><br><span class="line">    if(url === &apos;/&apos;)&#123;</span><br><span class="line">        fs.readFile(&apos;./index.html&apos;, function(err, data)&#123;</span><br><span class="line">          if(!err)&#123;</span><br><span class="line">            response.writeHead(200, &#123;&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;&#125;);</span><br><span class="line">            response.end(data)</span><br><span class="line">          &#125;else&#123;</span><br><span class="line">              throw err;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        console.log(&quot;错误&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(8080, &apos;127.0.0.1&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>然后在当前目录下新建<code>index.html</code>，在这里我们可以写一个ajax请求，一会我们点击按钮来实现ajax请求一组数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;box&quot;&gt;看不到看不到&lt;/div&gt;</span><br><span class="line">   &lt;button onclick=&quot;success()&quot;&gt;我是按钮&lt;/button&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">   function success()&#123;</span><br><span class="line">       var http= new XMLHttpRequest();</span><br><span class="line">       http.onreadystatechange= function()&#123;</span><br><span class="line">           if(http.status == 200 &amp;&amp; http.readyState == 4)&#123;</span><br><span class="line">               var msg= http.responseText;</span><br><span class="line">               var box= document.getElementById(&apos;box&apos;);</span><br><span class="line">               box.innerHTML= JSON.parse(msg).name;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       //发送请求</span><br><span class="line">       http.open(&apos;GET&apos;, &apos;/data&apos;);</span><br><span class="line">       http.send();</span><br><span class="line">   &#125;</span><br><span class="line">   &lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码是点击按钮的时候 会向<code>/data</code>发起一个ajsx请求,</p>
+<h2 id="实现简单的API接口"><a href="#实现简单的API接口" class="headerlink" title="实现简单的API接口"></a>实现简单的API接口</h2><p>既然能访问根目录时可以返回html文件，那我们可以自己设定一个url，当请求这个url是我们就给它返回一组json数据。正常来讲这些数据应该是从数据库读取的，在这里只模拟一组json数据，在当前目录新建一个<code>data.json</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;: &quot;尼古拉丁 * 赵四&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以当前的目录结构是：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/12/14/167abd4998736425?w=402&h=170&f=jpeg&s=4634" alt="41544775041_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">41544775041_.pic.jpg</div>
+            </figure></p>
+<p>然后我们可以在server.js中判断一下，当请求的url是<code>/data</code>时，则返回data.json：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(url === &apos;/data&apos;)&#123;</span><br><span class="line">        fs.readFile(&apos;./data.json&apos;, function(err, data)&#123;</span><br><span class="line">            if(!err)&#123;</span><br><span class="line">                response.writeHead(200, &#123;&quot;Content-Type&quot;: &quot;application/json&quot;&#125;);</span><br><span class="line">                response.end(data);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                throw err;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后打开浏览器 <code>http://127.0.0.1:8080</code> 后，就会出现index.html页面，点击出现的按钮就会触发一个对 <code>/data</code>的ajax请求，当server.js接受到请求后，就会判断<code>url === &#39;/data&#39;</code>，然后它就会吧  <code>data.json</code>返回给我们。</p>
+<p>最后的实现是点击按钮出现<strong>尼古拉丁 * 赵四</strong>，<br>GItHub源码：<a href="https://github.com/AnsonZnl/StudyNodeJS/tree/master/%E8%AF%BE%E7%A8%8B%E8%AF%BE%E4%BB%B6%E5%8F%8A%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/apiDemo" target="_blank" rel="noopener">node-apiDemo</a><br>参考：<br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345015296018cac40c198b543fead5c549865b9bd4a000" target="_blank" rel="noopener">廖雪峰-http详解</a><br><a href="http://nodejs.cn/api/fs.html" target="_blank" rel="noopener">Node-fs</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/&title=《使用Node.js写一个简单的api接口》 — Anson's Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/&title=《使用Node.js写一个简单的api接口》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Node.js写一个简单的api接口》 — Anson's Blog&url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/11/JavaScript的预编译过程分析/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript的预编译过程分析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/&title=《使用Node.js写一个简单的api接口》 — Anson's Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/&title=《使用Node.js写一个简单的api接口》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Node.js写一个简单的api接口》 — Anson's Blog&url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/15/使用Node.js写一个简单的api接口/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQY7bQAwEQP//05tzYFhpsmcSByidDFsrqbQAOWjO6xUfP4/H+5mfPr+fn9zx/WqHDzw8PLwLj/6J8fz9M+kT/vkFTV83Hh4e3j3e7vbTst58kzQJPDw8vO/k5d8k108aEh4eHt7/y0v+Kg8Odq8DDw8P73t40wKdhxd5FJv/eiVrwcPDw4t5+RTpez5fme/h4eHh1VP1Uw0gXzonA7PBE+Lh4eFd4DWPuFuC58voaaT7sYXg4eHhHeUlhT7fepW3jd1iPW8YrwSAh4eHV/NyTF6mmxFavolhHEbg4eHhFbx+I9Ruq1az1WD6DHh4eHhnefnt+7BgGuAul9HJRfHw8PAKXh6kThe1z0OvHW8XE+Ph4eHd4O22NE3j3V0U0mxBwMPDw7vN6wf2TTg7bTnV8hoPDw+v4OXDpDxoyDcB5JsGdo0EDw8P7zYvaQm7Ut4MyaZjNjw8PLzbvGUkugoL8ngiWZoPYmU8PDy8C7zpGGwaGewW0KcW9Hh4eHhnedPAtCnlTbnP/0u/nY+Hh4d3gTd96H7Jm4QdedQ7Xljj4eHhHeIlmwDy5exzyZ5GCeOhV5Ka4OHh4RW8/NJ50c83RfVnRvkKHh4e3lHeLoDIB2NN7LtrY1GrwMPDwyt402J9qtDnIUX10vHw8PAu8PL9BXmYu2sJ+eatMRgPDw/vKG86UsrbxjSubSKGj3+Fh4eHd4GXF+KkhTRTuMG+huHd8fDw8M7yfoZHE9rmv+6ijXGijIeHh7fiNcV314V2G7z6xToeHh7eWV5S3Hfn9KO4/Pp4eHh4f5+XD8CmA/78nF03+8OT4OHh4f1T3oFx1HCmny+18fDw8L6T15TyaUjRBL4Xl9R4eHh4q6AhL+7TzQHTgDi6Dh4eHt4FXh6z5uFC32by17ok4eHh4W14vwCi7RbbFQOICAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
