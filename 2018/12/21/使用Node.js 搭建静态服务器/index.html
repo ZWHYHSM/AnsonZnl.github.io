@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用Node.js 搭建静态服务器 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Node.js">
+    <meta name="description" content="我们可以使用Node设定一个目录，然后让Web程序变成一个文件服务器。要实现这一点，我们只需要解析request.url中的路径，然后在本地找到对应的文件，把文件内容发送出去就可以了。  解析URL需要用到Node.js提供的url模块，它使用起来非常简单，通过parse()将一个字符串解析为一个Url对象：12var url= require(&amp;apos;url&amp;apos;);console.">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Node.js 搭建静态服务器">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="我们可以使用Node设定一个目录，然后让Web程序变成一个文件服务器。要实现这一点，我们只需要解析request.url中的路径，然后在本地找到对应的文件，把文件内容发送出去就可以了。  解析URL需要用到Node.js提供的url模块，它使用起来非常简单，通过parse()将一个字符串解析为一个Url对象：12var url= require(&amp;apos;url&amp;apos;);console.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-5c918eec1e59e4ad.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-21T08:04:38.612Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Node.js 搭建静态服务器">
+<meta name="twitter:description" content="我们可以使用Node设定一个目录，然后让Web程序变成一个文件服务器。要实现这一点，我们只需要解析request.url中的路径，然后在本地找到对应的文件，把文件内容发送出去就可以了。  解析URL需要用到Node.js提供的url模块，它使用起来非常简单，通过parse()将一个字符串解析为一个Url对象：12var url= require(&amp;apos;url&amp;apos;);console.">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7072486-5c918eec1e59e4ad.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Node.js 搭建静态服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Node.js 搭建静态服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-21T08:21:55.000Z" itemprop="datePublished" class="page-time">
+  2018-12-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-使用Node.js 搭建静态服务器"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Node.js 搭建静态服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-21 16:21:55" datetime="2018-12-21T08:21:55.000Z"  itemprop="datePublished">
+2018-12-21
+<!--2018-12-21 16:04:38-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>我们可以使用Node设定一个目录，然后让Web程序变成一个文件服务器。要实现这一点，我们只需要解析request.url中的路径，然后在本地找到对应的文件，把文件内容发送出去就可以了。</p>
+</blockquote>
+<p>解析URL需要用到Node.js提供的url模块，它使用起来非常简单，通过parse()将一个字符串解析为一个Url对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var url= require(&apos;url&apos;);</span><br><span class="line">console.log(url.parse(&apos;http://user:pass@host.com:8080/path/to/file?query=string#hash&apos;));</span><br></pre></td></tr></table></figure></p>
+<p>解析之后是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Url &#123;</span><br><span class="line">    protocol: &apos;http:&apos;,</span><br><span class="line">    slashes: true,</span><br><span class="line">    auth: &apos;user:pass&apos;,</span><br><span class="line">    host: &apos;host.com:8080&apos;,</span><br><span class="line">    port: &apos;8080&apos;,</span><br><span class="line">    hostname: &apos;host.com&apos;,</span><br><span class="line">    hash: &apos;#hash&apos;,</span><br><span class="line">    search: &apos;?query=string&apos;,</span><br><span class="line">    query: &apos;query=string&apos;,</span><br><span class="line">    pathname: &apos;/path/to/file&apos;,</span><br><span class="line">    path: &apos;/path/to/file?query=string&apos;,</span><br><span class="line">    href:</span><br><span class="line">     &apos;http://user:pass@host.com:8080/path/to/file?query=string#hash&apos; </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>处理本地文件目录需要使用Node.js提供的path模块，它可以方便地构造目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">// 解析当前目录:</span><br><span class="line">console.log(path(__dirname));</span><br><span class="line">//__dirname 表示当前所在目录  &apos;/Users&apos;</span><br><span class="line"></span><br><span class="line">// 组合完整的文件路径:当前目录+&apos;pub&apos;+&apos;index.html&apos;:</span><br><span class="line">var filePath = path.join(__dirname, &apos;fileServer&apos;, &apos;index.html&apos;);</span><br><span class="line">// &apos;/Users/fileServer/index.html&apos;</span><br></pre></td></tr></table></figure></p>
+<p>使用path模块可以正确处理操作系统相关的文件路径。在Windows系统下，返回的路径类似于<code>C:\Users\fileServer\index.html</code>，这样，我们就不关心怎么拼接路径了。</p>
+<p>最后，我们实现一个文件服务器file_server.js：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var </span><br><span class="line">    http= require(&apos;http&apos;),</span><br><span class="line">    fs= require(&apos;fs&apos;),</span><br><span class="line">    url= require(&apos;url&apos;),</span><br><span class="line">    path= require(&apos;path&apos;);</span><br><span class="line">    </span><br><span class="line">// 从命令行参数获取root目录，默认是当前目录:</span><br><span class="line">var root= path.join(__dirname, &apos;static&apos;, &apos;index.html&apos;);</span><br><span class="line"></span><br><span class="line">//创建服务器</span><br><span class="line">var server= http.createServer(function(request, response)&#123;</span><br><span class="line">    //获得ur的path 类似&apos;/css/index.css&apos;</span><br><span class="line">    var pathName= url.parse(request.url).pathname;</span><br><span class="line">    //获得对应的本地文件路径 类似’static/css/index.css‘</span><br><span class="line">    var filePath= path.join(root);</span><br><span class="line">    //获取文件状态</span><br><span class="line">    console.log(filePath);</span><br><span class="line">    fs.stat(filePath, function (err, stats) &#123;</span><br><span class="line">        if (!err &amp;&amp; stats.isFile()) &#123;</span><br><span class="line">            // 没有出错并且文件存在:</span><br><span class="line">            console.log(&apos;200 &apos; + request.url);</span><br><span class="line">            // 发送200响应:</span><br><span class="line">            response.writeHead(200);</span><br><span class="line">            // 将文件流导向response:</span><br><span class="line">            fs.createReadStream(filePath).pipe(response);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 出错了或者文件不存在:</span><br><span class="line">            console.log(&apos;404 &apos; + request.url);</span><br><span class="line">            // 发送404响应:</span><br><span class="line">            response.writeHead(404);</span><br><span class="line">            response.end(&apos;404 Not Found&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(8080);</span><br><span class="line">console.log(&apos;Server is running at http://127.0.0.1:8080/&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>当你的html文件是这样的时候：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Road&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/index.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;img src=&quot;/images/bg.jpeg&quot; alt=&quot;11&quot;&gt;</span><br><span class="line">    &lt;h1&gt;书山有路勤为径,学海无涯苦做舟。&lt;/h1&gt;</span><br><span class="line">    &lt;script src=&quot;js/index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后请求<code>http://127.0.0.1:8080/index.html</code>就会打印出：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-5c918eec1e59e4ad.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="101544689152_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">101544689152_.pic.jpg</div>
+            </figure></p>
+<p>当然他只能发起请求，想要请求到并且正确返回还需要设置文件的ContentType属性。<br>我们可以使用<code>path.extname</code>获取请求文件的后缀：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let extname = path.extname(&apos;css/index.css&apos;);</span><br><span class="line">// .css</span><br></pre></td></tr></table></figure></p>
+<p>我们获取到后缀之后就可以根据后缀来设置它的ContentType，这里需要用到一个mime.json文件，然后使用一个函数去匹配:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//mime 读取mime.json 里面存储了常见的文件的ContentType 为请求的对应的文件设置对应的 ContentType 属性</span><br><span class="line">function getContentType(extName, callBack)&#123;</span><br><span class="line">                //      文件后缀   回调函数</span><br><span class="line">    //读取mime.json</span><br><span class="line">    fs.readFile(&apos;./mime.json&apos;, (err, data)=&gt;&#123;</span><br><span class="line">        if(err)&#123;</span><br><span class="line">        //读取失败 抛出错误</span><br><span class="line">            throw err;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        // 读取成功</span><br><span class="line">        let mimeJson = JSON.parse(data);</span><br><span class="line">        //转码 将json字符串转化成对象</span><br><span class="line">        let contentType = mimeJson[extName] || &apos;text/plain&apos;;</span><br><span class="line">        //取出对应json中 对应的 请求的后缀的相匹配的 ContentType 属性</span><br><span class="line">        callBack(contentType);</span><br><span class="line">        //执行这个回调函数 并传参contentType</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>搭建静态服务器的步骤应该是：</p>
+<ol>
+<li>先拿到请求文件的后缀名(extname)</li>
+<li>引入mime.json 文件并读取-&gt;转码</li>
+<li>匹配和后缀对应的ContentType</li>
+<li>使用回调函数 所有请求的文件 都会拿到后缀 然后自动匹配相应的ContentType</li>
+<li>执行getContentType函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getContentType(extname, (contentType)=&gt;&#123;</span><br><span class="line">    res.writeHead(200, &#123;&quot;Content-Type&quot;: contentType + &apos;;charset=UTF-8&apos;&#125;)</span><br><span class="line">    res.end(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/kuangshp128/article/details/75207984" target="_blank" rel="noopener">常见文件的mime类型</a><br><a href="https://github.com/AnsonZnl/StudyNodeJS/blob/master/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AF%BE%E6%97%B666-%E8%AF%BE%E6%97%B671%E7%AC%94%E8%AE%B0.md" target="_blank" rel="noopener">GitHub-Node 学习笔记</a><br><a href="https://www.cnblogs.com/xxchi/p/6382892.html" target="_blank" rel="noopener">参考-Node path模块相关方法</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/&title=《使用Node.js 搭建静态服务器》 — Anson's Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/&title=《使用Node.js 搭建静态服务器》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Node.js 搭建静态服务器》 — Anson's Blog&url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/15/使用Node.js写一个简单的api接口/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用Node.js写一个简单的api接口</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/&title=《使用Node.js 搭建静态服务器》 — Anson's Blog&pic=http://p0bnwspy9.bkt.clouddn.com/7173A6AA62C3B1E9D95BBD886A0B9C1C.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/&title=《使用Node.js 搭建静态服务器》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Node.js 搭建静态服务器》 — Anson's Blog&url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/21/使用Node.js 搭建静态服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3a0WrjQAwFUP//T6fQ12D3Shq1KRw/LcFx5kzB0l7NdcXX6/t6/yT//O5p7/e/Hq9r48LDw8NrLf35cc8/kCyi+oRjW4CHh4e3xjv1+u4VierSkzXj4eHhfQIvelzru71GHA8PD++/8JLG9/m78+ADDw8P7xN4eQv73EDnWzAhrWQteHh4eAtTpM/59+J8Dw8PD28wVa+2zvOQolcGbleLh4eHt8DLQ4TkoEBv5J+/25t34uHh4a3xeqP9yf3V+KBauvDw8PA2eKcefSpQyA91RZuLh4eHt8zrRQ/J/UmTnZec5Ft4eHh427xJDFFtxydxbTmqwMPDw1vg5UupFobC6zsenk3WiYeHh3eKl7+ye1uQFIYqr3BAAQ8PD2+BN2mgqy11tb2uruT2CXh4eHhHefl//nujsnk5yY8L4OHh4f0mLx/hX/FVjTB6v/5DecDDw8Nb5uVjrd5C8/B3Qi0fusLDw8Nr8ZKAoDrU7w34y4DnIoGHh4e3wMvHS9UCkIcayVZWIw88PDy8bV5yTKoaRuTbNIk5omfi4eHhHeXlh5+qRwR6xaMX+97eiYeHh7fGm4/qk+NQOXgealx5joKHh4c34PWKQTVQSD6v/hmiwoCHh4d3iHcq983b4t7be87Gw8PDO8XLG+Jq1FuNHvLiVPgVPDw8vGXeJKpIIt3qRlSPLNweGsDDw8M7ysuHWPMRV3UT84MF0f14eHh4h3iT0Vc+uKru9KR9Hx0dwMPDw+vkooVl9cZakzg4jyHw8PDwtnlJMUjGWskBgvnWlP8+eHh4eGu8ZoYRHHjqBb69MOI2ksDDw8P7I16vDMw3ognDw8PD+zBetbF+ZvQGXVHrj4eHh7fG64URk8a3WjDyb+Hh4eFt806N/PNXdtKOV6Pna3Lh4eHhpbwv+rXkKbe6+zgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
