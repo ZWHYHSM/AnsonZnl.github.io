@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用Express搭建一个简单的服务器 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="NodeJS">
+    <meta name="description" content="Express框架Web 应用程序Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。 API使用您所选择的各种 HTTP 实用工具和中间件，快速方便地创建强大的 API。 性能Express 提供精简的基本 Web 应用程序功能，而不会隐藏您了解和青睐的 Node.js 功能。 Express-路由基本使用下载：np">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Express搭建一个简单的服务器">
+<meta property="og:url" content="http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="Express框架Web 应用程序Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。 API使用您所选择的各种 HTTP 实用工具和中间件，快速方便地创建强大的 API。 性能Express 提供精简的基本 Web 应用程序功能，而不会隐藏您了解和青睐的 Node.js 功能。 Express-路由基本使用下载：np">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-b7ae26b3cdafc65a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-b8692b839960c7cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-688f54ceb329ceb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-e0af0827093b7ac1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-8d727856b5ec84a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-b333856ae590d4e1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-62bf6f8073433d15.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-04T15:05:07.950Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Express搭建一个简单的服务器">
+<meta name="twitter:description" content="Express框架Web 应用程序Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。 API使用您所选择的各种 HTTP 实用工具和中间件，快速方便地创建强大的 API。 性能Express 提供精简的基本 Web 应用程序功能，而不会隐藏您了解和青睐的 Node.js 功能。 Express-路由基本使用下载：np">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7072486-b7ae26b3cdafc65a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://yscoder.github.io/img/face.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Express搭建一个简单的服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Express搭建一个简单的服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-04T14:21:55.000Z" itemprop="datePublished" class="page-time">
+  2019-01-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Express框架"><span class="post-toc-number">1.</span> <span class="post-toc-text">Express框架</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Web-应用程序"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Web 应用程序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#API"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#性能"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">性能</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Express-路由基本使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">Express-路由基本使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hello-world"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Hello world</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#请求和响应"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">请求和响应</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Request-对象"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Request 对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Response-对象"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">Response 对象</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Express-路由"><span class="post-toc-number">3.</span> <span class="post-toc-text">Express-路由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Express-搭建静态资源库"><span class="post-toc-number">4.</span> <span class="post-toc-text">Express-搭建静态资源库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Express-模板引擎之EJS"><span class="post-toc-number">5.</span> <span class="post-toc-text">Express-模板引擎之EJS</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用Express搭建一个简单的服务器"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Express搭建一个简单的服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-04 22:21:55" datetime="2019-01-04T14:21:55.000Z"  itemprop="datePublished">
+2019-01-04
+<!--2019-01-04 23:05:07-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Express框架"><a href="#Express框架" class="headerlink" title="Express框架"></a>Express框架</h2><h3 id="Web-应用程序"><a href="#Web-应用程序" class="headerlink" title="Web 应用程序"></a>Web 应用程序</h3><p>Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>使用您所选择的各种 HTTP 实用工具和中间件，快速方便地创建强大的 API。</p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>Express 提供精简的基本 Web 应用程序功能，而不会隐藏您了解和青睐的 Node.js 功能。</p>
+<h2 id="Express-路由基本使用"><a href="#Express-路由基本使用" class="headerlink" title="Express-路由基本使用"></a>Express-路由基本使用</h2><p>下载：<code>npm install express --save</code></p>
+<h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h3><p>新建一个<code>server.js</code>文件，然后输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app= express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, (req, res)=&gt;&#123;</span><br><span class="line">    req.send(&apos;Hello world&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(8083, ()=&gt;&#123;</span><br><span class="line">    console.log(&apos;Server is running at http://localhost:8083&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后运行：<code>node server.js</code><br>打开：<a href="http://localhost:8083/" target="_blank" rel="noopener">http://localhost:8083/</a><br>就出现：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-b7ae26b3cdafc65a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="11546413582_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">11546413582_.pic.jpg</div>
+            </figure></p>
+<h3 id="请求和响应"><a href="#请求和响应" class="headerlink" title="请求和响应"></a>请求和响应</h3><p>Express 应用使用回调函数的参数： request 和 response 对象来处理请求和响应的数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(&apos;/&apos;, function (request, response) &#123;</span><br><span class="line">   // --</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>request 和 response 对象的具体介绍：</p>
+<h3 id="Request-对象"><a href="#Request-对象" class="headerlink" title="Request 对象"></a>Request 对象</h3><blockquote>
+<p>request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</p>
+</blockquote>
+<p>req.app：当callback为外部文件时，用req.app访问express的实例<br>req.baseUrl：获取路由当前安装的URL路径<br>req.body / req.cookies：获得「请求主体」/ Cookies<br>req.fresh / req.stale：判断请求是否还「新鲜」<br>req.hostname / req.ip：获取主机名和IP地址<br>req.originalUrl：获取原始请求URL<br>req.params：获取路由的parameters<br>req.path：获取请求路径<br>req.protocol：获取协议类型<br>req.query：获取URL的查询参数串<br>req.route：获取当前匹配的路由<br>req.subdomains：获取子域名<br>req.accepts()：检查可接受的请求的文档类型<br>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages：返回指定字符集的第一个可接受字符编码<br>req.get()：获取指定的HTTP请求头<br>req.is()：判断请求头Content-Type的MIME类型</p>
+<h3 id="Response-对象"><a href="#Response-对象" class="headerlink" title="Response 对象"></a>Response 对象</h3><blockquote>
+<p>response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
+</blockquote>
+<p>res.app：同req.app一样<br>res.append()：追加指定HTTP头<br>res.set()在res.append()后将重置之前设置的头<br>res.cookie(name，value [，option])：设置Cookie<br>opition: domain / expires / httpOnly / maxAge / path / secure / signed<br>res.clearCookie()：清除Cookie<br>res.download()：传送指定路径的文件<br>res.get()：返回指定的HTTP头<br>res.json()：传送JSON响应<br>res.jsonp()：传送JSONP响应<br>res.location()：只设置响应的Location HTTP头，不设置状态码或者close response<br>res.redirect()：设置响应的Location HTTP头，并且设置状态码302<br>res.render(view,[locals],callback)：渲染一个view，同时向callback传递渲染后的字符串，如果在渲染过程中有错误发生next(err)将会被自动调用。callback将会被传入一个可能发生的错误以及渲染后的页面，这样就不会自动输出了。<br>res.send()：传送HTTP响应<br>res.sendFile(path [，options] [，fn])：传送指定路径的文件 -会自动根据文件extension设定Content-Type<br>res.set()：设置HTTP头，传入object可以一次设置多个头<br>res.status()：设置HTTP状态码<br>res.type()：设置Content-Type的MIME类型</p>
+<h2 id="Express-路由"><a href="#Express-路由" class="headerlink" title="Express-路由"></a>Express-路由</h2><blockquote>
+<p>我们已经了解了 HTTP 请求的基本应用，而路由决定了由谁(指定脚本)去响应客户端请求。<br>在HTTP请求中，我们可以通过路由提取出请求的URL以及GET/POST参数。</p>
+</blockquote>
+<p>路由的基本形式：<br><code>app.METHOD(PATH, HANDLER)</code></p>
+<ol>
+<li><code>app</code> 表示的是一个Express的实例</li>
+<li><code>METHOD</code> 是http请求的方法（get, psot..）</li>
+<li><code>PATH</code> 服务器上的路径</li>
+<li><code>HANDLER</code>请求之后的执行函数</li>
+</ol>
+<p>下面的示例说明了如何定义路由：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 对/news 页面进行get请求</span><br><span class="line">app.get(&apos;news&apos;, (req, res)=&gt;&#123;</span><br><span class="line">    res.send(&apos;Hello news&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">// 对/about 页面进行post请求</span><br><span class="line">app.post(&apos;about&apos;, (req, res)=&gt;&#123;</span><br><span class="line">    res.send(&apos;Hello about&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">// 对/list* 可匹配 /list+任意字符</span><br><span class="line">app.get(&apos;/list*&apos;, (req, res)=&gt;&#123;</span><br><span class="line">    res.send(&apos;Hello list pages&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后运行：<code>node server.js</code><br>打开：<a href="http://localhost:8083/" target="_blank" rel="noopener">http://localhost:8083/</a><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-b8692b839960c7cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="21546417068_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">21546417068_.pic.jpg</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-688f54ceb329ceb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="31546417103_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">31546417103_.pic.jpg</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-e0af0827093b7ac1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="41546417120_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">41546417120_.pic.jpg</div>
+            </figure></p>
+<h2 id="Express-搭建静态资源库"><a href="#Express-搭建静态资源库" class="headerlink" title="Express-搭建静态资源库"></a>Express-搭建静态资源库</h2><blockquote>
+<p>Express 提供了内置的中间件 express.static 来设置静态文件如：图片， CSS, JavaScript 等。</p>
+</blockquote>
+<p>你可以使用 express.static 中间件来设置静态文件路径。例如，如果你将图片， CSS, JavaScript 文件放在 public 目录下，你可以这么写：<br><code>app.use(express.static(&#39;public&#39;));</code></p>
+<p>现在，你就可以访问 public 目录中的所有文件了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public/index.html</span><br><span class="line">public/images</span><br><span class="line">public/images/bg.jpeg</span><br><span class="line">public/css</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>如果要使用多个静态资源目录，请多次调用 express.static 中间件函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(&apos;public&apos;))</span><br><span class="line">app.use(express.static(&apos;files&apos;))</span><br></pre></td></tr></table></figure></p>
+<p> Express 在静态目录查找文件，因此，存放静态文件的目录名不会出现在 URL 中。<br>但是您可以给静态目录添加一个路由：<br><code>app.use(&#39;/static&#39;, express.static(path.join(__dirname, &#39;public&#39;)))</code><br>设置<code>/static</code>为<code>/public</code>目录的路由。<br>现在，你就可以通过带有 /static 前缀地址来访问 public 目录中的文件了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8083/static/css</span><br><span class="line">http://localhost:8083/static/css/index.css</span><br><span class="line">http://localhost:8083/static/image</span><br><span class="line">http://localhost:8083/static/images/bg.jpeg</span><br><span class="line">http://localhost:8083/static/index.html</span><br></pre></td></tr></table></figure></p>
+<p>为了安全，最好使用绝对路由：<br><code>app.use(&#39;/static&#39;, express.static(path.join(__dirname, &#39;public&#39;)))</code><br>然后运行：<code>node server.js</code><br>打开：<a href="http://localhost:8083/static" target="_blank" rel="noopener">http://localhost:8083/static</a><br>就可以访问public下的所有文件，如图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-8d727856b5ec84a3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="61546420083_.pic_hd.jpg" title="">
+                </div>
+                <div class="image-caption">61546420083_.pic_hd.jpg</div>
+            </figure></p>
+<h2 id="Express-模板引擎之EJS"><a href="#Express-模板引擎之EJS" class="headerlink" title="Express-模板引擎之EJS"></a>Express-模板引擎之EJS</h2><blockquote>
+<p>EJS 是一套简单的模板语言，帮你利用普通的 JavaScript 代码生成 HTML 页面。</p>
+</blockquote>
+<p>下载Ejs: <code>npm install ejs --save</code><br>同目录下新建<code>myejs.js</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const express= require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line">//设置模板文件的目录,并且新建一个viwes的目录</span><br><span class="line">app.set(&apos;views&apos;, &apos;./views&apos;);</span><br><span class="line">//注册模板引擎</span><br><span class="line">app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br><span class="line">//使用res.render()来渲染一个视图并将呈现的HTML字符串发送给客户端；</span><br><span class="line">app.get(&apos;/&apos;, function(req, res,) &#123;</span><br><span class="line">    res.render(&apos;index&apos;, &#123; title: &apos;测试&apos; &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">//监听8083端口</span><br><span class="line">app.listen(8083, ()=&gt;&#123;</span><br><span class="line">    console.log(&apos;Server is running at http://localhost:8083&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在新建views目录中新建index.ejs:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后运行：<code>node myejs.js</code><br>打开：<a href="http://localhost:8083" target="_blank" rel="noopener">http://localhost:8083</a><br>即可看到：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-b333856ae590d4e1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>当然，也可以返回一个json文件来渲染视图：<br>在同目录下新建一个data.json:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">    &#123; &quot;name&quot;:&quot;小明&quot; , &quot;age&quot;:&quot;6&quot;, &quot;sex&quot;: &quot;男&quot;&#125;,</span><br><span class="line">    &#123; &quot;name&quot;:&quot;小红&quot; , &quot;age&quot;:&quot;4&quot; ,&quot;sex&quot;: &quot;女&quot;&#125;,</span><br><span class="line">    &#123; &quot;name&quot;:&quot;小亮&quot; , &quot;age&quot;:&quot;5&quot; ,&quot;sex&quot;: &quot;男&quot;&#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;source&quot;:&quot;神奇二班&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后更改myejs.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">const express= require(&apos;express&apos;);</span><br><span class="line">const fs= require(&apos;fs&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">//设置模板文件的目录,并且新建一个viwes的目录</span><br><span class="line">app.set(&apos;views&apos;, &apos;./views&apos;);</span><br><span class="line">//注册模板引擎</span><br><span class="line">app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br><span class="line">//使用res.render()来渲染一个视图并将呈现的HTML字符串发送给客户端；</span><br><span class="line">app.get(&apos;/&apos;, function(req, res,) &#123;</span><br><span class="line">    getDataJson((dataJson)=&gt;&#123;</span><br><span class="line">        console.log(dataJson);</span><br><span class="line">        res.render(&apos;index&apos;, dataJson);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line">//访问data.json 拿到数据解析并返回</span><br><span class="line">const getDataJson=(callBack)=&gt;&#123;</span><br><span class="line">    fs.readFile(&apos;./data.json&apos;, (err, data)=&gt;&#123;</span><br><span class="line">        if(!err)&#123;</span><br><span class="line">            let jsonData= JSON.parse(data);</span><br><span class="line">            callBack(jsonData);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            throw err;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">//监听8083端口</span><br><span class="line">app.listen(8083, ()=&gt;&#123;</span><br><span class="line">    console.log(&apos;Server is running at http://localhost:8083&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后更改index.ejs:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h4&gt;&lt;%=source %&gt;&lt;/h4&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;% for(var i=0; i&lt;list.length; i++)&#123; %&gt;</span><br><span class="line">        &lt;li&gt;&lt;%= list[i].name %&gt; | &lt;%= list[i].age %&gt; | &lt;%= list[i].sex %&gt;&lt;/li&gt;</span><br><span class="line">    &lt;% &#125; %&gt;    </span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后在运行：<br>然后运行：<code>node myejs.js</code><br>打开：<a href="http://localhost:8083/" target="_blank" rel="noopener">http://localhost:8083</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-62bf6f8073433d15.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>参考：<br><a href="https://github.com/AnsonZnl/StudyNodeJS/tree/master/demo/expressDemo" target="_blank" rel="noopener">GitHub源码</a><br><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Express官方文档</a><br><a href="https://ejs.bootcss.com/" target="_blank" rel="noopener">EJS 模板引擎</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="https://yscoder.github.io/img/face.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NodeJS/">NodeJS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/&title=《使用Express搭建一个简单的服务器》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/&title=《使用Express搭建一个简单的服务器》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Express搭建一个简单的服务器》 — Anson's Blog&url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/21/使用Node.js 搭建静态服务器/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用NodeJS 搭建静态服务器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/&title=《使用Express搭建一个简单的服务器》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/&title=《使用Express搭建一个简单的服务器》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Express搭建一个简单的服务器》 — Anson's Blog&url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/04/使用Express搭建一个简单的服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3a0W6DMAwFUP7/pztp2tsGXNsJ7aSTp6miJceTsHF8HPF6fa/ff/++5mydXXl9r+TzBQsPDw+vtfXrbb3iVQ1W/nm+Hzw8PLxneKuSQR6O5C7Jt24seHh4eG/lXQN65W81iHh4eHj/nddrQyQBusbj4eHhfQJvbeF7HZpk66sCioeHh7eDNyl83/X3Q+d7eHh4eMVT9WqJvKPd0DuE+/kWHh4e3gZetUGQH0dVGxy9Ua2ovYuHh4e3gXe9rfwBPW/4TsIXFdx4eHh4Y968gK4edCWby0N5sxM8PDy8Dbx8o/mhV95snTQ48iIbDw8P7xler9labdfmzY5quX9Ub4yHh4cX8/Ljq17TtpcS8gRzkxLw8PDwNvMmr/359dU2RLXp8MdkBB4eHt5SXrXMrY5V9UIwGWs4etHFw8PDa/Gqm54ca01WDsbDw8Pbxyu/5ActhnwwKwlu74gODw8PbzevOiZVTQbVonzZ0CoeHh7eUl7+ozs+zwORh77QpcbDw8Mb8PJmRJ4e8q3Mi/LTX8bDw8PbxuttqFou95rF1fZHuZ+Bh4eHV+RVX/6rj/7mhoop5CZF4eHh4S3lVUdIe8X0BHxdWN8kHjw8PLwHeflYQJ5CJkVztVWBh4eHt5tXLZdXtSfyFNIcZcDDw8PbwMtXdSQrL7V7Q6jzFIWHh4fX4/VGoPJAzEmj/xIeHh7eBl710T9pueZjplvaHHh4eHiLeK/i6o0LJOGrBii6Ox4eHt4G3tpCObmyese80O/dBQ8PD693l14ymLzv50HMA1po5uLh4eEt4k0OvaqFb7Vo7iUSPDw8vE/jTQ698lSUM05Dg4eHh/dWXt5szZNB74CtebKHh4eHt5TXa0ZMHvfJdvMkdPqbeHh4eBt4k4mtvHVbDdakZB+d7+Hh4eFd8b4AOf0r8AP3kJYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
