@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>php笔记一 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php">
+    <meta name="description" content="为什么学PHP？ 学web前端也有一年多了，真是一入前端深四海，不入坑不知道坑有多深。这一年来从html、css 到javascript、后来又学了jQuery、Bootstrap、Vue.js几个js框架。经过在老师的建议下学了php，而且自己想对这方面有更多的了解。  一、php是什么？  PHP（外文名:PHP: Hypertext Preprocessor，中文名：“超文本预处理器”）是一">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php笔记一">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/PHP笔记一/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="为什么学PHP？ 学web前端也有一年多了，真是一入前端深四海，不入坑不知道坑有多深。这一年来从html、css 到javascript、后来又学了jQuery、Bootstrap、Vue.js几个js框架。经过在老师的建议下学了php，而且自己想对这方面有更多的了解。  一、php是什么？  PHP（外文名:PHP: Hypertext Preprocessor，中文名：“超文本预处理器”）是一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-17T08:39:31.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php笔记一">
+<meta name="twitter:description" content="为什么学PHP？ 学web前端也有一年多了，真是一入前端深四海，不入坑不知道坑有多深。这一年来从html、css 到javascript、后来又学了jQuery、Bootstrap、Vue.js几个js框架。经过在老师的建议下学了php，而且自己想对这方面有更多的了解。  一、php是什么？  PHP（外文名:PHP: Hypertext Preprocessor，中文名：“超文本预处理器”）是一">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://yscoder.github.io/img/face.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/resume"  >
+                <i class="icon icon-lg icon-file"></i>
+                简历
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php笔记一</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php笔记一</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-05T12:23:20.000Z" itemprop="datePublished" class="page-time">
+  2017-12-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么学PHP？"><span class="post-toc-number">1.</span> <span class="post-toc-text">为什么学PHP？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数据类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">数据类型:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#字符串"><span class="post-toc-number">3.</span> <span class="post-toc-text">字符串:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数组"><span class="post-toc-number">4.</span> <span class="post-toc-text">数组:</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-PHP笔记一"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php笔记一</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-05 20:23:20" datetime="2017-12-05T12:23:20.000Z"  itemprop="datePublished">
+2017-12-05
+<!--2017-12-17 16:39:31-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="为什么学PHP？"><a href="#为什么学PHP？" class="headerlink" title="为什么学PHP？"></a>为什么学PHP？</h4><p><strong> 学web前端也有一年多了，真是一入前端深四海，不入坑不知道坑有多深。这一年来从html、css 到javascript、<br>后来又学了jQuery、Bootstrap、Vue.js几个js框架。经过在老师的建议下学了php，而且自己想对这方面有更多的了解。
+</strong></p>
+<p>一、php是什么？</p>
+<blockquote>
+<p>PHP（外文名:PHP: Hypertext Preprocessor，中文名：“超文本预处理器”）是一种通用开源脚本语言。语法吸收了C语言、Java和Perl的特点，利于学习，使用广泛，主要适用于Web开发领域。PHP 独特的语法混合了C、Java、Perl以及PHP自创的语法。它可以比CGI或者Perl更快速地执行动态网页。用PHP做出的动态页面与其他的编程语言相比，PHP是将程序嵌入到HTML（标准通用标记语言下的一个应用）文档中去执行，执行效率比完全生成HTML标记的CGI要高许多；PHP还可以执行编译后代码，编译可以达到加密和优化代码运行，使代码运行更快。</p>
+</blockquote>
+<p>载自百度知道</p>
+<p>二、php能干什么？</p>
+<blockquote>
+<p>PHP 能做任何事。PHP 主要是用于服务端的脚本程序，因此您可以用 PHP 来完成任何其它的 CGI 程序能够完成的工作，例如收集表单数据，生成动态网页，或者发送/接收 Cookies。但 PHP 的功能远不局限于此。<br>PHP 脚本主要用于以下三个领域。<br>      服务端脚本。这是 PHP 最传统，也是最主要的目标领域。开展这项工作您需要具备以下三点：PHP 解析器（CGI 或者服务器模块）、WEB 服务器和 WEB 浏览器。您需要在运行 WEB 服务器时，安装并配置 PHP，然后，可以用 WEB 浏览器来访问 PHP 程序的输出，即浏览服务端的 PHP 页面。请查阅“安装”一章以获取更多信息。命令行脚本。您可以编写一段 PHP 脚本，并且不需要任何服务器或者浏览器来运行它。通过这种方式，您仅仅只需要 PHP 解析器来执行。这种用法对于依赖 cron（Unix 或者 Linux 环境）或者 Task Scheduler（Windows 环境）的日常运行的脚本来说是理想的选择。这些脚本也可以用来处理简单的文本。请参阅“PHP 的命令行模式”以获取更多信息。编写客户端的 GUI 应用程序。对于基于窗口式的应用程序来说，PHP 或许不是一种最好的语言，但是如果您非常精通 PHP，并且希望在您的客户端应用程序中使用 PHP 的一些高级特性，您可以利用 PHP-GTK 来编写这些程序。用这种方法，您还可以编写跨平台的应用程序。PHP-GTK 是 PHP 的一个扩展，在通常发布的 PHP 包中并不包含它。如果您对 PHP-GTK 感兴趣，请访问其网站以获取更多信息。</p>
+</blockquote>
+<p>载自百度知道.<br>三、php笔记一<br>解决中文乱码一 在开头写：<br><figure class="highlight plain"><figcaption><span>http-equiv</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PHP代码应该写在```&lt;?php?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>解决中文乱码二：<br><figure class="highlight plain"><figcaption><span>text/html; charset</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```echo```是输出的意思：</span><br><span class="line">```echo &quot;您好&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>定义变量使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如</span><br><span class="line">```$y=10;</span><br><span class="line">echo var_dump($z);</span><br><span class="line"># 查看数据类型</span><br></pre></td></tr></table></figure></p>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型:"></a>数据类型:</h4><p>boolean （布尔型）<br>integer （整型）<br>float （浮点型, 也称作 double)<br>string （字符串）<br>两种复合类型：<br>array （数组）<br>object （对象）<br>最后是两种特殊类型：<br>resource　（资源）<br>NULL　（NULL）</p>
+<p>不用传址:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">function fun2($qq1)&#123;</span><br><span class="line">    $qq1=20;</span><br><span class="line">    echo &quot;qq2这个值是&quot;.$qq1;</span><br><span class="line">&#125;</span><br><span class="line">$qq2=20;</span><br><span class="line">fun2($qq2);</span><br></pre></td></tr></table></figure></p>
+<p>用传址:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$qq2=30;</span><br><span class="line">function fun3(&amp;$qq1)&#123;</span><br><span class="line">    $qq1=24;</span><br><span class="line">    echo &quot;qq2 改变为传址这个值是&quot;.$qq1;</span><br><span class="line">&#125;;</span><br><span class="line">fun3($qq2);</span><br><span class="line">//qq1=qq2 都是30 然后 qq1改为24  qq2也是24 因为加了&amp;qq1</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;传址之后qq2的值是&quot;.$qq2;</span><br><span class="line">//qq1=qq2 都是30</span><br></pre></td></tr></table></figure></p>
+<p>全局变量:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$m=50;</span><br><span class="line">function fun4()&#123;</span><br><span class="line">    global $m;#局部改变使用全局变量</span><br><span class="line">    $m=20;</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">fun4();</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;$m&quot;;</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>局部变量:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$h=10;</span><br><span class="line">function fun5()&#123;</span><br><span class="line">    $h=40;</span><br><span class="line">    return $h;</span><br><span class="line">&#125;</span><br><span class="line">$h=fun5();# 把局部转为全局</span><br><span class="line">echo &quot;$h&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>静态变量:<br> 用static 定义 静态变量只存在于函数作用域内，也就是说，静态变量只存活在栈中。<br>一般的函数内变量在函数结束后会释放，比如局部变量，但是静态变量却不会。就是说，下次再调用这个函数的时候，该变量的值会保留下来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fun6()&#123;</span><br><span class="line">    static $k=0;</span><br><span class="line">    $k++;</span><br><span class="line">    echo &quot;$k&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">fun6();</span><br><span class="line">fun6();</span><br><span class="line">fun6();</span><br></pre></td></tr></table></figure></p>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串:"></a>字符串:</h4><p>ucfirst  首字母大写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$str1=&quot;hello World&quot;;</span><br><span class="line">$str2=ucfirst($str1);</span><br><span class="line">echo $str2;//Hello World</span><br></pre></td></tr></table></figure></p>
+<p>strtolower 全部转换小写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$str3=strtolower($str2);</span><br><span class="line">echo $str3;//hello world</span><br></pre></td></tr></table></figure></p>
+<p>strtoupper()  全部转换大写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$str4=strtoupper($str3);</span><br><span class="line">echo $str4;//HELLO WORLD</span><br></pre></td></tr></table></figure></p>
+<p>strrev 翻转字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$str5=strrev($str4);</span><br><span class="line">echo $str5;//DLROW OLLEH</span><br></pre></td></tr></table></figure></p>
+<p>strlen  字符串长度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">$len=strlen($str3);</span><br><span class="line">for($i=0;$i&lt;$len;$i++)&#123;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;.$str3[$i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>// 字符串重复输出str_repeat(变量名字，重复次数):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$str6=str_repeat($str1,3);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $str6;</span><br></pre></td></tr></table></figure></p>
+<p>//补充字符串:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// str_pad(变量,&quot;补充的长度&quot;,&quot;补充的内容&quot;,什么方式补充&quot;)</span><br><span class="line">//  STR_PAD_BOTH 字符串两边补充</span><br><span class="line">//  STR_PAD_LEFT 字符串左边补充</span><br><span class="line">//  STR_PAD_RIGHT 字符串右边补充</span><br><span class="line">$str7=str_pad($str1,&quot;20&quot;,&quot;*&quot;,STR_PAD_BOTH);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $str7;</span><br></pre></td></tr></table></figure></p>
+<p>trim($)去除字符串的空白:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//trim($) 去除字符串两边的空白</span><br><span class="line">//Ltrim($) 去掉左边的空白</span><br><span class="line">//Rtrim($) 去掉右边的空白</span><br><span class="line">$str8=&quot;  hello tald   &quot;;</span><br><span class="line">$str9=trim($str8);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $str9;</span><br></pre></td></tr></table></figure></p>
+<p>替换字符串中的字符:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//str_replace(&quot;把字符串中的...&quot;,&quot;替换成...&quot;,替换那个变量$..);</span><br><span class="line">$str10 = str_replace(&quot;l&quot;,&quot;a&quot;,$str8);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $str10;</span><br></pre></td></tr></table></figure></p>
+<p>回车替换换成<br>  nl2br($…):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$str11=&quot;</span><br><span class="line">111</span><br><span class="line">222</span><br><span class="line">333</span><br><span class="line">&quot;;</span><br><span class="line">$str12=nl2br($str11);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $str12;</span><br></pre></td></tr></table></figure></p>
+<p>html原样输出 htmlspecialchars:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$str13=&quot;&lt;h1&gt;你好，世界！&lt;h1&gt;&quot;;</span><br><span class="line">$str14=htmlspecialchars($str13);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $str14;</span><br></pre></td></tr></table></figure></p>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组:"></a>数组:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$arr1=array(&quot;kete&quot;,&quot;lucy&quot;,&quot;Tom&quot;);</span><br><span class="line">echo $arr1[0];</span><br><span class="line">for ($i=0;$i&lt;count($arr1);$i++)&#123;</span><br><span class="line">    echo $arr1[$i].&quot;&lt;br&gt;&quot;;</span><br><span class="line">    //lucy Tom kate</span><br><span class="line">&#125;;</span><br><span class="line">foreach 只用于数组 遍历数组</span><br><span class="line">foreach($arr1 as $value)&#123;</span><br><span class="line">    echo $value.&quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关联数组:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$arr2=array(&quot;0&quot;=&gt;&quot;kate&quot;,&quot;4&quot;=&gt;&quot;lucy&quot;,&quot;2&quot;=&gt;&quot;Tom&quot;);</span><br><span class="line">foreach($arr2 as $k=&gt;$value)&#123;</span><br><span class="line">    echo $k.&quot;对应的是&quot;.$value.&quot;&lt;br&gt;&quot;;</span><br><span class="line">    //0对应的是kate</span><br><span class="line">    //4对应的是lucy</span><br><span class="line">    //2对应的是Tom</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>二维数组:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$arr=array($arr1,$arr2);</span><br><span class="line">echo count($arr,1);//count 长度  不是1的话就是当前的长度 如果是1的话就递归的对数组计数  COUNT_RECURSIVE</span><br><span class="line">//根据键名进行排序 ksort 升序 krsort 降序</span><br><span class="line">krsort($arr2); //j降序</span><br><span class="line">echo &quot;&lt;br&gt;&quot;; //</span><br><span class="line">print_r($arr2);//输出方式1</span><br><span class="line">foreach ($arr2 as $k=&gt;$v)&#123;</span><br><span class="line">    echo $k.&quot;对应的是&quot;.$v.&quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;//输出方式2</span><br></pre></td></tr></table></figure></p>
+<p>根据键值进行排序 asort升序 arsort 降序:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arsort($arr2);//降序</span><br><span class="line">foreach($arr2 as $k=&gt;$v)&#123;</span><br><span class="line">    echo $k.&quot;对应&quot;.$v.&quot;&lt;br&gt;&quot;;//降序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>range 键数组 ascii码排序:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//   range(low,high,step)</span><br><span class="line">//范围函数 （ 数组最低值 ，数组最高值 ，元素之间的步进制 默认1）</span><br><span class="line">$arr3=range(&quot;a&quot;,&quot;e&quot;);</span><br><span class="line">print_r($arr3);</span><br><span class="line">//Array ( [0] =&gt; a [1] =&gt; b [2] =&gt; c [3] =&gt; d [4] =&gt; e )</span><br></pre></td></tr></table></figure></p>
+<p>把数组链接成字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$arr5=implode($arr1,&quot;0&quot;);</span><br><span class="line">//                用什么链接</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $arr5;</span><br></pre></td></tr></table></figure></p>
+<p>//把字符串打散成数组:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$arr6=explode(&quot; &quot;,&quot;hello&quot;);</span><br><span class="line">//        用什么分隔开    用什么</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">foreach($arr6 as $k=&gt;$v)&#123;</span><br><span class="line">    echo $v.&quot;&lt;br&gt;&quot;;</span><br><span class="line">    //a c e g</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>数组里开头增加元素 (会改变原数组):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//array_unshift($..,&quot;添加..&quot;)</span><br><span class="line">//在数组开头添加一个元素 会改变原数组</span><br><span class="line">array_unshift($arr1,&quot;we&quot;);</span><br><span class="line">foreach($arr1 as $k=&gt;$v)&#123;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">    echo $v.&quot;在数组开头添加一个元素&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>数组里结尾增加元素(会改变原数组) :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//网数组里增加元素 array_push($..,&quot;添加..&quot;) 添加到数组最后一个元素</span><br><span class="line">//在数组结尾添加一个元素 会改变原数组</span><br><span class="line">array_push($arr1,&quot;123&quot;);</span><br><span class="line">print_r($arr1);</span><br><span class="line">//Array ( [0] =&gt; we [1] =&gt; kete [2] =&gt; lucy [3] =&gt; Tom [4] =&gt; 123 )</span><br><span class="line">foreach($arr1 as $k=&gt;$v)&#123;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">    echo $v.&quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//we kete lucy Tom  123</span><br></pre></td></tr></table></figure></p>
+<p>删除数组中的元素(会改变原数组)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//array_pop($..) 删除最后一个元素</span><br><span class="line">array_pop($arr1);</span><br><span class="line">foreach ($arr1 as $k=&gt;$v)&#123;</span><br><span class="line">    echo $v.&quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">// we kete lucy  Tom</span><br></pre></td></tr></table></figure></p>
+<p>array_shift() 删除数组头部的元素(会改变原数组):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array_shift($arr1);</span><br><span class="line">foreach ($arr1 as $k=&gt;$v)&#123;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">    echo $v;</span><br><span class="line">&#125;</span><br><span class="line">//kete lucy om  删除数组头部的元素</span><br></pre></td></tr></table></figure></p>
+<p>array_unique() 不允许有重复的元素出现 会自动删除重复元素 (不会改变原始数组)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$arr4=array(&quot;1&quot;,&quot;2&quot;,&quot;1&quot;);</span><br><span class="line">$arr5=array_unique($arr4);</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">foreach($arr5 as $k=&gt;$v)&#123;</span><br><span class="line">    echo &quot;&lt;br&gt;&quot;.$v.&quot;删除数组中重复的元素&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//1删除数组中重复的元素</span><br><span class="line">//2删除数组中重复的元素</span><br></pre></td></tr></table></figure></p>
+<p>自学php推荐<a href="https://www.imooc.com/code/858" target="_blank" rel="noopener">慕课</a>在线练习，边练边学，并且很多免费视频.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="https://yscoder.github.io/img/face.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/12/05/PHP笔记一/&title=《php笔记一》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/12/05/PHP笔记一/&title=《php笔记一》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/05/PHP笔记一/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php笔记一》 — Anson's Blog&url=http://yoursite.com/2017/12/05/PHP笔记一/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/05/PHP笔记一/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/08/PHP笔记二/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">php笔记二</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/05/hexo常用技能一/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo常用命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/12/05/PHP笔记一/&title=《php笔记一》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/12/05/PHP笔记一/&title=《php笔记一》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/05/PHP笔记一/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php笔记一》 — Anson's Blog&url=http://yoursite.com/2017/12/05/PHP笔记一/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/05/PHP笔记一/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aS27DMAxFUe9/0ynQUYHC8n2UHEDU9SgIXIfHA1b8XBe+Pr8Xuefvnf8/j59D7pm6ZMiQsS3jM7zIPfwJPAYemwwZMs5hjJMs+YG7p43/lqfsh5hlyJAhAxz47sIi36RpWoYMGTJSBj/q8eOgDBkyZNSKWI6fOSy+XovLkCFjQ0Y6GPjm5xfnGzJkyNiEsarFn44nx+k7jkqGDBmtGWmLv5aIa6sb8UKGDBkyDmDMt8z4mW3VWFSGDBknMFY110ijrdYmQ2MDGTJktGbwYxxZ5KoFzZMyKmJlyJDRjpE2zmZWLkhbjURy+39DhgwZTRlpE21m2YKnY74uJkOGjHMY5AdqQdTWNfhQQYYMGecw+IYVKTtrRWzKe3i+DBkyGjFIQCTt8uKWNOxSjAwZMs5hpGsWadC1I2NQc8uQIaMpgye+tKGWBpoeTB923GTIkNGIMbPoUCtB+T38kiFDRm9GbV21xpu5n8QmQ4aM3gzeCKsVwKQMjsMdn3BlyJDRiJEWrumQspaI01wqQ4aMcxhpK7/WxK+9rIfnyJAhozWjVgnyGeK19EoTtAwZMnowai342kiSv9F4BitDhozWjDTZpVl81UIGX0STIUNGVwZPsrzErR34FkxiZciQ0ZpRS4LvLVXwUlaGDBky0oTLj3Tp60NHQxkyZMgAaZSHwmGvJFwZMmRsyEiL2Nr3fOSZvggZMmT0ZqSDgZTKe2LpWtjUCFOGDBl7MH4Ae/31GwLshMwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Vue中的验证登录状态 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Vue.js">
+    <meta name="description" content="Vue项目中实现用户登录及token验证先说一下我的实现步骤：   使用easy-mock新建登录接口，模拟用户数据 使用axios请求登录接口，匹配账号和密码 账号密码验证后， 拿到token，将token存储到sessionStorage中，并跳转到首页 前端每次跳转时，就使用导航守卫(vue-router.beforeEach)判断 sessionStorage 中有无 token，没有就跳">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue中的验证登录状态">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/Vue中的验证登录状态/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="Vue项目中实现用户登录及token验证先说一下我的实现步骤：   使用easy-mock新建登录接口，模拟用户数据 使用axios请求登录接口，匹配账号和密码 账号密码验证后， 拿到token，将token存储到sessionStorage中，并跳转到首页 前端每次跳转时，就使用导航守卫(vue-router.beforeEach)判断 sessionStorage 中有无 token，没有就跳">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-09T10:33:19.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue中的验证登录状态">
+<meta name="twitter:description" content="Vue项目中实现用户登录及token验证先说一下我的实现步骤：   使用easy-mock新建登录接口，模拟用户数据 使用axios请求登录接口，匹配账号和密码 账号密码验证后， 拿到token，将token存储到sessionStorage中，并跳转到首页 前端每次跳转时，就使用导航守卫(vue-router.beforeEach)判断 sessionStorage 中有无 token，没有就跳">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://yscoder.github.io/img/face.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/resume"  >
+                <i class="icon icon-lg icon-file"></i>
+                简历
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue中的验证登录状态</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue中的验证登录状态</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-09T14:21:55.000Z" itemprop="datePublished" class="page-time">
+  2019-03-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vue项目中实现用户登录及token验证"><span class="post-toc-number">1.</span> <span class="post-toc-text">Vue项目中实现用户登录及token验证</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用easy-mock模拟用户数据"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用easy-mock模拟用户数据</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置路由"><span class="post-toc-number">3.</span> <span class="post-toc-text">配置路由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#导航卫士"><span class="post-toc-number">4.</span> <span class="post-toc-text">导航卫士</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用sessionStorage存储用户token"><span class="post-toc-number">5.</span> <span class="post-toc-text">用sessionStorage存储用户token</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注销"><span class="post-toc-number">6.</span> <span class="post-toc-text">注销</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Vue中的验证登录状态"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue中的验证登录状态</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-09 22:21:55" datetime="2019-03-09T14:21:55.000Z"  itemprop="datePublished">
+2019-03-09
+<!--2019-03-09 18:33:19-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Vue项目中实现用户登录及token验证"><a href="#Vue项目中实现用户登录及token验证" class="headerlink" title="Vue项目中实现用户登录及token验证"></a>Vue项目中实现用户登录及token验证</h2><p>先说一下我的实现步骤： </p>
+<ol>
+<li>使用<code>easy-mock</code>新建登录接口，模拟用户数据</li>
+<li>使用<code>axios</code>请求登录接口，匹配账号和密码</li>
+<li>账号密码验证后， 拿到<code>token</code>，将token存储到<code>sessionStorage</code>中，并跳转到首页</li>
+<li>前端每次跳转时，就使用导航守卫(vue-router.beforeEach)判断 <code>sessionStorage</code> 中有无 <code>token</code>，没有就跳转到登录页面，有则跳转到对应路由页面。</li>
+<li>注销后，就清除<code>sessionStorage</code>里的<code>token</code>信息并跳转到登录页面</li>
+</ol>
+<h2 id="使用easy-mock模拟用户数据"><a href="#使用easy-mock模拟用户数据" class="headerlink" title="使用easy-mock模拟用户数据"></a>使用easy-mock模拟用户数据</h2><p>我用的是<a href="https://easy-mock.com/" target="_blank" rel="noopener">easy-mock</a>,新建了一个接口，用于模拟用户数据:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"error_code"</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="string">"data"</span>: [&#123;</span><br><span class="line">      <span class="string">"id"</span>: <span class="string">'1'</span>,</span><br><span class="line">      <span class="string">"usertitle"</span>: <span class="string">"管理员"</span>,</span><br><span class="line">      <span class="string">"username"</span>: <span class="string">"admin"</span>,</span><br><span class="line">      <span class="string">"password"</span>: <span class="string">"123456"</span>,</span><br><span class="line">      <span class="string">"token"</span>: <span class="string">"@date(T)"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"id"</span>: <span class="string">'2'</span>,</span><br><span class="line">      <span class="string">"usertitle"</span>: <span class="string">"超级管理员"</span>,</span><br><span class="line">      <span class="string">"username"</span>: <span class="string">"root"</span>,</span><br><span class="line">      <span class="string">"password"</span>: <span class="string">"root"</span>,</span><br><span class="line">      <span class="string">"token"</span>: <span class="string">"@date(T)"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>login.vue中写好登陆框：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;用户名：&lt;input type=&apos;text&apos; v-model=&quot;userName&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;密码：&lt;input type=&apos;text&apos; v-model=&quot;passWord&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;login()&quot;&gt;登录&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"> export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">          userName:&apos;root&apos;,</span><br><span class="line">          passWord:&apos;root&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后下载axios：<code>npm install axios --save</code>,用来请求刚刚定义好的easy-mock接口：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">login()&#123;</span><br><span class="line">       <span class="keyword">const</span> self = <span class="keyword">this</span>;</span><br><span class="line">       axios.get(<span class="string">'https://easy-mock.com/mock/5c7cd0f89d0184e94358d/museum/login'</span>).then(<span class="function"><span class="params">response</span>=&gt;</span>&#123;</span><br><span class="line">         <span class="keyword">var</span> res =response.data.data,</span><br><span class="line">             len = res.length,</span><br><span class="line">             userNameArr= [],</span><br><span class="line">             passWordArr= [],</span><br><span class="line">             ses= <span class="built_in">window</span>.sessionStorage; </span><br><span class="line">         <span class="comment">// 拿到所有的username</span></span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;len; i++)&#123;</span><br><span class="line">           userNameArr.push(res[i].username);</span><br><span class="line">           passWordArr.push(res[i].password);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="built_in">console</span>.log(userNameArr, passWordArr);</span><br><span class="line">         <span class="keyword">if</span>(userNameArr.indexOf(<span class="keyword">this</span>.userName) === <span class="number">-1</span>)&#123;</span><br><span class="line">             alert(<span class="string">'账号不存在！'</span>);</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="keyword">var</span> index = userNameArr.indexOf(<span class="keyword">this</span>.userName);</span><br><span class="line">           <span class="keyword">if</span>(passWordArr[index] === <span class="keyword">this</span>.passWord)&#123;</span><br><span class="line">             <span class="comment">// 把token放在sessionStorage中</span></span><br><span class="line">             ses.setItem(<span class="string">'data'</span>, res[index].token);</span><br><span class="line">             <span class="keyword">this</span>.$parent.$data.userTitle = res[index].usertitle;</span><br><span class="line">             <span class="comment">//验证成功进入首页</span></span><br><span class="line">             <span class="keyword">this</span>.startHacking (<span class="string">'登录成功！'</span>);</span><br><span class="line">             <span class="comment">//跳转到首页</span></span><br><span class="line">             <span class="keyword">this</span>.$router.push(<span class="string">'/index'</span>);</span><br><span class="line">             <span class="comment">// console.log(this.$router);</span></span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">             alert(<span class="string">'密码错误！'</span>)</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(<span class="string">'连接数据库失败！'</span>)</span><br><span class="line">       &#125;)</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这一步最重要的是当账号密码正确时，把请求回来的<code>token</code>放在<code>sessionStorage</code>中，</p>
+<h2 id="配置路由"><a href="#配置路由" class="headerlink" title="配置路由"></a>配置路由</h2><p>然后配置路由新加一个meta属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'/'</span>,</span><br><span class="line">  name: <span class="string">'login'</span>,</span><br><span class="line">  component: login,</span><br><span class="line">  meta:&#123;</span><br><span class="line">    needLogin: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'/index'</span>,</span><br><span class="line">  name: <span class="string">'index'</span>,</span><br><span class="line">  component: index,</span><br><span class="line">  meta:&#123;</span><br><span class="line">    needLogin: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>判断每次路由跳转的链接是否需要登录，</p>
+<h2 id="导航卫士"><a href="#导航卫士" class="headerlink" title="导航卫士"></a>导航卫士</h2><p>在<code>main.js</code>中配置一个全局前置钩子函数：<code>router.beforeEach（）</code>，他的作用就是在每次路由切换的时候调用<br>这个钩子方法会接收三个参数：to、from、next。<br><code>to</code>：Route：即将要进入的目标的路由对象，<br><code>from</code>：Route：当前导航正要离开的路由，<br><code>next</code>：Function：个人理解这个方法就是函数结束后执行什么，先看官方解释<br>1.<code>next()</code>：进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是confirmed（确认的），<br>2.<code>next(false)</code>：中断当前的导航。如果浏览器的url改变了（可能是用户手动或浏览器后退按钮），那么url地址会重置到from路由对应的地址。<br>3.<code>next(&#39;/&#39;)</code>或<code>next({path:&#39;/&#39;})</code>：跳转到一个不同的地址。当前导航被中断，进入一个新的导航。</p>
+<h2 id="用sessionStorage存储用户token"><a href="#用sessionStorage存储用户token" class="headerlink" title="用sessionStorage存储用户token"></a>用sessionStorage存储用户token</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路由守卫</span></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//路由中设置的needLogin字段就在to当中 </span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.sessionStorage.data)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">window</span>.sessionStorage);</span><br><span class="line">      <span class="comment">// console.log(to.path) //每次跳转的路径</span></span><br><span class="line">      <span class="keyword">if</span>(to.path === <span class="string">'/'</span>)&#123;</span><br><span class="line">        <span class="comment">//登录状态下 访问login.vue页面 会跳到index.vue</span></span><br><span class="line">        next(&#123;<span class="attr">path</span>: <span class="string">'/index'</span>&#125;);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        next();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">// 如果没有session ,访问任何页面。都会进入到 登录页</span></span><br><span class="line">      <span class="keyword">if</span> (to.path === <span class="string">'/'</span>) &#123; <span class="comment">// 如果是登录页面的话，直接next() --&gt;解决注销后的循环执行bug</span></span><br><span class="line">        next();</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123; <span class="comment">// 否则 跳转到登录页面</span></span><br><span class="line">        next(&#123; <span class="attr">path</span>: <span class="string">'/'</span> &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里用了<code>router.beforeEach</code> <a href="https://router.vuejs.org/zh/guide/advanced/" target="_blank" rel="noopener">vue-router导航守卫</a><br>每次跳转时都会判断<code>sessionStorage</code>中是否有<code>token</code>值，如果有则能正常跳转，如果没有那么就返回登录页面。</p>
+<h2 id="注销"><a href="#注销" class="headerlink" title="注销"></a>注销</h2><p>至此就完成了一个简单的登录状态了，浏览器关闭后<code>sessionStorage</code>会清空的，所以当用户关闭浏览器再打开是需要重新登录的</p>
+<p>当然也可以手动清除<code>sessionStorage</code>，清除动作可以做成注销登录，这个就简单了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">loginOut()&#123;</span><br><span class="line"><span class="comment">// 注销后 清除session信息 ，并返回登录页</span></span><br><span class="line"><span class="built_in">window</span>.sessionStorage.removeItem(<span class="string">'data'</span>);</span><br><span class="line"><span class="keyword">this</span>.common.startHacking(<span class="keyword">this</span>, <span class="string">'success'</span>, <span class="string">'注销成功！'</span>);</span><br><span class="line"><span class="keyword">this</span>.$router.push(<span class="string">'/index'</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>写一个清除<code>sessionStorag</code>的方法。<br>一个简单的保存登录状态的小Demo。</p>
+<hr>
+<p>参考：<br><a href="https://cloud.tencent.com/developer/article/1199255" target="_blank" rel="noopener">腾讯云社区-Vue+SessionStorage实现简单的登录</a><br> <a href="https://segmentfault.com/a/1190000016084468" target="_blank" rel="noopener">SF-从前后端分别学习——注册/登录流程2</a><br><a href="https://segmentfault.com/a/1190000009086403" target="_blank" rel="noopener">Vue-router实现单页面应用在没有登录情况下，自动跳转到登录页面</a><br><a href="https://segmentfault.com/a/1190000015201803" target="_blank" rel="noopener">vue+axios新手实践实现登陆</a><br><a href="https://segmentfault.com/a/1190000015637039" target="_blank" rel="noopener">Vue实战(四)登录/注册页的实现</a><br><a href="https://segmentfault.com/a/1190000016047911" target="_blank" rel="noopener">vue页面控制权限,vuex刷新保存状态、登录状态保存</a><br><a href="https://segmentfault.com/a/1190000016047911" target="_blank" rel="noopener">vue页面控制权限,vuex刷新保存状态、登录状态保存</a><br><a href="http://www.codes51.com/itwd/4114969.html" target="_blank" rel="noopener">(vue.js)前后端分离的单页应用如何来判断当前用户的登录状态？</a><br><a href="https://segmentfault.com/a/1190000016040068" target="_blank" rel="noopener">Vue登录注册，并保持登录状态</a><br><a href="https://www.cnblogs.com/hcxy/p/7993724.html" target="_blank" rel="noopener">vue登录注册及token验证</a><br><a href="https://www.cnblogs.com/web-record/p/9876916.html" target="_blank" rel="noopener">Vue项目中实现用户登录及token验证</a></p>
+<p>vue-router守卫导航官方文档：<a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB" target="_blank" rel="noopener">vue-router导航守卫</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="https://yscoder.github.io/img/face.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/&title=《Vue中的验证登录状态》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/&title=《Vue中的验证登录状态》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/09/Vue中的验证登录状态/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue中的验证登录状态》 — Anson's Blog&url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/21/我对JavaScript中this的一些理解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">我对JavaScript中this的一些理解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/&title=《Vue中的验证登录状态》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/&title=《Vue中的验证登录状态》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/09/Vue中的验证登录状态/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue中的验证登录状态》 — Anson's Blog&url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/09/Vue中的验证登录状态/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3aS47CMBBFUfa/6bTUo5ZQnPuqDGrb1yMEhPiAVNTHrxde1++6e/7vq++P39f4LuP3tJYMGTKWZVzDNd5ujUf2wPcmQ4aMcxjjIHt3MQmm/CqOlyFDhow7RpomcvAYJkOGDBkpgyRtnbJWhgwZMjpFLL8NKX3TlHRaLS5DhowFGelg4JuPPzjfkCFDxiKMK1y1wMrHk1dpyZAhY29GrdVVO0hByuY0ugZTUBkyZCzOIEPKGiMNwdPGAzJkyNiUkR6qIEGzcxU5fiFDhoxzGJ2g2Wnl84EECsQyZMg4jJEmiLUjGrXPiSexMmTI2I5B2v3pdmufz0toGTJk7M3gQS1NH3ndPCE1lCFDxgGMWvueF7E8BUzDvQwZMk5gpEci0mlDrVhN/wZkyJBxAiMNeWkTjaR9tcAtQ4aMExi1FBANFNsBlNxFhgwZ5zDGeWJnE2RDnfXiFa0MGTKWZaSHvUibjI8WOI/sVoYMGXsz0kQQhb/SGIB/TbfvkSFDxnaMYBAYttXmHh17+BuQIUPGMQw+BkjDYu1oRXCoQoYMGVsz+C15UVrjdXYlQ4aMvRmdMpU36fqD0offQYYMGVsz+indrEiflr7FXcmQIWNZRjpW5M2yTpOON+BkyJBxDqNT9aYHKToNtYczbjJkyDie0SlByaskTZQhQ4aMlNEZEqTj0g8GXBkyZCzC6By8SDt5vKEWJJQyZMjYmtFv7vOmGGnJ8dRw8oxChgwZ/5HxA3oirWOdYGJlAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

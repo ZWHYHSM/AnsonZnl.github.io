@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>理解JS 原型链 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="一直以来对于JavaScript 的原型链的概念，始终有些东西有一种模糊感，最近刚好有时间就塌下心认真的把《JavaScript高级程序设计》中相关内容认真读了一遍，也查看了很多网上很多资料，以前很多不明白的地方也渐渐明白了起来。写一篇文章记录一下最近学习的感悟。 字面量创建对象我们通常创建一个对象无非就两种方式：121. var obj= new Object();//new 一个Object的">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解JS 原型链">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/理解JS原型链/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="一直以来对于JavaScript 的原型链的概念，始终有些东西有一种模糊感，最近刚好有时间就塌下心认真的把《JavaScript高级程序设计》中相关内容认真读了一遍，也查看了很多网上很多资料，以前很多不明白的地方也渐渐明白了起来。写一篇文章记录一下最近学习的感悟。 字面量创建对象我们通常创建一个对象无非就两种方式：121. var obj= new Object();//new 一个Object的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7072486-e6a1cb2af9592327?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7072486-f2e5ab0014367d09?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7072486-95ee1c64fb5b51e0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7072486-f4d5c032a9b2b20f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-18T15:08:50.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解JS 原型链">
+<meta name="twitter:description" content="一直以来对于JavaScript 的原型链的概念，始终有些东西有一种模糊感，最近刚好有时间就塌下心认真的把《JavaScript高级程序设计》中相关内容认真读了一遍，也查看了很多网上很多资料，以前很多不明白的地方也渐渐明白了起来。写一篇文章记录一下最近学习的感悟。 字面量创建对象我们通常创建一个对象无非就两种方式：121. var obj= new Object();//new 一个Object的">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7072486-e6a1cb2af9592327?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://yscoder.github.io/img/face.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/resume"  >
+                <i class="icon icon-lg icon-file"></i>
+                简历
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">理解JS 原型链</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">理解JS 原型链</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-18T14:21:55.000Z" itemprop="datePublished" class="page-time">
+  2019-01-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字面量创建对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">字面量创建对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造函数创建对象"><span class="post-toc-number">2.</span> <span class="post-toc-text">构造函数创建对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原型对象"><span class="post-toc-number">3.</span> <span class="post-toc-text">原型对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原型链"><span class="post-toc-number">4.</span> <span class="post-toc-text">原型链</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#补充"><span class="post-toc-number">5.</span> <span class="post-toc-text">补充</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-理解JS原型链"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">理解JS 原型链</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-18 22:21:55" datetime="2019-01-18T14:21:55.000Z"  itemprop="datePublished">
+2019-01-18
+<!--2019-01-18 23:08:50-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>一直以来对于JavaScript 的原型链的概念，始终有些东西有一种模糊感，最近刚好有时间就塌下心认真的把《JavaScript高级程序设计》中相关内容认真读了一遍，也查看了很多网上很多资料，以前很多不明白的地方也渐渐明白了起来。<br>写一篇文章记录一下最近学习的感悟。</p>
+<h3 id="字面量创建对象"><a href="#字面量创建对象" class="headerlink" title="字面量创建对象"></a>字面量创建对象</h3><p>我们通常创建一个对象无非就两种方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. var obj= new Object();//new 一个Object的实例</span><br><span class="line">2. var obj= &#123;&#125;;//对象字面量</span><br></pre></td></tr></table></figure></p>
+<p>使用对象字面量 和使用new的方式是一样的。<br>为了简便，一般推荐使用使用字面量：<code>var o= {};</code></p>
+<h3 id="构造函数创建对象"><a href="#构造函数创建对象" class="headerlink" title="构造函数创建对象"></a>构造函数创建对象</h3><p>当我们想要创建自定义的对象时，需要用到构造函数。<br>构造函数和普通函数有两个区别：    </p>
+<pre><code>1. 便于和普通函数区分，函数名首字母大写。    
+2. 使用 `new` 操作符调用，返回一个实例对象。    
+</code></pre><p>除此之外和普通函数一摸一样。<br>我们使用构造函数<code>Person</code>来创建两个实例对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Person(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.sayName= function ()&#123; alert(this.name) &#125;</span><br><span class="line"> &#125;</span><br><span class="line">var person1 = new Person(&apos;小明&apos;);</span><br><span class="line">var person2 = new Person(&apos;小红&apos;);</span><br><span class="line">console.log(person1);//&#123;name: &quot;小明&quot;, sayName: fun&#125;</span><br><span class="line">console.log(person2);//&#123;name: &quot;小红&quot;, sayName: fun&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的例子不难理解，虽然这两个实例对象都有<code>sayName</code>方法，而且他们两个的作用也是一样的，但却是两个方法，只是名字和作用一样。    </p>
+<p>画个图表示一下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/7072486-e6a1cb2af9592327?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="131547802804_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">131547802804_.pic.jpg</div>
+            </figure></p>
+<p>如果还不明白，我在打个比喻：<br>就像A街上有一间麦当劳，在B街上也开了一间麦当劳，它们都叫麦当劳，作用也是一样的。但是你总不能说他们是一间麦当劳吧？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person1.sayName === person2.sayName;<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>如果这样的话，我们每构造出来一个对象，都要单独为这个对象创建出一个专属于它自己使用的<code>sayName</code>，这是很占用内存的。  </p>
+<p>那我们能不能让所有的实例对象都共同使用一个<code>sayName</code>方法，来节省内存，提升效率呢？这需要我们先理解原型对象的概念。</p>
+<h3 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h3><p>我们先了解原型对象的概念。</p>
+<blockquote>
+<p>每个对象都有原型对象（null除外），我们用<code>__proto__</code>表示，每个函数都有<code>prototype</code>属性，指向实例的原型对象。</p>
+</blockquote>
+<p>对照这句话，按照我们上面的例子，也就是说<code>Person.prototype</code>指向<code>person1</code>的原型对象(<code>__proto__</code>),<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype === person1.__proto__; <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>为了便于理解，来看一张图。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/7072486-f2e5ab0014367d09?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="71547797523_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">71547797523_.pic.jpg</div>
+            </figure>
+<p>恩~他们的关系大概就是这样。</p>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>原型链简单用一句话概括就是：</p>
+<blockquote>
+<p>原型链就是 对象的<code>__proto__</code>所连接的链状结构</p>
+</blockquote>
+<p>为了方便我们理解原型链，举一个简单的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function F()&#123;</span><br><span class="line">    this.a = 1;</span><br><span class="line">    this.b = 2;</span><br><span class="line">&#125;</span><br><span class="line">F.prototype.b = 3;</span><br><span class="line">F.prototype.c = 4;</span><br><span class="line">var o = new F();// &#123;a: 1, b: 2&#125;</span><br><span class="line">//原型链：</span><br><span class="line">//o --&gt; o.__proto__ --&gt; o.__proto__.__proto__ --&gt; null</span><br><span class="line">// 其中的 --&gt; 就表示 __proto__ 也就是原型链</span><br><span class="line">console.log(o.a); // 1</span><br><span class="line">// o上有a这个属性吗？有的，该属性的值为1</span><br><span class="line"></span><br><span class="line">console.log(o.b); // 2</span><br><span class="line">// o上有b这个属性吗？有的，该属性的值为2</span><br><span class="line">// 原型上也有一个&apos;b&apos;属性,但是它不会被访问到.这种情况称为&quot;属性遮蔽 &quot;</span><br><span class="line"></span><br><span class="line">console.log(o.c); // 4</span><br><span class="line">// o上有c这个属性吗？没有，那看看原型上有没有</span><br><span class="line">// o.__proto__上有c这个属性吗？有的，该属性的值为4</span><br><span class="line"></span><br><span class="line">console.log(o.d); // undefined</span><br><span class="line">// o上有d这个属性吗？没有,那看看原型上有没有</span><br><span class="line">// o.__proto__ 上有d这个属性吗？没有，那看看它的原型上有没有</span><br><span class="line">// o.__proto__.__proto__ 为 null，停止搜索</span><br><span class="line">// 没有找到d属性，返回undefined。</span><br></pre></td></tr></table></figure></p>
+<p>我们画张图来表示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/7072486-95ee1c64fb5b51e0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="91547800262_.pic_hd.jpg" title="">
+                </div>
+                <div class="image-caption">91547800262_.pic_hd.jpg</div>
+            </figure>
+<p>图中这条红色的线就是原型链。<br>由此可见，<strong>实例对象可访问自己原型对象上的属性和方法</strong>，额..准确来说是:</p>
+<ol>
+<li>当一个对象 查找属性或方法时，自己有，停止查找，返回结果。</li>
+<li>自己没有，顺着<code>__proto__</code>一直向上查找，如找到，停止查找，返回结果。</li>
+<li>如果一直找到了原型链的最顶端(null)，还没有找到，返回<code>undefined</code>。</li>
+</ol>
+<p>我们先回顾一下那个<code>sayName</code>的问题：<br><strong>怎么让所有的实例对象都是用一个<code>sayName</code>方法呢</strong>。<br>现在我们可以使用原型对象来解决这个问题了。<br>我们把<code>sayName</code>方法放到实例的原型对象上面，也就是<code>Person.prototype</code>上面来供所有实例使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Person(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line"> &#125;</span><br><span class="line">Person.prototype.sayName=function ()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;</span><br><span class="line">var person1 = new Person(&apos;小明&apos;);</span><br><span class="line">var person2 = new Person(&apos;小红&apos;);</span><br><span class="line">person1.sayName === person2.sayName;//true</span><br></pre></td></tr></table></figure></p>
+<p>用图表示：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/7072486-f4d5c032a9b2b20f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="101547801223_.pic.jpg" title="">
+                </div>
+                <div class="image-caption">101547801223_.pic.jpg</div>
+            </figure></p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p><strong>constructor</strong><br>说一下我的经历，一开始理解原型链时，一直在<code>prototype</code>、<code>__proto__</code>、<code>constructor</code>在这个三个属性中绕来绕去。</p>
+<p>为了便于理解，我把<code>constructor</code>放在最后了。<br><code>constructor</code>字面意思就很容易理解，构造函数的意思。<br>一句话解释:</p>
+<blockquote>
+<p>每个原型对象都有一个 constructor 属性指向 关联的构造函数。</p>
+</blockquote>
+<p>还是上面那个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Person.prototype.constructor);//Person()&#123; fun &#125;</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的一点是，实例对象上没有<code>constructor</code>属性。<br>但是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(person1.constructor) ;//Person()&#123; fun &#125;</span><br></pre></td></tr></table></figure></p>
+<p>得出这个结果很简单:<br>实例上查找不到<code>constructor</code>属性 –&gt; 顺着<code>__proto__</code>在原型对象上找 –&gt; 找到并返回。</p>
+<p><strong>Object.prototype</strong><br>刚才我们说了创建对象的两种方式：字面量创建对象和使用<code>new</code>操作符创建对象。<br>这两种方式创建出来的对象都会继承<code>Object.prototyoe</code>上的方法。<br>比如，我们使用字面量新创建一个对象<code>o</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;value: 1&#125;;</span><br><span class="line">o.toString();//&quot;[object Object]&quot;</span><br><span class="line">//查找过程： o --&gt; o.__proto__ 找到返回</span><br><span class="line">o.__proto__ === Object.prototype;//true</span><br></pre></td></tr></table></figure></p>
+<p><code>o</code>这个的对象本身并没有<code>toString</code>这个方法，但它却可以使用<code>toString</code>方法。<br>因为它继承了<code>Object.prototyoe</code>上的<code>toString</code>的方法。</p>
+<p><strong>null</strong><br>既然对象都会继承自<code>Object.prototype</code>上面的方法，那它自己的原型又是什么呢。答案是<code>null</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.__prototype__ === null;//true</span><br></pre></td></tr></table></figure></p>
+<p>以上仅自己学习所得，如有不当之处 望指出。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="https://yscoder.github.io/img/face.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/18/理解JS原型链/&title=《理解JS 原型链》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/18/理解JS原型链/&title=《理解JS 原型链》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/18/理解JS原型链/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《理解JS 原型链》 — Anson's Blog&url=http://yoursite.com/2019/01/18/理解JS原型链/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/18/理解JS原型链/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/21/我对JavaScript中this的一些理解/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我对JavaScript中this的一些理解</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/04/使用Express搭建一个简单的服务器/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用Express搭建一个简单的服务器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/01/18/理解JS原型链/&title=《理解JS 原型链》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/01/18/理解JS原型链/&title=《理解JS 原型链》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/01/18/理解JS原型链/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《理解JS 原型链》 — Anson's Blog&url=http://yoursite.com/2019/01/18/理解JS原型链/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/01/18/理解JS原型链/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3azXKDMAxF4bz/S6cz3bbAuZJpg3y8yiTU8LFQ9ePXC6/39/r5+ejXo2uOrvy5XncsGTJkPJZBtju/Af9bsnORKkOGjA0YPMiSgHtOJaGZP5sMGTJkHAW+NDiS5O98fxkyZMjgDJIapiH7HwKuDBkyHsggpSZvnPHvl7XkZMiQMZrRGQzc/fmP5hsyZMj4YMa7sUgJ2v8ePYkMGTJGM3hbrXPkIk310jGnDBkyZjPSNhkvaGvDUZ6YXvzfkCFDxiAGqQprh7d4JDxv95NkVIYMGXsyaiVlPHRsXBOPB2TIkPFYRhrO+OPy4Ete2UXwlSFDxgYMkpalV9bCdK3NJ0OGjNmMNLymBSpvt/F9LnJbGTJkjGN0is80yesE8Yu7y5AhYxtGOmhER7UWjQEuArEMGTK2ZHRaZvyx+EPLkCFDRnr7tcMDXuIeXilDhowNGDzt6xzIIG39YlEtQ4aM0YxVbXp+tKtGQompDBkyhjLSMrLDQ0clwLj0l31kyJAxmpHegMNqxyz6wwYZMmTMY9SOdvHBQKfpFowQZMiQMZpRuyUfcJIXtOqlyJAhYyqjlpzxsUGtrI2PesiQIWM0gy9SpvIUsNbC66SnMmTIeDojDbJp4ywthmuNPBkyZOzAqJ2zIklePIYsDSRkyJAhg5eUdzTjFgwDZMiQsQ0jnTb0E82g/pYhQ8YGjE4Ry/fhqeT5q7yl3SZDhowPZtQGA+kwMi1rFwNkyJDxVMYXSERb0akPO/AAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
