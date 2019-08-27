@@ -14,25 +14,25 @@
     
     
     
-    <title>小程序学习记录一 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <title>小程序之iPhone x适配 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="微信小程序">
-    <meta name="description" content="最近很热门的小程序，一直想学着做一个，刚好前天在segmentfault看到了用个人做个校园的小程序，我就想自己也组偶一个试试，说动就动，  第一步先去微信公众平台注册成为开发者，期间需要自己的身份证号什么的要注意，提前准备好， 注册完之后需要填写小程序的的名字和介绍说明， 接下来需要在下载微信小程序开发者工具下载安装“微信web开发者工具”，他可以编写小程序代码，也可以进行微信公众号的排版和发布">
+    <meta name="description" content="参考小程序iPhone X 视适配 在开发小程序时，可能需要适配iPhone x 的时候，你会发现底部的横线会出现遮挡，这时候就要处理下： 在app.js中添加一个检测当前设备是否是iPhoneX的变量：12345678910111213141516globalData: &amp;#123;  userInfo: null,  isIphoneX: false//判断是否是iPhoneX&amp;#125;,o">
 <meta name="keywords" content="微信小程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小程序学习记录一">
-<meta property="og:url" content="http://yoursite.com/2018/02/22/小程序学习记录一/index.html">
+<meta property="og:title" content="小程序之iPhone x适配">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/小程序之iPhone x适配/index.html">
 <meta property="og:site_name" content="Anson&#39;s Blog">
-<meta property="og:description" content="最近很热门的小程序，一直想学着做一个，刚好前天在segmentfault看到了用个人做个校园的小程序，我就想自己也组偶一个试试，说动就动，  第一步先去微信公众平台注册成为开发者，期间需要自己的身份证号什么的要注意，提前准备好， 注册完之后需要填写小程序的的名字和介绍说明， 接下来需要在下载微信小程序开发者工具下载安装“微信web开发者工具”，他可以编写小程序代码，也可以进行微信公众号的排版和发布">
+<meta property="og:description" content="参考小程序iPhone X 视适配 在开发小程序时，可能需要适配iPhone x 的时候，你会发现底部的横线会出现遮挡，这时候就要处理下： 在app.js中添加一个检测当前设备是否是iPhoneX的变量：12345678910111213141516globalData: &amp;#123;  userInfo: null,  isIphoneX: false//判断是否是iPhoneX&amp;#125;,o">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-27T07:28:59.879Z">
+<meta property="og:updated_time" content="2019-08-27T07:34:04.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小程序学习记录一">
-<meta name="twitter:description" content="最近很热门的小程序，一直想学着做一个，刚好前天在segmentfault看到了用个人做个校园的小程序，我就想自己也组偶一个试试，说动就动，  第一步先去微信公众平台注册成为开发者，期间需要自己的身份证号什么的要注意，提前准备好， 注册完之后需要填写小程序的的名字和介绍说明， 接下来需要在下载微信小程序开发者工具下载安装“微信web开发者工具”，他可以编写小程序代码，也可以进行微信公众号的排版和发布">
+<meta name="twitter:title" content="小程序之iPhone x适配">
+<meta name="twitter:description" content="参考小程序iPhone X 视适配 在开发小程序时，可能需要适配iPhone x 的时候，你会发现底部的横线会出现遮挡，这时候就要处理下： 在app.js中添加一个检测当前设备是否是iPhoneX的变量：12345678910111213141516globalData: &amp;#123;  userInfo: null,  isIphoneX: false//判断是否是iPhoneX&amp;#125;,o">
     
         <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
     
@@ -113,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">小程序学习记录一</div>
+        <div class="flex-col header-title ellipsis">小程序之iPhone x适配</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -135,11 +135,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">小程序学习记录一</h1>
+        <h1 class="title">小程序之iPhone x适配</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-02-22T06:20:14.000Z" itemprop="datePublished" class="page-time">
-  2018-02-22
+                <time datetime="2019-08-27T07:21:55.000Z" itemprop="datePublished" class="page-time">
+  2019-08-27
 </time>
 
 
@@ -155,23 +155,16 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#小程序的整体构架"><span class="post-toc-number">1.</span> <span class="post-toc-text">小程序的整体构架</span></a></li></ol>
-        </nav>
-    </aside>
 
-
-<article id="post-小程序学习记录一"
+<article id="post-小程序之iPhone x适配"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">小程序学习记录一</h1>
+        <h1 class="post-card-title">小程序之iPhone x适配</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-02-22 14:20:14" datetime="2018-02-22T06:20:14.000Z"  itemprop="datePublished">
-2018-02-22
-<!--2019-08-27 15:28:59-->
+            <time class="post-time" title="2019-08-27 15:21:55" datetime="2019-08-27T07:21:55.000Z"  itemprop="datePublished">
+2019-08-27
+<!--2019-08-27 15:34:04-->
 </time>
 
             
@@ -185,17 +178,12 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>最近很热门的小程序，一直想学着做一个，刚好前天在<a href="segmentfault">segmentfault</a>看到了用个人做个校园的小程序，我就想自己也组偶一个试试，说动就动，</p>
-<ul>
-<li>第一步先去微信公众平台注册成为开发者，期间需要自己的身份证号什么的要注意，提前准备好，</li>
-<li>注册完之后需要填写小程序的的名字和介绍说明，</li>
-<li>接下来需要在下载<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html" target="_blank" rel="noopener">微信小程序开发者工具</a>下载安装“微信web开发者工具”，他可以编写小程序代码，也可以进行微信公众号的排版和发布，使用是非常方便的，里面的调试功能和Chrome浏览器基本一样，<br>学习过程中也一边查看的是<a href="">微信小程序官方文档</a>，一边试着打打代码，<br>只要有点html+css基础的都能很快的学习小程序，<h4 id="小程序的整体构架"><a href="#小程序的整体构架" class="headerlink" title="小程序的整体构架"></a>小程序的整体构架</h4>安装好开发工具后，输入小程序ID即自动新建一个小程序demo文件，它自动创建的小程序文件就类似一个模板一样，可以省去很多初始化的东西，直接上手代码，<br>每个小程序文件的结构都是由两个主要部分构成：<br>主体部分 + 各个页面。类似于许多框架，主体部分主要用于核心的配置，各个页面在独自配置逻辑和样式。<br>1.1，主体部分主要由3个文件构成<br>1）app.js：小程序逻辑，<br>2）app.json ：小程序配置，比如导航、窗口、页面http请求跳转等<br>3）app.wxss：公共样式配置</li>
-</ul>
-<p>小程序的开发也是遵守了MVC结构进行构建的</p>
-<blockquote>
-<p>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。</p>
-</blockquote>
-<p>1.2，页面由4个文件构成<br>1）js：页面逻辑，相当于控制层（C）；也包括部分的数据（M）<br>2）wxml：页面结构展示，相当于视图层（V）<br>3）wxss：页面样式表，纯前端，用于辅助wxml展示<br>4）json：页面配置，配置一些页面展示的数据，充当部分的模型（M）<br>简单理解为<br>.js后缀的文件是脚本文件，页面的交互等代码在这里实现；<br>.json后缀的文件是配置文件，主要是json数据格式存放，用于设置程序的配置效果；<br>.wxss后缀的是样式表文件，类似于前端中的css,用于对界面进行美化；<br>.wxml后缀的文件是页面结构文件，用于构建页面，在页面上增加控件。<br>最后放上一张结构图：<br><img src="" alt=""></p>
+            <p><a href="https://www.imooc.com/article/details/id/33529" target="_blank" rel="noopener">参考小程序iPhone X 视适配</a></p>
+<p>在开发小程序时，可能需要适配iPhone x 的时候，你会发现底部的横线会出现遮挡，这时候就要处理下：</p>
+<p>在app.js中添加一个检测当前设备是否是iPhoneX的变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">globalData: &#123;</span><br><span class="line">  userInfo: null,</span><br><span class="line">  isIphoneX: false//判断是否是iPhoneX</span><br><span class="line">&#125;,</span><br><span class="line">onShow: function() &#123;</span><br><span class="line">  var that = this;</span><br><span class="line">  wx.getSystemInfo(&#123;</span><br><span class="line">    success: function(res) &#123;</span><br><span class="line">      // console.log(&apos;手机信息res&apos;+res.model)  </span><br><span class="line">      let modelmes = res.model;</span><br><span class="line">      if (modelmes.search(&apos;iPhone X&apos;) != -1) &#123;</span><br><span class="line">        that.globalData.isIphoneX = true</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在需要做兼容的xxx.js中引入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var app= getApp();</span><br><span class="line">Page(&#123;</span><br><span class="line">data: &#123;</span><br><span class="line">  isIphoneX: false</span><br><span class="line">&#125;,</span><br><span class="line">onLoad: function()&#123;</span><br><span class="line">      // 判断是否为iPhoneX</span><br><span class="line">    var isIphoneX = app.globalData.isIphoneX;</span><br><span class="line">    console.log(isIphoneX ? &apos;是iPhoneX&apos; : &apos;不是iPhoneX&apos;)</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      isIphoneX: isIphoneX</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后在xx.wxml中对需要做兼容的元素做判断 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&quot;&#123;&#123;isIphoneX ? &apos;width30&apos; : &apos;width10&apos;&#125;&#125;&quot;&gt;&lt;/view&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后在对应的wxss里设置好对应的类名就ok 了，比较简单方便。</p>
 
         </div>
 
@@ -224,7 +212,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/02/22/小程序学习记录一/&title=《小程序学习记录一》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/&title=《小程序之iPhone x适配》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -234,22 +222,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/02/22/小程序学习记录一/&title=《小程序学习记录一》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/&title=《小程序之iPhone x适配》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/02/22/小程序学习记录一/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/08/27/小程序之iPhone x适配/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序学习记录一》 — Anson's Blog&url=http://yoursite.com/2018/02/22/小程序学习记录一/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序之iPhone x适配》 — Anson's Blog&url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/02/22/小程序学习记录一/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -272,18 +260,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/03/11/初试织梦CMS/" id="post-prev" class="post-nav-link">
+      <a href="/2019/08/27/小程序中图片点击全屏-可滑动/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">初试织梦CMS</h4>
+        <h4 class="title">小程序中图片点击全屏-可滑动</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/02/19/移动端开发时遇到的一些坑/" id="post-next" class="post-nav-link">
+      <a href="/2019/08/16/小程序速查/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">移动端开发时遇到的一些坑</h4>
+        <h4 class="title">小程序速记[基础]</h4>
       </a>
     </div>
   
@@ -395,7 +383,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/02/22/小程序学习记录一/&title=《小程序学习记录一》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/&title=《小程序之iPhone x适配》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -405,22 +393,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/02/22/小程序学习记录一/&title=《小程序学习记录一》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/&title=《小程序之iPhone x适配》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/02/22/小程序学习记录一/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/08/27/小程序之iPhone x适配/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序学习记录一》 — Anson's Blog&url=http://yoursite.com/2018/02/22/小程序学习记录一/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序之iPhone x适配》 — Anson's Blog&url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/02/22/小程序学习记录一/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/08/27/小程序之iPhone x适配/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -431,7 +419,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3awWrEMAxF0fz/T0+hq4Fpwn2SUyby9SqE1vFxQZUlHwcer9/x/kzG5wx8nuOOIUOGjMcyyHTk/fWc6bdiqgwZMjZgkCBLlpg+n20BX5sMGTJkkMSOfJ7gZciQIWMV4/rD/IzJg7sMGTJkpAdL8oE0BVxQkpMhQ8ZoRq0x8D/Pt/c3ZMiQ8fWMV2n0Z+s0D/74LRkyZIxm1A6ra9+nCSI6i8uQIWM0I4WlRX8+Z7weGTJkbMDgCyXv47J+Y/tkyJAxm5EGO5LA1eYhm3LKkyFDxgYM3m5ML4HxklxavGt1TWXIkPFARq152UnyeLkNtTNlyJAxmtHHpM3Ofoi/JezKkCHj6xm10hj/GZ5QpoE++JvIkCHjsYz0A7XSW3r0JS3V08aADBkyhjL6Bf200M8PxsGFMBkyZIxm8OSstqxaKrnssoUMGTIGMToF+usLrPdtgQwZMvZhkPSLJ4L94n68HTJkyNiAkS4iDbVpAY4HdxkyZOzA6JT+ebGMHFBrQ4YMGTswSGpYO3aSzwcFtevQLEOGjNEMnnLxwhlP9YL/A3wTZciQMY5RS8V46KxdNYsDtAwZMkYz+CBl+log7uBjjAwZMh7L6B840wsW/YAb3CaTIUPGIAYPsp3mIgmm/PLZaT9WhgwZ2zM6R9O0/RmwZciQIaN0qaJWjFtwzpYhQ8ZQRu0Q2wmj/AIZosqQIWM0ox+UO1e+yOLIGxkyZAxl/ACodGWrGeu5rwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3ay27CQAwFUP7/p+m2UpVwbQ+VMnOyqiCEOSxcv16v+HpfXL/fndz/91Ovb1wYGBiPZbxvr+Se/Fj5k/OzYWBgnMO4OsT9PUncS5589V3JEzAwMDDyL64e+j6hxMDAwFjFqPJ6qSEGBgZGXsROWnW9hPIrtTgGBsYDGdWj/OffX5lvYGBgPIrxLl7VwLo2Wbw8FQYGxtaMSeo2D5eFAjVZy8DAwNiakbfmk4Z+b3UjD9kYGBinMa7eXjXarKaPeSj/8B8DAwPjGEYegtcmiPlPGQVcDAyMhzN6o8RVhW7v54iagBgYGAcw8lIzeWieLM6fhoGBcSajl67dHygPo80hBAYGxkaMvOlfPW6yPFEdml6+joGBsTXjPqhVA19+3N7SxocnY2BgbM2YDCknKV3e1MvHDBgYGLsyqh/uhchJYRzdj4GBsTUjwRSKyaDp3wv90bsYGBjbMaqhc7J4kQfTctqKgYGxNWPSml8VLnuz1kLgxsDA2IKxasEiD5HVcWkUcDEwMI5hTFYl8nK3V9xGk1gMDIzDGL3hZR6ge603DAyM0xjv4tUrTatpZbm4xcDA2JoxCXa9ZO4rCxYYGBgHMCZBdu3i12gggYGBcQCjutaQtMzy1xeMRTEwMDCKrbf5Qlj+o2BgYGCsqo9XDS8vP4uBgXEAY7ISkYwzewtkhZYfBgbG1oxq6Vhd/MpbadUFDgwMjAMYP5ZAA/GyjLK3AAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
