@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>小程序-两列瀑布流布局 | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="微信小程序">
+    <meta name="description" content="新的设计图是按两列瀑布流排版的，类似于花瓣网那种。看到设计图后就在网上找，如何在小程序简单的实现，后来找到了一个特别简单的方法，就是利用wx:if和数组的下标对2取余来判断是排在左列还是排在右列，话不多说看图上代码：">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序-两列瀑布流布局">
+<meta property="og:url" content="http://yoursite.com/2019/09/27/小程序之瀑布流布局/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="新的设计图是按两列瀑布流排版的，类似于花瓣网那种。看到设计图后就在网上找，如何在小程序简单的实现，后来找到了一个特别简单的方法，就是利用wx:if和数组的下标对2取余来判断是排在左列还是排在右列，话不多说看图上代码：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7072486-1bb1b14ccfec8a90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-27T08:51:20.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小程序-两列瀑布流布局">
+<meta name="twitter:description" content="新的设计图是按两列瀑布流排版的，类似于花瓣网那种。看到设计图后就在网上找，如何在小程序简单的实现，后来找到了一个特别简单的方法，就是利用wx:if和数组的下标对2取余来判断是排在左列还是排在右列，话不多说看图上代码：">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7072486-1bb1b14ccfec8a90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://yscoder.github.io/img/face.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">小程序-两列瀑布流布局</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">小程序-两列瀑布流布局</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-27T07:39:03.000Z" itemprop="datePublished" class="page-time">
+  2019-09-27
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-小程序之瀑布流布局"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">小程序-两列瀑布流布局</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-27 15:39:03" datetime="2019-09-27T07:39:03.000Z"  itemprop="datePublished">
+2019-09-27
+<!--2019-09-27 16:51:20-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>新的设计图是按两列瀑布流排版的，类似于花瓣网那种。看到设计图后就在网上找，如何在小程序简单的实现，后来找到了一个特别简单的方法，就是利用<code>wx:if</code>和数组的下标对2取余来判断是排在左列还是排在右列，<br>话不多说看图上代码：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/7072486-1bb1b14ccfec8a90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="b878d9ea6545b27469595a8d88951bb.png" title="">
+                </div>
+                <div class="image-caption">b878d9ea6545b27469595a8d88951bb.png</div>
+            </figure></p>
+<p>wxml:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class=&apos;footlist&apos;&gt;</span><br><span class="line">  &lt;view class=&quot;foot-left&quot;&gt;</span><br><span class="line">    &lt;block wx:for=&quot;&#123;&#123;list&#125;&#125;&quot; wx:key=&quot;&#123;&#123; item.id &#125;&#125;&quot;&gt;</span><br><span class="line">      &lt;view class=&apos;footbox&apos; catchtap=&apos;jumpdetail&apos; catchlongtap=&quot;deletefoot&quot; bindtouchend=&quot;touchend&quot; id=&quot;&#123;&#123;item.id&#125;&#125;&quot; wx:if=&quot;&#123;&#123;index%2==0&#125;&#125;&quot; data-cover=&quot;&#123;&#123;item.banner&#125;&#125;&quot; data-title=&quot;&#123;&#123;item.title&#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;image class=&apos;cover&apos; src=&quot;&#123;&#123;item.banner&#125;&#125;&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</span><br><span class="line">        &lt;view class=&quot;box-shadow&quot;&gt;</span><br><span class="line">          &lt;text class=&apos;t1&apos;&gt;&#123;&#123;item.title&#125;&#125;&lt;/text&gt;</span><br><span class="line">          &lt;view class=&apos;bot&apos;&gt;</span><br><span class="line">            &lt;view class=&apos;personbox&apos; data-userid=&quot;&#123;&#123;item.userid&#125;&#125;&quot; catchtap=&quot;toProfile&quot;&gt;</span><br><span class="line">              &lt;image src=&quot;&#123;&#123;item.userinfo.avatarurl&#125;&#125;&quot;&gt;&lt;/image&gt;</span><br><span class="line">              &lt;text class=&quot;username&quot;&gt;&#123;&#123;item.userinfo.nickName&#125;&#125; &lt;/text&gt;</span><br><span class="line">            &lt;/view&gt;</span><br><span class="line">            &lt;view class=&apos;thump&apos; data-fid=&apos;&#123;&#123;item.id&#125;&#125;&apos; catchtap=&apos;thumptap&apos;&gt;</span><br><span class="line">              &lt;image class=&apos;un&apos; data-fid=&apos;&#123;&#123;item.id&#125;&#125;&apos; wx:if=&quot;&#123;&#123;item.islike==&apos;1&apos;&#125;&#125;&quot; catchtap=&apos;unthumptap&apos; src=&quot;../../images/thumph.png&quot;&gt;&lt;/image&gt;</span><br><span class="line">              &lt;view style=&quot;color:red;&quot;&gt;❤ &lt;/view&gt;</span><br><span class="line">              &lt;view class=&apos;thumpnum&apos;&gt;&#123;&#123;item.like&#125;&#125;&lt;/view&gt;</span><br><span class="line">            &lt;/view&gt;</span><br><span class="line">          &lt;/view&gt;</span><br><span class="line">        &lt;/view&gt;</span><br><span class="line">      &lt;/view&gt;</span><br><span class="line">    &lt;/block&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line"></span><br><span class="line">  &lt;view class=&quot;foot-right&quot;&gt;</span><br><span class="line">    &lt;block wx:for=&quot;&#123;&#123;list&#125;&#125;&quot; wx:key=&quot;&#123;&#123; item.id &#125;&#125;&quot;&gt;</span><br><span class="line">      &lt;view class=&apos;footbox&apos; catchtap=&apos;jumpdetail&apos; catchlongtap=&quot;deletefoot&quot; bindtouchend=&quot;touchend&quot; id=&quot;&#123;&#123;item.id&#125;&#125;&quot; wx:if=&quot;&#123;&#123;index%2==1&#125;&#125;&quot; data-cover=&quot;&#123;&#123;item.banner&#125;&#125;&quot; data-title=&quot;&#123;&#123;item.title&#125;&#125;&quot;&gt;</span><br><span class="line">        &lt;image class=&apos;cover&apos; src=&quot;&#123;&#123;item.banner&#125;&#125;&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</span><br><span class="line">        &lt;view class=&quot;box-shadow&quot;&gt;</span><br><span class="line">          &lt;text class=&apos;t1&apos;&gt;&#123;&#123;item.title&#125;&#125;&lt;/text&gt;</span><br><span class="line">          &lt;view class=&apos;bot&apos;&gt;</span><br><span class="line">            &lt;view class=&apos;personbox&apos; data-userid=&quot;&#123;&#123;item.userid&#125;&#125;&quot; catchtap=&quot;toProfile&quot;&gt;</span><br><span class="line">              &lt;image src=&quot;&#123;&#123;item.userinfo.avatarurl&#125;&#125;&quot;&gt;&lt;/image&gt;</span><br><span class="line">              &lt;text class=&quot;username&quot;&gt;&#123;&#123;item.userinfo.nickName&#125;&#125;&lt;/text&gt;</span><br><span class="line">            &lt;/view&gt;</span><br><span class="line">            &lt;view class=&apos;thump&apos; data-fid=&apos;&#123;&#123;item.id&#125;&#125;&apos; catchtap=&apos;thumptap&apos;&gt;</span><br><span class="line">              &lt;image class=&apos;un&apos; data-fid=&apos;&#123;&#123;item.id&#125;&#125;&apos; wx:if=&quot;&#123;&#123;item.islike==&apos;1&apos;&#125;&#125;&quot; catchtap=&apos;unthumptap&apos; src=&quot;../../images/thumph.png&quot;&gt;&lt;/image&gt;</span><br><span class="line">              &lt;view style=&quot;color:red;&quot;&gt;❤&lt;/view&gt;</span><br><span class="line">              &lt;view class=&apos;thumpnum&apos;&gt;&#123;&#123;item.like&#125;&#125;&lt;/view&gt;</span><br><span class="line">            &lt;/view&gt;</span><br><span class="line">          &lt;/view&gt;</span><br><span class="line">        &lt;/view&gt;</span><br><span class="line">      &lt;/view&gt;</span><br><span class="line">    &lt;/block&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure></p>
+<p>js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 页面的初始数据</span><br><span class="line">   */</span><br><span class="line">  data: &#123;</span><br><span class="line">    list: [&#123;</span><br><span class="line">        id: 174,</span><br><span class="line">        userid: 10,</span><br><span class="line">        title: &quot;日本岚山、和服一日游&quot;,</span><br><span class="line">        banner: &quot;https://hbimg.huabanimg.com/1ff95bdf3070e1fbff052a03ed353b409749f5ea16a809-WXy25b_fw658&quot;,</span><br><span class="line">        points: 6,</span><br><span class="line">        like: &quot;62&quot;,</span><br><span class="line">        userinfo: &#123;</span><br><span class="line">          id: 10,</span><br><span class="line">          nickName: &quot;李诗源&quot;,</span><br><span class="line">          avatarurl: &quot;https://pic3.zhimg.com/80/v2-fd0a58741fdf20f256c755719f81871e_hd.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        islike: 0</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: 173,</span><br><span class="line">        userid: 9,</span><br><span class="line">        title: &quot;日本阿寒湖一日游&quot;,</span><br><span class="line">        banner: &quot;https://hbimg.huabanimg.com/ee5bf07b84fead3d57b445d2e7fa8eb6afe827c617e9c-ha1fZH_fw658&quot;,</span><br><span class="line">        points: 7,</span><br><span class="line">        like: &quot;92&quot;,</span><br><span class="line">        userinfo: &#123;</span><br><span class="line">          id: 9,</span><br><span class="line">          nickName: &quot;大飞狼&quot;,</span><br><span class="line">          avatarurl: &quot;https://pic3.zhimg.com/80/v2-fd0a58741fdf20f256c755719f81871e_hd.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        islike: 0</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: 172,</span><br><span class="line">        userid: 8,</span><br><span class="line">        title: &quot;二次璧大乱斗东京动漫游&quot;,</span><br><span class="line">        banner: &quot;http://img1qn.moko.cc/2019-08-12/235e9bab-046e-4fea-afc2-4a049d81774e.jpg?imageView2/2/w/915/h/915/q/85&quot;,</span><br><span class="line">        points: 4,</span><br><span class="line">        like: &quot;41&quot;,</span><br><span class="line">        userinfo: &#123;</span><br><span class="line">          id: 8,</span><br><span class="line">          nickName: &quot;黄飞鸿&quot;,</span><br><span class="line">          avatarurl: &quot;https://pic3.zhimg.com/80/v2-fd0a58741fdf20f256c755719f81871e_hd.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        islike: 0</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: 100,</span><br><span class="line">        userid: 314,</span><br><span class="line">        title: &quot;心和身体总要有一个在路上🏃&quot;,</span><br><span class="line">        banner: &quot;http://img.mb.moko.cc/2019-05-18/285bd040-2e62-4e1b-b0e8-91351c1f3c67.jpg?imageView2/2/w/915/h/915&quot;,</span><br><span class="line">        points: 5,</span><br><span class="line">        like: &quot;110&quot;,</span><br><span class="line">        userinfo: &#123;</span><br><span class="line">          id: 314,</span><br><span class="line">          nickName: &quot;二夏&quot;,</span><br><span class="line">          avatarurl: &quot;https://pic3.zhimg.com/80/v2-fd0a58741fdf20f256c755719f81871e_hd.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        islike: 0</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: 99,</span><br><span class="line">        userid: 312,</span><br><span class="line">        title: &quot;新疆两日游&quot;,</span><br><span class="line">        banner: &quot;http://img.mb.moko.cc/2019-04-26/d4f1905c-3952-42be-9214-72260b97b0be.jpg?imageView2/2/w/915/h/915&quot;,</span><br><span class="line">        points: 5,</span><br><span class="line">        like: &quot;99&quot;,</span><br><span class="line">        userinfo: &#123;</span><br><span class="line">          id: 312,</span><br><span class="line">          nickName: &quot;Tohsaka&quot;,</span><br><span class="line">          avatarurl: &quot;https://pic3.zhimg.com/80/v2-fd0a58741fdf20f256c755719f81871e_hd.jpg&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        islike: 0</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>wxss:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">.footlist &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  border-top-left-radius: 10rpx;</span><br><span class="line">  border-top-right-radius: 10rpx;</span><br><span class="line">  padding-top: 20rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footlist::after &#123;</span><br><span class="line">  content: &apos;&apos;;</span><br><span class="line">  clear: both;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.foot-left &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.foot-right &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  background: #fff;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">  position: relative;</span><br><span class="line">  padding: 24rpx;</span><br><span class="line">  padding-top: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box-shadow &#123;</span><br><span class="line">  padding: 6rpx 10rpx 18rpx 10rpx;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">  box-shadow: 0 2rpx 2rpx rgba(88, 88, 88, 0.233);</span><br><span class="line">  border-bottom-left-radius: 10rpx;</span><br><span class="line">  border-bottom-right-radius: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  background: #fff;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">  position: relative;</span><br><span class="line">  padding: 24rpx;</span><br><span class="line">  padding-top: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox image &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  border-top-left-radius: 10rpx;</span><br><span class="line">  border-top-right-radius: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox .thump &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  width: auto;</span><br><span class="line">  height: 42rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox .thump image &#123;</span><br><span class="line">  width: 40rpx;</span><br><span class="line">  height: 42rpx;</span><br><span class="line">  float: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox .bot &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  width: 100%;</span><br><span class="line">  padding-top: 10rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox .bot::after &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  clear: both;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox .bot .t1 &#123;</span><br><span class="line">  font-size: 30rpx;</span><br><span class="line">  color: #1f1607;</span><br><span class="line">  line-height: 1.5;</span><br><span class="line">  /* margin-left: 38rpx; */</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  width: 100%;</span><br><span class="line">  margin-top: 15rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.footbox .bot .t2 &#123;</span><br><span class="line">  font-size: 28rpx;</span><br><span class="line">  color: #000;</span><br><span class="line">  line-height: 100rpx;</span><br><span class="line">  margin-left: 30rpx;</span><br><span class="line">  float: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.foot-left .footbox &#123;</span><br><span class="line">  padding-right: 12rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.personbox image &#123;</span><br><span class="line">  width: 42rpx;</span><br><span class="line">  height: 42rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background: #edaf39;</span><br><span class="line">  float: left;</span><br><span class="line">  border-top-left-radius: 10rpx;</span><br><span class="line">  border-top-right-radius: 10rpx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="https://yscoder.github.io/img/face.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/&title=《小程序-两列瀑布流布局》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/&title=《小程序-两列瀑布流布局》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/09/27/小程序之瀑布流布局/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序-两列瀑布流布局》 — Anson's Blog&url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/17/小程序-实现蒙版弹出窗/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">小程序-蒙版弹出窗</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/&title=《小程序-两列瀑布流布局》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/&title=《小程序-两列瀑布流布局》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/09/27/小程序之瀑布流布局/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序-两列瀑布流布局》 — Anson's Blog&url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/09/27/小程序之瀑布流布局/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3a227DIBRE0fz/T7tSnyq5uHsGp61h82TlZlYiTYBzXi88js9xvv76yPk15zH6hNHn3DxkyJDxWMZxOa5vTBjXXwd/zWhuMmTI2IdBQpbDOHg0XT43GTJkyCDLQT4J/hoZMmTImA9csoybiV0ZMmTI6KKTPEvOwf54Ly5DhowHMmYKA+++/qX6hgwZMv4x4whHF6C8zFnOSoYMGUszyIHXXU0VfOFYFiRkyJCxKIPHHwenn5MWEr55XIYMGRsw0vYvct2VPMvDOxkyZGzJSEOWvJeXAeKvT4YMGUsz+A3SkE0jtVssypAhYx8Gn+JdsPntbnD0JkOGjIczukVeyu5Knry/QoYMGWszZg70021nOum01UOGDBmrMsgkSEtE14rBywBT/xsyZMhYiNG1bfHo7MIXsWXIkLENg9+mi06+lCyLlzJkyNiAQTaxHTVtGguiVoYMGRswggP3cNnXBe4MW4YMGWszZravvNmCxyvfWpffkAwZMh7F6GKu29CmQczLpTJkyNiBcR2v3Q3SME07RILjNhkyZDyckYbjXeXMt7xXhgwZizKOcPCY7qKWUIcNrDJkyFiUkYYdufHUyV+1fJQhQ8YOjDRkyS35szxSf/gFZMiQsQGja6QgC7uy7yMtHsiQIUMGKECSFSiP4PgPQIYMGTIwIy1zksBF7SAyZMjYgEECLl3w8VawmSM5GTJk7MDoNpC8LSMtYaYdFDJkyFia8QHq4kHP3Cq8HwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
