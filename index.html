@@ -151,6 +151,161 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-使用Promise封装小程序wx.request"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-11-30 16:20:14" datetime="2019-11-30T08:20:14.000Z"  itemprop="datePublished">
+2019-11-30
+<!--2019-11-30 16:34:10-->
+</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/11/30/使用Promise封装小程序wx.request/">使用Promise封装小程序wx.request</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        因为业务需要，每个http请求都要加上一个请求头，所以每次都要写很多重复的代码。
+现在尝试把wx.request简单的封装了一下，调用一个request方法，每次请求自动携带header头信息，这样就省事多了，包含了常见的get post put delete 四种请求方法，支持Promise方式调用。
+封装代码1234567891011121314151617181920212223242...
+    
+
+        <a href="/2019/11/30/使用Promise封装小程序wx.request/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-在小程序中自定义弹窗组件"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-11-30 16:20:14" datetime="2019-11-30T08:20:14.000Z"  itemprop="datePublished">
+2019-11-30
+<!--2019-11-30 16:32:58-->
+</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/11/30/在小程序中自定义弹窗组件/">在小程序中调用API在小程序中自定义弹窗组件</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        因为业务需要在小程序里加上很多的弹窗，就想写一个组件来实现；
+创建组件
+新建文件夹component专门放组件，
+新建popup页面，在popup.json中设置：123&#123;    &quot;component&quot;: true&#125;
+
+
+表明它是一个组件，我们称之为“子组件”
+
+注意：在组件wxss中不应使用ID选择器、属性选择器和标签名选择器。（只使用class）如...
+    
+
+        <a href="/2019/11/30/在小程序中自定义弹窗组件/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-清除小程序button的默认样式"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-11-30 16:20:14" datetime="2019-11-30T08:20:14.000Z"  itemprop="datePublished">
+2019-11-30
+<!--2019-11-30 16:33:39-->
+</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/11/30/清除小程序button的默认样式/">清除小程序button的默认样式</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        彻底清除小程序按钮的默认样式wxml：1&lt;button hover-class=&quot;none&quot;&gt;&lt;/button&gt;
+wxss：123456789101112button&#123;  line-height: 1;  margin:0;&#125;button::after&#123;  border:none;&#125;input&#123;  ...
+    
+
+        <a href="/2019/11/30/清除小程序button的默认样式/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-小程序之瀑布流布局"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -517,168 +672,12 @@ WXML
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-关于跨域"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-03-15 20:04:55" datetime="2019-03-15T12:04:55.000Z"  itemprop="datePublished">
-2019-03-15
-<!--2019-03-15 20:32:26-->
-</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/03/15/关于跨域/">关于跨域</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        在使用Vue搭建的一个后端管理系统中，我使用axios请求本地的Node环境下的接口，但是请求失败，然后我错误信息是：
-                
-                    
-                    
-                
-                331552554043_.pic.jpg
-            大概意思就是不能访问h...
-    
-
-        <a href="/2019/03/15/关于跨域/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NodeJS/">NodeJS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Vue中的验证登录状态"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-03-09 22:21:55" datetime="2019-03-09T14:21:55.000Z"  itemprop="datePublished">
-2019-03-09
-<!--2019-03-09 18:33:19-->
-</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/03/09/Vue中的验证登录状态/">Vue中的验证登录状态</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Vue项目中实现用户登录及token验证先说一下我的实现步骤： 
-
-使用easy-mock新建登录接口，模拟用户数据
-使用axios请求登录接口，匹配账号和密码
-账号密码验证后， 拿到token，将token存储到sessionStorage中，并跳转到首页
-前端每次跳转时，就使用导航守卫(vue-router.beforeEach)判断 sessionStorage 中有无 token，没...
-    
-
-        <a href="/2019/03/09/Vue中的验证登录状态/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-我对JavaScript中this的一些理解"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-02-21 18:34:03" datetime="2019-02-21T10:34:03.000Z"  itemprop="datePublished">
-2019-02-21
-<!--2019-02-21 20:38:31-->
-</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/21/我对JavaScript中this的一些理解/">我对JavaScript中this的一些理解</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        因为日常工作中经常使用到this，而且在JavaScript中this的指向问题也很容易让人混淆一部分知识。这段时间翻阅了一些书籍也查阅了网上一些资料然后结合自己的经验，为了能让自己更好的理解this，进而总结一篇文章。
-this 是什么this是 JavaScript 语言的一个关键字。它是函数运行时，在函数体内部自动生成的一个对象，只能在函数体内部使用。实际是在函数被调用时才发生的绑定，...
-    
-
-        <a href="/2019/02/21/我对JavaScript中this的一些理解/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </div>
 </nav>
 

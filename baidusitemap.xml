@@ -3,6 +3,57 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2019/11/30/%E4%BD%BF%E7%94%A8Promise%E5%B0%81%E8%A3%85%E5%B0%8F%E7%A8%8B%E5%BA%8Fwx.request/</loc>
+    <lastmod>2019-11-30T08:34:10.269Z</lastmod>
+    <data>
+        <display>
+        <title>使用Promise封装小程序wx.request</title>
+        <pubTime>2019-11-30T08:20:14.000Z</pubTime>
+        
+        <tag>小程序</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/11/30/%E6%B8%85%E9%99%A4%E5%B0%8F%E7%A8%8B%E5%BA%8Fbutton%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F/</loc>
+    <lastmod>2019-11-30T08:33:39.396Z</lastmod>
+    <data>
+        <display>
+        <title>清除小程序button的默认样式</title>
+        <pubTime>2019-11-30T08:20:14.000Z</pubTime>
+        
+        <tag>小程序</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2019/11/30/%E5%9C%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%B9%E7%AA%97%E7%BB%84%E4%BB%B6/</loc>
+    <lastmod>2019-11-30T08:32:58.086Z</lastmod>
+    <data>
+        <display>
+        <title>在小程序中调用API在小程序中自定义弹窗组件</title>
+        <pubTime>2019-11-30T08:20:14.000Z</pubTime>
+        
+        <tag>小程序</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yoursite.com/2019/09/27/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E7%80%91%E5%B8%83%E6%B5%81%E5%B8%83%E5%B1%80/</loc>
@@ -507,9 +558,9 @@
         <title>火锅鸡网项目总结</title>
         <pubTime>2018-03-11T09:20:14.000Z</pubTime>
         
-        <tag>移动端</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>移动端</tag>
          
         <tag>生活感悟</tag>
          
@@ -712,9 +763,9 @@
         <title>移动端开发时遇到的一些坑</title>
         <pubTime>2018-02-19T00:32:07.000Z</pubTime>
         
-        <tag>移动端</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>移动端</tag>
          
          
            

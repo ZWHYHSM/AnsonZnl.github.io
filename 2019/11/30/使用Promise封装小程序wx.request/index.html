@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用Promise封装小程序wx.request | Anson&#39;s Blog | 种一棵树最好的时间在十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="小程序">
+    <meta name="description" content="因为业务需要，每个http请求都要加上一个请求头，所以每次都要写很多重复的代码。 现在尝试把wx.request简单的封装了一下，调用一个request方法，每次请求自动携带header头信息，这样就省事多了，包含了常见的get post put delete 四种请求方法，支持Promise方式调用。 封装代码1234567891011121314151617181920212223242526">
+<meta name="keywords" content="小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Promise封装小程序wx.request">
+<meta property="og:url" content="http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/index.html">
+<meta property="og:site_name" content="Anson&#39;s Blog">
+<meta property="og:description" content="因为业务需要，每个http请求都要加上一个请求头，所以每次都要写很多重复的代码。 现在尝试把wx.request简单的封装了一下，调用一个request方法，每次请求自动携带header头信息，这样就省事多了，包含了常见的get post put delete 四种请求方法，支持Promise方式调用。 封装代码1234567891011121314151617181920212223242526">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-30T08:34:10.269Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Promise封装小程序wx.request">
+<meta name="twitter:description" content="因为业务需要，每个http请求都要加上一个请求头，所以每次都要写很多重复的代码。 现在尝试把wx.request简单的封装了一下，调用一个request方法，每次请求自动携带header头信息，这样就省事多了，包含了常见的get post put delete 四种请求方法，支持Promise方式调用。 封装代码1234567891011121314151617181920212223242526">
+    
+        <link rel="alternate" type="application/atom+xml" title="Anson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://yscoder.github.io/img/face.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">张宁乐</h5>
+          <a href="mailto:zhangningle2017@gmail.com" title="zhangningle2017@gmail.com" class="mail">zhangningle2017@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ansonznl" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Promise封装小程序wx.request</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Promise封装小程序wx.request</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-30T08:20:14.000Z" itemprop="datePublished" class="page-time">
+  2019-11-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#封装代码"><span class="post-toc-number">1.</span> <span class="post-toc-text">封装代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用方法</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用Promise封装小程序wx.request"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Promise封装小程序wx.request</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-30 16:20:14" datetime="2019-11-30T08:20:14.000Z"  itemprop="datePublished">
+2019-11-30
+<!--2019-11-30 16:34:10-->
+</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>因为业务需要，每个http请求都要加上一个请求头，所以每次都要写很多重复的代码。</p>
+<p>现在尝试把wx.request简单的封装了一下，调用一个request方法，每次请求自动携带header头信息，这样就省事多了，包含了常见的get post put delete 四种请求方法，支持Promise方式调用。</p>
+<h2 id="封装代码"><a href="#封装代码" class="headerlink" title="封装代码"></a>封装代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">class request &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this._baseUrl = &apos;https://xxx.com/api&apos;;</span><br><span class="line">    this._token = wx.getStorageSync(&apos;token&apos;);</span><br><span class="line">    this._header = &#123;&apos;Authorization&apos;: &apos;Bearer &apos; + token&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * GET类型的网络请求</span><br><span class="line">   */</span><br><span class="line">  getRequest(url, data, header = this._header) &#123;</span><br><span class="line">    return this.requestAll(url, data, header, &apos;GET&apos;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * DELETE类型的网络请求</span><br><span class="line">   */</span><br><span class="line">  deleteRequest(url, data, header = this._header) &#123;</span><br><span class="line">    return this.requestAll(url, data, header, &apos;DELETE&apos;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * PUT类型的网络请求</span><br><span class="line">   */</span><br><span class="line">  putRequest(url, data, header = this._header) &#123;</span><br><span class="line">    return this.requestAll(url, data, header, &apos;PUT&apos;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * POST类型的网络请求</span><br><span class="line">   */</span><br><span class="line">  postRequest(url, data, header = this._header) &#123;</span><br><span class="line">    return this.requestAll(url, data, header, &apos;POST&apos;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 网络请求</span><br><span class="line">   */</span><br><span class="line">  requestAll(url, data, header, method) &#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      wx.request(&#123;</span><br><span class="line">        url: this._baseUrl + url,</span><br><span class="line">        data: data,</span><br><span class="line">        header: header,</span><br><span class="line">        method: method,</span><br><span class="line">        success: (res =&gt; &#123;</span><br><span class="line">          if (res.statusCode === 200) &#123;</span><br><span class="line">            //200: 服务端业务处理正常结束</span><br><span class="line">            resolve(res)</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            //其它错误，提示用户错误信息</span><br><span class="line">            reject(res)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;),</span><br><span class="line">        fail: (res =&gt; &#123;</span><br><span class="line">          reject(res)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default request</span><br></pre></td></tr></table></figure>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>在app.js中引入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import request from &apos;./request.js&apos;</span><br><span class="line">App(&#123;</span><br><span class="line">  myRequest()&#123;</span><br><span class="line">    return new request();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后在要使用的页面里引入使用即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const app = getApp();//新建页面时 默认引入</span><br><span class="line">const ajax = app.myRequest();//初始化一个的request() 实例</span><br><span class="line"></span><br><span class="line">Page(&#123;</span><br><span class="line">  data:&#123;&#125;,</span><br><span class="line">  onLoad()&#123;</span><br><span class="line">    this.getData();  </span><br><span class="line">  &#125;,</span><br><span class="line">  getData()&#123;</span><br><span class="line">    ajax.getRequest(&apos;/getList&apos;,&#123;id: 1024&#125;).then((res)=&gt;&#123;</span><br><span class="line">      console.log(res);</span><br><span class="line">    &#125;).catch((err)=&gt;&#123;</span><br><span class="line">      console.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>使用方法也是异常简单</p>
+<ul>
+<li>比如Get请求就是：<code>ajax.getRequest(url: String, data: Object);</code></li>
+<li>比如Post请求就是：<code>ajax.postRequest(url: String, data: Object);</code></li>
+<li>…</li>
+</ul>
+<p>参考：<br><a href="https://juejin.im/post/5b050e5651882542816aabfa" target="_blank" rel="noopener">封装wx.request</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="https://yscoder.github.io/img/face.jpg" alt="张宁乐">
+            张宁乐
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/&title=《使用Promise封装小程序wx.request》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/&title=《使用Promise封装小程序wx.request》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Promise封装小程序wx.request》 — Anson's Blog&url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/30/在小程序中自定义弹窗组件/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">在小程序中调用API在小程序中自定义弹窗组件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "gbSwUaucLkuxqOLxm131Mg9U-gzGzoHsz",
+            appKey: "b9xU2qIPrm06S0uymbAfrGMD",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>张宁乐 &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+			<span>
+					Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+			  </span>
+        </p>
+    </div>
+</footer>
+<!-- <script>
+(function(){
+    var bp = document.createElement("script");
+    var curProtocol = window.location.protocol.split(":")[0];
+    if (curProtocol === "https") {
+        bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+    }
+    else {
+        bp.src = "http://push.zhanzhang.baidu.com/push.js";
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/&title=《使用Promise封装小程序wx.request》 — Anson's Blog&pic=https://yscoder.github.io/img/face.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/&title=《使用Promise封装小程序wx.request》 — Anson's Blog&source=张宁乐,博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Promise封装小程序wx.request》 — Anson's Blog&url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/11/30/使用Promise封装小程序wx.request/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3ay27jMBAEwPz/T2evCySSu2dEwwjKp0DWqxiAM27y6yv+fP/4/H/855lXf1/dJ7/268QHDw8Pb/3qV4zZt1evmADaJ/4yBHh4eHjHeFcz6v059+ffv1A+xElBujyOh4eH9wG8e2pbGO7bZTw8PLy/wcsb5aSEtBkCHh4e3ufw8tu1wcF94JuUhzwUxsPDw3sPL19F+py/j6zv4eHh4a1X1duwII8q9u179LZ4eHh4B3izaKBtoO+vnRWnIkTGw8PDe5R3Px23r5Wc3y6ebY7g4eHhneDNQtgkTm3jjHwo280HeHh4eOd4bXnYhL/t4Ob3jP6HeHh4eA/x8vY6j1Dbraj5Vqp6uPHw8PAO8DYbBc5FEm1LXfx6wMPDwxvx9s1r2wTnjXvy7Yuhx8PDwzvGSybi+tblRJ+XnGRrQtGz4+Hh4ZW86Ou4gc7jiVkYkdwTDw8P7zSvfaEkHc0j4HZBq/4BgIeHh3eAl68TtTFEnh/noe0DJDw8PLw1b/Pg2QrbLNqYbSnAw8PDO8drK0kLbsOLvDC8eC4eHh7eAd5s8q0fMIqPNyUEDw8P7xxvtnGqndzb/nY23HUYgYeHh7fgXd00X/hvNyLkw9c2+r+s7+Hh4eEd492XiqRs3F/bdvr58cv3xMPDwzvA2zS77WS9KQCrLQh4eHh4b+S1y2MtclMeiiYeDw8P7zCvDWfzl9ssnuXB8YvCgIeHh/coL5nok5Z6EyjMhqbY0YCHh4e35n2Xn6eWytrNCsONDnh4eHgHeJvikQcWTwXB+YLcA7URDw8Pb9F5zrZbzUrOJtJ9EePi4eHhHeDlk3J7ZLbJ4LFgBQ8PD+8DeG3A2pac2XaEy+N4eHh4H8+bteZ5LNvGGXh4eHjneLNFr9nGgoeXr5LCgIeHh/cor70sj2LzJbT3xxZ4eHh4I94/j4l9gppXdzEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
